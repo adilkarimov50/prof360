@@ -1,16 +1,8 @@
 name: Deploy passport site
 
+# GitHub Pages публикуется из репозитория krim-passport (legacy /docs).
+# Здесь — ручная сборка артефакта; включите Pages в prof360 только при переносе домена.
 on:
-  push:
-    branches: [main, master]
-    paths:
-      - 'passports/docs/**'
-      - 'passports/data/**'
-      - 'passports/scripts/build.py'
-      - 'passports/scripts/build_legal.py'
-      - 'backend/app/legal/**'
-      - 'backend/data/legal/documents/**'
-      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
