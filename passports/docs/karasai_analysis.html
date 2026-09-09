@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Аналитика Карасайского района · Каскелен и Иргели · 2026</title>
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<style>
+.analysis-hero{background:linear-gradient(135deg,var(--navy-900,#0f1f3d) 0%,var(--navy-700,#1b3157) 100%);color:#fff;padding:48px 0 40px}
+.analysis-hero h1{font-size:clamp(1.5rem,3vw,2rem);margin:8px 0 12px}
+.analysis-hero p{max-width:720px;opacity:.88;line-height:1.55}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:24px}
+.kpi-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:14px 16px}
+.kpi-card .v{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums}
+.kpi-card .l{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.75;margin-top:4px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin:28px 0 20px;border-bottom:1px solid var(--line,#ddd);padding-bottom:0}
+.panel-tab{padding:10px 18px;border:none;background:transparent;cursor:pointer;font:inherit;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.panel-tab.on{color:var(--ink);border-bottom-color:var(--up);font-weight:600}
+.panel{display:none}.panel.on{display:block}
+.gap-row{display:grid;grid-template-columns:1fr auto auto auto;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center;font-size:14px}
+.gap-row.head{font-weight:600;background:var(--paper2);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.gap-row.flagged{background:#fff8f6;border-left:3px solid var(--down,#B33F26)}
+.badge-flag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#fde8e4;color:#B33F26}
+.badge-ok{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;background:#e8f5ef;color:#1a7a4a}
+.funnel{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin:16px 0}
+.funnel-step{text-align:center;min-width:100px}
+.funnel-bar{background:var(--navy-700,#1b3157);color:#fff;border-radius:4px 4px 0 0;padding:8px 12px;font-weight:700;font-size:1.1rem}
+.funnel-label{font-size:11px;color:var(--muted);margin-top:6px;max-width:120px}
+.legal-block{border-left:3px solid var(--navy-700);padding:12px 16px;margin:12px 0;background:var(--paper2);font-size:14px}
+.map-links{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.map-links a{padding:10px 16px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:500}
+@media(max-width:768px){.gap-row{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body data-site-page="index">
+<div id="chrome-top"></div>
+
+<section class="analysis-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow" style="opacity:.7">Карасайский район · 7 месяцев 2026</div>
+    <h1>Сопоставление реальной картины: Каскелен и Иргели</h1>
+    <p>Перекрёстная сверка криминологических паспортов (_итог), выгрузки ЕРДР, формы 1-АД,
+       медицинского учёта и протоколов комиссии с требованиями Закона №245-VIII.</p>
+    <div class="kpi-grid" id="hero-kpi"></div>
+    <div class="map-links">
+      <a href="kaskelen_map.html" style="background:var(--up);color:#fff">Карта Каскелена →</a>
+      <a href="irgeli_map.html" style="background:var(--navy-700,#1b3157);color:#fff">Карта Иргели →</a>
+      <a href="passport.html?id=kaskelen" class="tag">Паспорт Каскелена</a>
+      <a href="passport.html?id=irgeli" class="tag">Паспорт Иргели</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" style="padding-bottom:60px">
+  <div class="tabs" id="tabs">
+    <button class="panel-tab on" data-tab="gaps">Расхождения</button>
+    <button class="panel-tab" data-tab="funnel">Профучёт</button>
+    <button class="panel-tab" data-tab="commission">Комиссия</button>
+    <button class="panel-tab" data-tab="legal">Правовая оценка</button>
+    <button class="panel-tab" data-tab="conclusions">Выводы</button>
+  </div>
+
+  <div class="panel on" id="panel-gaps">
+    <div class="card card--flush">
+      <div class="gap-row head"><span>Показатель</span><span>Паспорт</span><span>Данные</span><span>Δ</span></div>
+      <div id="gaps-list"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-funnel">
+    <h2 style="margin-bottom:8px">Воронка профилактики</h2>
+    <p style="color:var(--muted);margin-bottom:20px">Медучёт → профучёт ОВД → адм. материалы. Разрыв указывает на формальный характер индивидуальной профилактики.</p>
+    <div id="funnel-wrap"></div>
+  </div>
+
+  <div class="panel" id="panel-commission">
+    <div id="commission-wrap"></div>
+  </div>
+
+  <div class="panel" id="panel-legal">
+    <div id="legal-wrap"></div>
+  </div>
+
+  <div class="panel" id="panel-conclusions">
+    <div class="card" id="conclusions-wrap"></div>
+  </div>
+</main>
+
+<div id="chrome-bottom"></div>
+<script src="assets/js/data.js?v=20260909a"></script>
+<script src="assets/js/karasai_analysis.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script>
+(function(){
+  const D = window.KARASAI_ANALYSIS;
+  if (!D) { document.body.innerHTML = '<p style="padding:40px">Данные не загружены. Запустите scripts/build.py</p>'; return; }
+
+  const fmt = n => n == null ? '—' : new Intl.NumberFormat('ru-RU').format(n);
+
+  // Hero KPI
+  const hk = document.getElementById('hero-kpi');
+  const s = D.summary;
+  [
+    ['Расхождений', s.flagged_gaps + '/' + s.total_gaps],
+    ['ЕРДР', s.erdr_total],
+    ['1-АД', s.admin_total],
+    ['Наркология', s.narcology_total],
+    ['Психиатрия', s.psychiatry_total],
+    ['Каскелен УП', s.kaskelen_crimes],
+    ['Иргели УП', s.irgeli_crimes],
+  ].forEach(([l,v]) => {
+    hk.innerHTML += `<div class="kpi-card"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  });
+
+  // Tabs
+  document.getElementById('tabs').addEventListener('click', e => {
+    const t = e.target.closest('.panel-tab'); if (!t) return;
+    document.querySelectorAll('.panel-tab').forEach(x => x.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('panel-' + t.dataset.tab).classList.add('on');
+  });
+
+  // Gaps
+  const gl = document.getElementById('gaps-list');
+  D.gaps.forEach(g => {
+    const d = document.createElement('div');
+    d.className = 'gap-row' + (g.flagged ? ' flagged' : '');
+    const delta = g.delta_pct != null ? (g.delta_pct > 0 ? '+' : '') + g.delta_pct + '%' : '—';
+    d.innerHTML = `<div><strong>${g.label}</strong><br><span style="color:var(--muted);font-size:13px">${g.metric}</span> ${g.flagged ? '<span class="badge-flag">расхождение</span>' : '<span class="badge-ok">в норме</span>'}<br><small style="color:var(--muted)">${g.note || ''}</small></div><div>${fmt(g.passport_value)}</div><div>${fmt(g.alt_value)}</div><div>${delta}</div>`;
+    gl.appendChild(d);
+  });
+
+  // Funnel
+  const fw = document.getElementById('funnel-wrap');
+  ['kaskelen','irgeli'].forEach(loc => {
+    const title = loc === 'kaskelen' ? 'г. Каскелен' : 'Иргелинский с.о.';
+    const h = document.createElement('h3'); h.textContent = title; h.style.marginTop = '24px'; fw.appendChild(h);
+    const row = document.createElement('div'); row.className = 'funnel';
+    const max = Math.max(...D.funnel[loc].map(x => x.count), 1);
+    D.funnel[loc].forEach(step => {
+      const h_pct = Math.max(24, step.count / max * 120);
+      row.innerHTML += `<div class="funnel-step"><div class="funnel-bar" style="height:${h_pct}px;line-height:${h_pct}px">${fmt(step.count)}</div><div class="funnel-label">${step.stage}</div></div>`;
+    });
+    fw.appendChild(row);
+  });
+
+  // Commission
+  const cw = document.getElementById('commission-wrap');
+  D.commission.forEach(sess => {
+    const card = document.createElement('div'); card.className = 'card'; card.style.marginBottom = '16px';
+    let topics = Object.entries(sess.topics || {}).filter(([,v]) => v).map(([k]) => k).join(', ');
+    card.innerHTML = `<div class="card__title">${sess.id} · ${sess.file}</div><p>${sess.assignments_count} поручений. Темы: ${topics || '—'}</p>`;
+    if (sess.assignments && sess.assignments.length) {
+      const ul = document.createElement('ul'); ul.style.fontSize = '13px'; ul.style.color = 'var(--muted)';
+      sess.assignments.slice(0, 6).forEach(a => {
+        const li = document.createElement('li'); li.textContent = (a.ref ? a.ref + '. ' : '') + (a.text || '').substring(0, 120); ul.appendChild(li);
+      });
+      card.appendChild(ul);
+    }
+    cw.appendChild(card);
+  });
+
+  // Legal
+  const lw = document.getElementById('legal-wrap');
+  const seen = new Set();
+  D.gaps.filter(g => g.flagged && g.legal).forEach(g => {
+    const key = g.legal.reaction_ref; if (seen.has(key)) return; seen.add(key);
+    const b = document.createElement('div'); b.className = 'legal-block';
+    b.innerHTML = `<strong>${g.metric}</strong> (${g.label})<br>${g.legal.summary}<br><br><em>${g.legal.law}</em><br>${g.legal.subordinate}<br><strong>Акт:</strong> ${g.legal.reaction_title} — ${g.legal.reaction_ref}`;
+    lw.appendChild(b);
+  });
+
+  // Conclusions
+  const co = D.conclusions;
+  document.getElementById('conclusions-wrap').innerHTML = `
+    <h3>Каскелен</h3><p>${co.kaskelen}</p>
+    <h3 style="margin-top:20px">Иргели</h3><p>${co.irgeli}</p>
+    <h3 style="margin-top:20px">Системный вывод</h3><p>${co.systemic}</p>`;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карта патрулирования — Иргелинский с/о · 2026</title>
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C1116;--slate:#18222B;--paper:#E8EBED;--paper2:#F4F6F7;--line:#33434F;--linelt:#C9D1D6;--muted:#7E909C;--red:#B33F26;--amber:#C08A1E;--teal:#1F6B70;--navy:#1b3157;--pale:#9FB0BB}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13.5px;line-height:1.45}
+body{display:flex;flex-direction:column}
+#chrome-top{flex:0 0 auto}
+.map-page{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+h1,h2,h3{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif}
+.mono{font-family:'IBM Plex Mono',monospace}
+header{background:var(--slate);color:var(--paper);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:3px solid #8C5A2B;flex:0 0 auto}
+header h1{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+header .sub{color:var(--pale);font-size:11px;margin-top:2px}
+header .back{margin-left:auto;color:var(--pale);text-decoration:none;font-size:12px;border:1px solid var(--line);padding:4px 10px}
+.stamp{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pale);border:1px solid var(--line);padding:3px 8px;letter-spacing:.05em;flex-shrink:0}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));background:var(--slate);border-bottom:1px solid var(--line);flex:0 0 auto}
+.kpi{padding:7px 13px;border-right:1px solid var(--line)}.kpi:last-child{border-right:none}
+.kpi .v{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:600;line-height:1.1}.kpi .l{font-size:10px;color:var(--pale);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.kpi.warn .v{color:#E8785C}.kpi.ok .v{color:#5fc49f}
+main{display:flex;flex:1 1 auto;min-height:0;overflow:hidden}
+#map{flex:1;height:100%;background:var(--paper2)}
+aside{width:320px;flex-shrink:0;background:var(--paper2);border-right:1px solid var(--linelt);display:flex;flex-direction:column;overflow:hidden}
+.panel{flex:1;overflow-y:auto;min-height:0}
+.blk{border-bottom:1px solid var(--linelt);padding:10px 13px}
+.blk h2{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;font-weight:600}
+.rt-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;background:#fff;border:1px solid var(--linelt);cursor:pointer;font:inherit;color:var(--ink);margin-bottom:5px;text-align:left;transition:.12s}
+.rt-btn:hover{border-color:var(--muted)}.rt-btn.off{opacity:.4;text-decoration:line-through}
+.rt-badge{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:1px 5px;color:#fff}.rt-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--linelt);background:#fff;cursor:pointer;padding:4px 8px;font-size:11.5px;font-family:inherit;color:var(--ink);display:flex;align-items:center;gap:5px;transition:.12s}
+.chip:hover{border-color:var(--muted)}.chip .dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%}.chip.off{opacity:.35;background:transparent}
+.detail{background:var(--slate);color:var(--paper);padding:12px 14px;border-bottom:1px solid var(--line);display:none}
+.detail.on{display:block}.detail h3{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.detail .r{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}.detail .r:last-of-type{border-bottom:none}
+.detail .r span:first-child{color:var(--pale);flex:0 0 auto;max-width:110px}
+.detail .msr{margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.15)}.detail .msr b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--pale);margin-bottom:4px}.detail .msr p{font-size:12px;margin:0}
+.detail .thr{font-size:11px;color:#9FC4C6;margin-top:6px;font-style:italic}.detail .addr-tag{font-size:11px;color:var(--amber);margin-top:4px;font-family:'IBM Plex Mono',monospace}
+.item{border-left:3px solid transparent;padding:8px 12px 8px 10px;cursor:pointer;border-bottom:1px solid var(--linelt);transition:.12s;background:#fff}
+.item:hover,.item.on{border-left-color:#8C5A2B;background:#fff}.item .top{display:flex;align-items:flex-start;gap:7px}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#fff;min-width:22px;height:20px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:2px}
+.item .nm{font-weight:600;font-size:13px;line-height:1.25;flex:1}.item .addr{font-size:11px;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace}
+.item .meta{font-size:11.5px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.cnt-bar{height:3px;background:var(--linelt);margin-top:5px;position:relative}.cnt-bar i{position:absolute;left:0;top:0;bottom:0;display:block}
+.stop-list{padding:8px 12px;background:#fff;border-bottom:1px solid var(--linelt)}
+.stop-item{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dotted var(--linelt);font-size:12px}.stop-item:last-child{border-bottom:none}
+.stop-time{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;flex-shrink:0;min-width:44px;color:var(--amber)}
+.stop-icon{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700;margin-top:1px}
+.stop-info .addr{color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace;margin-top:1px}.stop-info .note{color:var(--muted);font-size:11px;margin-top:2px;font-style:italic}
+.mk{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.mk.sm{width:18px;height:18px;font-size:9px;border-width:1.5px;border-radius:50%}.mk.est{border-radius:3px;font-size:10px}
+.mk.adm{transform:rotate(45deg);width:20px;height:20px;font-size:8px;border-radius:3px}.mk.adm span{transform:rotate(-45deg);display:block}
+.route-label{white-space:nowrap;font-size:11px;font-weight:700;background:rgba(255,255,255,.94);padding:2px 7px;border-radius:5px;border:2px solid;transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.2);pointer-events:none}
+.legend{background:rgba(12,17,22,.88);color:var(--paper);padding:9px 11px;font-size:11px;line-height:1.8;max-width:240px}
+.legend b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--pale);margin-bottom:4px;margin-top:5px}.legend b:first-child{margin-top:0}
+.legend i{width:10px;height:10px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.legend .line-dash{width:20px;height:3px;display:inline-block;margin-right:5px;vertical-align:2px;border-top:3px dashed}
+.legend .line-solid{width:20px;height:4px;display:inline-block;margin-right:5px;vertical-align:2px}
+.leaflet-popup-content{font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin:10px 14px;min-width:200px}
+.leaflet-popup-content h4{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;margin-bottom:5px}
+.leaflet-popup-content .pop-addr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555;margin-bottom:6px}
+.leaflet-popup-content .pop-row{padding:3px 0;border-bottom:1px solid #eee;font-size:12px;display:flex;justify-content:space-between;gap:8px}.leaflet-popup-content .pop-row:last-of-type{border:none}
+.leaflet-popup-content .pop-m{margin-top:7px;font-size:11.5px;background:#f7f3e8;padding:7px 9px;border-left:3px solid #C08A1E}
+.int-panel{background:#fff;border:1px solid var(--linelt);margin:0 10px 8px;padding:10px 11px;font-size:12px}
+.int-panel h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.int-panel p{margin:0 0 8px;line-height:1.45;color:var(--ink)}
+.int-kpis{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:8px 0}
+.int-kpi{background:var(--paper2);padding:5px 7px;border-left:3px solid var(--teal)}
+.int-kpi.warn{border-left-color:var(--red)}.int-kpi .v{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600}.int-kpi .l{font-size:10px;color:var(--muted)}
+.int-problems{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:11.5px}
+.int-problems li{margin:3px 0}
+.int-link{display:inline-block;margin-top:6px;font-size:11px;color:var(--teal);text-decoration:none;border-bottom:1px dotted var(--teal)}
+</style>
+</head>
+<body data-site-page="map" data-site-id="irgeli">
+<div id="chrome-top"></div>
+<div class="map-page">
+<header>
+  <div><h1>Карта патрулирования и криминогенных объектов</h1>
+  <div class="sub">Иргелинский сельский округ · Карасайский район · Алматинская область · 2026</div></div>
+  <div class="stamp">ФОРМА 1-М · 1-АД</div>
+  <a class="back" href="passport.html?id=irgeli">← Паспорт</a>
+</header>
+<div class="strip">
+  <div class="kpi warn"><div class="v">220</div><div class="l">уголовных правонарушений</div></div>
+  <div class="kpi warn"><div class="v">+1,3%</div><div class="l">рост к АППГ (217)</div></div>
+  <div class="kpi"><div class="v">63 152</div><div class="l">население</div></div>
+  <div class="kpi warn"><div class="v">34,3</div><div class="l">на 10 тыс. населения</div></div>
+  <div class="kpi warn"><div class="v">88</div><div class="l">фактов — Алтын Орда</div></div>
+  <div class="kpi warn"><div class="v">51,7%</div><div class="l">краж не раскрыто</div></div>
+  <div class="kpi"><div class="v">1914</div><div class="l">адм. правонарушений</div></div>
+  <div class="kpi"><div class="v">80–90 тыс.</div><div class="l">поток/день на рынке</div></div>
+</div>
+<main>
+<aside>
+  <div class="panel">
+  <div class="blk" id="int-panel-wrap"></div>
+  <div class="blk"><h2>Маршруты патрулирования</h2><div id="rt-toggles"></div></div>
+  <div class="blk"><h2>Вид преступления</h2><div class="chips" id="fcat"></div></div>
+  <div class="blk"><h2>Слои</h2><div class="chips" id="flayers"></div></div>
+  <div class="detail" id="detail"></div>
+  <div class="blk" style="padding-bottom:4px"><h2>Реестр объектов</h2></div>
+  <div id="list"></div>
+  </div>
+</aside>
+<div id="map"></div>
+</main>
+<script src="assets/js/integrated_maps.js?v=20260909a"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const LOC_ID='irgeli';
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=v=>v==null?'—':new Intl.NumberFormat('ru-RU').format(v);
+function renderIntegratedPanel(){
+  const d=window.INTEGRATED_MAPS&&window.INTEGRATED_MAPS[LOC_ID];
+  const wrap=document.getElementById('int-panel-wrap');
+  if(!d||!wrap)return;
+  const kpis=(d.map_kpis||[]).map(k=>`<div class="int-kpi${k.warn?' warn':''}"><div class="v">${esc(k.value)}</div><div class="l">${esc(k.label)}</div></div>`).join('');
+  const probs=(d.problems||[]).slice(0,3).map(p=>`<li>${esc(p)}</li>`).join('');
+  wrap.innerHTML=`<div class="int-panel"><h3>Сверка профучёта · ${esc(d.generated)}</h3><p>${esc(d.summary)}</p><div class="int-kpis">${kpis}</div><ul class="int-problems">${probs}</ul><a class="int-link" href="spravka_sverka_profueta/Справка_интегрированная_Каскелен_Иргели.html" target="_blank">Полная интегрированная справка →</a></div>`;
+  const strip=document.querySelector('.strip');
+  (d.map_kpis||[]).forEach(k=>{
+    const el=document.createElement('div');el.className='kpi'+(k.warn?' warn':'');
+    el.innerHTML=`<div class="v">${esc(k.value)}</div><div class="l">${esc(k.label)}</div>`;
+    strip.appendChild(el);
+  });
+}
+renderIntegratedPanel();
+
+const CAT={
+  theft:{n:'Кражи',                 c:'#8C5A2B'},
+  beat :{n:'Побои и вред здоровью', c:'#C08A1E'},
+  fraud:{n:'Мошенничества',          c:'#5B4B8A'},
+  mixed:{n:'Смешанный вид',          c:'#1b3157'}
+};
+
+const CRIMES=[
+ {id:'c1',rank:1,n:'УТК «Алтын Орда»',
+  addr:'УТК «Алтын Орда», 3420 торговых мест (сект. А — 1124, сект. Б — 590)',
+  cat:'mixed',cnt:88,ll:[43.2319,76.7709],exact:true,
+  time:'Дневное и вечернее (в период работы рынка, 07:30–20:00)',
+  vict:'Посетители, продавцы, покупатели (80-90 тыс./день)',
+  m:'Мероприятие №1: усилить патрулирование совместно с охраной «Ерлік Security» (80 чел.). Устранить «слепые зоны». Маршрут №1 — ежедневный объезд рынка. 16 из 87 краж — у продавцов рынка.',
+  th:'Рутинная деятельность · Ситуативный подход (80-90 тыс. чел./день — огромная целевая масса)'},
+ {id:'c2',rank:2,n:'ЖК «Асыл Арман»',
+  addr:'ЖК «Асыл Арман» (21 дом, 5088 квартир, ул. Мерей и Исагулова)',
+  cat:'mixed',cnt:46,ll:[43.2303,76.7522],exact:true,
+  time:'40% вечернее, 60% ночное время',
+  vict:'Жители комплекса (кражи, мошенничества, побои, самоуправства)',
+  m:'Мероприятие №2: обследование ЖК, устранение «слепых зон» и нехватки видеонаблюдения. Маршрут №2 — пеший вечерний через ЖК. В комплексе: 4 разливных, 4 компклуба, 13 магазинов, 2 супермаркета.',
+  th:'Рутинная деятельность · Теория социальной дезорганизации (высокая плотность + алкоторговля)'},
+ {id:'c3',rank:3,n:'ТРЦ «Апорт Молл»',
+  addr:'ТРЦ «Апорт Молл» (Ташкентский тракт)',
+  cat:'theft',cnt:27,ll:[43.2347,76.7782],exact:true,
+  time:'Дневное и вечернее (работа ТРЦ)',
+  vict:'Посетители (кражи, побои)',
+  m:'Мероприятие №2: обследование ТРЦ и прилегающего Ташкентского тракта. Маршрут №1 охватывает объект.',
+  th:'Криминология места (крупный торговый объект с высоким потоком)'}
+];
+
+const ESTAB=[
+ {id:'altyn-o', n:'УТК «Алтын Орда»',                t:'market',   addr:'с. Иргели, граница г. Алматы',       ll:[43.2319,76.7709], note:'3420 торговых мест. 80-90 тыс. посетителей/день. 60 складов. Охрана «Ерлік Security» (80 чел.). 28 краж + 5 мошенничеств = 15% всех правонарушений округа.', icon:'Р'},
+ {id:'aport',   n:'ТРЦ «Апорт Молл»',                t:'mall',     addr:'Ташкентский тракт, с. Иргели',       ll:[43.2347,76.7782], note:'27 уголовных правонарушений. Кражи и побои. Крупный ТРЦ с высоким потоком.', icon:'Т'},
+ {id:'asyl',    n:'ЖК «Асыл Арман»',                 t:'complex',  addr:'ул. Мерей / ул. Исагулова',          ll:[43.2303,76.7522], note:'21 дом, 5088 квартир. 4 разливных алко, 4 компклуба, 13 магазинов, 2 супермаркета, 6 аптек. 46 правонарушений.', icon:'Ж'},
+ {id:'irgeli-c',n:'с. Иргели (центр)',                t:'settlement',addr:'с. Иргели, административный центр', ll:[43.2384,76.7598], note:'Административный центр округа. Ближайший к рынку населённый пункт.', icon:'С'},
+ {id:'koksay',  n:'с. Коксай',                        t:'settlement',addr:'с. Коксай',                          ll:[43.2576,76.7741], note:'Входит в Иргелинский сельский округ. Охват видеонаблюдением: Арай-4, Кожабекова-2, Аксай-1 и др. камеры.', icon:'С'},
+ {id:'kemertoq',n:'с. Кемертоган',                   t:'settlement',addr:'с. Кемертоган',                     ll:[43.2491,76.7461], note:'Входит в Иргелинский сельский округ. Видеонаблюдение: Акниет-5, 17-й квартал-1 и др.', icon:'С'},
+ {id:'merey',   n:'ул. Мерей (проблемная)',           t:'street',   addr:'ул. Мерей, с. Иргели',              ll:[43.2385,76.7693], note:'Одна из 3 проблемных улиц округа. Высокая концентрация СБК и побоев в ночное время.', icon:'У'},
+ {id:'isagul',  n:'ул. Исагулова (проблемная)',       t:'street',   addr:'ул. Куанышбека Исагулова, с. Иргели',ll:[43.2406,76.7666],note:'Одна из 3 проблемных улиц округа. Включена в маршрут пешего патрулирования №2.', icon:'У'},
+ {id:'kvartal4',n:'Квартал-4 (проблемный)',           t:'street',   addr:'с. Иргели (точное положение уточнить)',ll:[43.2360,76.7630],note:'Третья проблемная улица округа. Координата ориентировочная, требует уточнения на месте.', icon:'У'},
+ {id:'alc-ir',  n:'Объекты реализации алкоголя (284)',t:'alcohol-m',addr:'Иргелинский с/о: 275 магаз., 5 кафе, 4 ресторана',ll:[43.2320,76.7680],note:'284 алкообъекта. 1 лицензия отозвана. Фактор ст.440 (93 случая). 9 преступлений совершено в состоянии опьянения.', icon:'А'},
+ {id:'erlik',   n:'Охрана «Ерлік Security»',         t:'security', addr:'УТК «Алтын Орда»',                  ll:[43.2319,76.7720], note:'80 охранников на территории рынка. Взаимодействие с ОВД — требуется усиление.', icon:'О'},
+ {id:'dachas',  n:'Дачные массивы (18 ед.)',          t:'dacha',    addr:'Иргелинский сельский округ',          ll:[43.2450,76.7500], note:'18 дачных массивов. Фактов краж не установлено. Криминогенный фактор в межсезонье.', icon:'Д'},
+ {id:'cameras', n:'Видеонаблюдение (59 камер)',       t:'cameras',  addr:'Иргели, Коксай, Кемертоган',         ll:[43.2384,76.7598], note:'59 камер. 107 улиц без освещения из 134. 51,7% краж не раскрыто из-за «слепых зон».', icon:'В'},
+];
+
+const ADMIN=[
+ {id:'a1',n:'Несовершеннолетние ночью — жилые кварталы',addr:'жилые кварталы с. Иргели',stat:'ст.442 КоАП',cnt:114,share:'5,9%',ll:[43.2390,76.7640],note:'Несовершеннолетние ночью вне жилища. С 22:00 до 06:00. Корреляция с районами ЖК Асыл Арман и ул. Мерей.'},
+ {id:'a2',n:'Дороги — нарушения (Ташкентский тракт)',addr:'Ташкентский тракт и прилегающие дороги',stat:'Дорожные ст.',cnt:465,share:'24,3%',ll:[43.2350,76.7700],note:'Совокупно дорожные нарушения. Пик — дневное (12-14 ч.) и ночное (23-03 ч.). Ташкентский тракт — трасса высокой интенсивности.'},
+ {id:'a3',n:'Алкоголь — рынок и прилегающая зона',addr:'УТК «Алтын Орда» и окрестности',stat:'ст.440 КоАП',cnt:93,share:'4,9%',ll:[43.2320,76.7730],note:'Распитие / появление в пьяном виде. 56% ночью, 41% вечером. Коррелирует с 284 алкообъектами.'},
+ {id:'a4',n:'Семейно-бытовые — жилые кварталы',addr:'жилые кварталы с. Иргели, Кемертоган',stat:'ст.73 КоАП',cnt:22,share:'1,1%',ll:[43.2400,76.7620],note:'Семейно-бытовая сфера. 80% ночью (23:00-04:00). 5 семей риска на учёте.'},
+ {id:'a5',n:'Хулиганство — ул. Мерей и прилег.',addr:'ул. Мерей, ул. Исагулова',stat:'ст.434 КоАП',cnt:30,share:'1,6%',ll:[43.2385,76.7693],note:'Мелкое хулиганство. 60% ночью, 22% вечером. Проблемные улицы — приоритет патрулирования.'},
+];
+
+const ROUTES=[
+ {id:1,n:'Маршрут №1 — дневной (автопатруль)',time:'07:30–15:00 (2 рейда)',type:'auto',color:'#1F6B70',crew:'1 экипаж, 2 сотрудника',focus:'Кражи на рынке и ТРЦ Апорт Молл',
+  coords:[[43.2384,76.7598],[43.2360,76.7630],[43.2347,76.7782],[43.2340,76.7760],[43.2319,76.7709],[43.2319,76.7720],[43.2303,76.7600],[43.2384,76.7598]],
+  stops:[
+   {n:'с. Иргели — начало рейда',addr:'с. Иргели (РОВД)',ll:[43.2384,76.7598],time:'07:30',icon:'S',note:'Инструктаж. Задание от дежурного.'},
+   {n:'ТРЦ «Апорт Молл»',addr:'Ташкентский тракт',ll:[43.2347,76.7782],time:'07:50',icon:'!',note:'27 правонарушений. Осмотр территории ТРЦ. Отстой 15 мин.'},
+   {n:'УТК «Алтын Орда»',addr:'УТК «Алтын Орда» (все зоны)',ll:[43.2319,76.7709],time:'08:15',icon:'★',note:'88 правонарушений — 40% всех краж округа. Взаимодействие с «Ерлік Security». Осмотр всех зон. Отстой 30 мин.'},
+   {n:'ЖК «Асыл Арман» (сев. часть)',addr:'ул. Мерей / ЖК Асыл Арман',ll:[43.2303,76.7600],time:'09:10',icon:'!',note:'Утренний осмотр ЖК. Проверка видеонаблюдения. Отстой 15 мин.'},
+   {n:'с. Иргели — конец рейда',addr:'с. Иргели (РОВД)',ll:[43.2384,76.7598],time:'09:30',icon:'E',note:'Отчёт. Повтор в 12:00.'},
+  ]},
+ {id:2,n:'Маршрут №2 — вечерний (пеший)',time:'18:00–23:00',type:'foot',color:'#B33F26',crew:'Участковый инспектор',focus:'ЖК «Асыл Арман», ул. Мерей, несовершеннолетние',
+  coords:[[43.2384,76.7598],[43.2384,76.7620],[43.2384,76.7640],[43.2385,76.7693],[43.2400,76.7680],[43.2406,76.7666],[43.2395,76.7640],[43.2370,76.7625],[43.2303,76.7522],[43.2310,76.7560],[43.2350,76.7600],[43.2384,76.7598]],
+  stops:[
+   {n:'с. Иргели — начало обхода',addr:'с. Иргели',ll:[43.2384,76.7598],time:'18:00',icon:'S',note:'Сверка с профучётом (39 семдебоширов, 35 судимых).'},
+   {n:'ул. Мерей',addr:'ул. Мерей, с. Иргели',ll:[43.2385,76.7693],time:'18:30',icon:'★',note:'Проблемная улица. Ст.442 — несовершеннолетние. Ст.440 — алкоголь. Осмотр дворов. Отстой 20 мин.'},
+   {n:'ул. Исагулова',addr:'ул. Куанышбека Исагулова',ll:[43.2406,76.7666],time:'19:15',icon:'!',note:'Проблемная улица. Проверка адресов конфликтных семей. Отстой 15 мин.'},
+   {n:'ЖК «Асыл Арман»',addr:'ЖК «Асыл Арман» (все дворы)',ll:[43.2303,76.7522],time:'20:15',icon:'★',note:'46 правонарушений. 4 разливных алко, 4 компклуба — проверка. 60% побоев — ночь. Отстой 25 мин.'},
+   {n:'с. Иргели — конец обхода',addr:'с. Иргели',ll:[43.2384,76.7598],time:'21:30',icon:'E',note:'Рапорт. Повтор в 23:00 (усиленный рейд).'},
+  ]},
+ {id:3,n:'Маршрут №3 — ночной (сёла)',time:'20:00–07:00',type:'auto',color:'#C08A1E',crew:'Патрульный экипаж',focus:'с. Кемертоган, с. Коксай, дачные массивы',
+  coords:[[43.2384,76.7598],[43.2491,76.7461],[43.2550,76.7500],[43.2576,76.7741],[43.2500,76.7740],[43.2384,76.7598]],
+  stops:[
+   {n:'с. Иргели — начало',addr:'с. Иргели',ll:[43.2384,76.7598],time:'20:00',icon:'S',note:'Начало ночного маршрута по сёлам.'},
+   {n:'с. Кемертоган',addr:'с. Кемертоган (все кварталы)',ll:[43.2491,76.7461],time:'20:30',icon:'!',note:'Осмотр 17-го, 7-го, 8-го кварталов. Видеонаблюдение Акниет-5. Отстой 20 мин.'},
+   {n:'с. Коксай',addr:'с. Коксай',ll:[43.2576,76.7741],time:'21:30',icon:'!',note:'Осмотр ул. Арай, Кожабекова, микрорайон Угили. Профилактика. Отстой 20 мин.'},
+   {n:'с. Иргели — конец',addr:'с. Иргели',ll:[43.2384,76.7598],time:'23:00',icon:'E',note:'Сдача дежурства.'},
+  ]},
+];
+
+const COVERAGE_GAPS=[
+ {id:'gap1',n:'Квартал-4',addr:'с. Иргели — вне вечернего маршрута',ll:[43.2360,76.7630],radius:300,note:'Проблемная зона. Координата ориентировочная. Нет постоянного ночного патруля.'},
+ {id:'gap2',n:'Слепая зона рынка (сект. Б)',addr:'УТК «Алтын Орда», сектор Б',ll:[43.2325,76.7685],radius:450,note:'88 фактов в паспорте vs 17 в ЕРДР — часть территории 21,5 га без видео и патруля.'},
+ {id:'gap3',n:'107 ул. без освещения',addr:'Иргелинский с/о',ll:[43.2450,76.7550],radius:500,note:'51,7% краж не раскрыто. 37 камер vs 226 в Каскелене.'},
+];
+
+const CENTER=[43.2400,76.7640];
+const map=L.map('map',{zoomControl:true}).setView(CENTER,13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+
+const gCrimes=L.layerGroup().addTo(map),gEstab=L.layerGroup().addTo(map),gAdmin=L.layerGroup(),gZones=L.layerGroup().addTo(map),gRes=L.layerGroup().addTo(map),gCoverage=L.layerGroup().addTo(map);
+const routeLayers={};
+const offCrime=new Set(),offLayers=new Set(['admin']);
+let curId=null;
+const crimeMarkers={},zoneCircles={},estabMarkers={},adminMarkers={};
+
+const ESTAB_C={market:'#8C5A2B',mall:'#8C5A2B',complex:'#5B4B8A',settlement:'#1F6B70',street:'#C08A1E',security:'#1b3157','alcohol-m':'#B33F26',dacha:'#5d6b80',cameras:'#333'};
+
+CRIMES.filter(c=>c.ll).forEach(cr=>{
+  const c=CAT[cr.cat].c,sz=26+Math.sqrt(cr.cnt)*2.8|0;
+  const m=L.marker(cr.ll,{icon:L.divIcon({className:'',html:`<div class="mk" style="background:${c};width:${sz}px;height:${sz}px">${cr.rank}</div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]}),title:cr.n})
+   .bindPopup(`<h4>${cr.rank}. ${esc(cr.n)}</h4><div class="pop-addr">📍 ${esc(cr.addr)}</div><div class="pop-row"><span>Вид</span><b>${esc(CAT[cr.cat].n)}</b></div><div class="pop-row"><span>Фактов</span><b>${fmt(cr.cnt)}</b></div><div class="pop-row"><span>Время</span><b>${esc(cr.time)}</b></div><div class="pop-m"><b>Меры:</b><br>${esc(cr.m)}</div>`)
+   .on('click',()=>sel(cr.id));
+  gCrimes.addLayer(m);crimeMarkers[cr.id]=m;
+  gZones.addLayer(L.circle(cr.ll,{radius:40+cr.cnt*35,color:c,weight:1,fillColor:c,fillOpacity:.1}));zoneCircles[cr.id]=L.circle(cr.ll,{radius:40+cr.cnt*35});
+});
+
+ESTAB.forEach(e=>{
+  const c=ESTAB_C[e.t]||'#555';const res=['settlement','security'].includes(e.t);
+  const m=L.marker(e.ll,{icon:L.divIcon({className:'',html:res?`<div class="mk sm res" style="background:${c}">${esc(e.icon)}</div>`:`<div class="mk est" style="background:${c}">${esc(e.icon)}</div>`,iconSize:res?[18,18]:[20,20],iconAnchor:res?[9,9]:[10,10]}),title:e.n})
+   .bindPopup(`<h4>${esc(e.n)}</h4><div class="pop-addr">📍 ${esc(e.addr)}</div><div class="pop-m">${esc(e.note)}</div>`)
+   .on('click',()=>sel(e.id));
+  (res?gRes:gEstab).addLayer(m);estabMarkers[e.id]=m;
+});
+
+ADMIN.forEach(a=>{
+  const m=L.marker(a.ll,{icon:L.divIcon({className:'',html:`<div class="mk adm" style="background:#C08A1E"><span>${esc(a.cnt>999?'▲':a.cnt)}</span></div>`,iconSize:[20,20],iconAnchor:[10,10]}),title:a.stat})
+   .bindPopup(`<h4>${esc(a.stat)} — ${esc(a.n)}</h4><div class="pop-addr">📍 ${esc(a.addr)}</div><div class="pop-row"><span>Фактов</span><b>${fmt(a.cnt)}</b></div><div class="pop-m">${esc(a.note)}</div>`)
+   .on('click',()=>selAdmin(a.id));
+  gAdmin.addLayer(m);adminMarkers[a.id]=m;
+});
+
+COVERAGE_GAPS.forEach(g=>{
+  gCoverage.addLayer(L.circle(g.ll,{radius:g.radius,color:'#B33F26',weight:2,dashArray:'8 6',fillColor:'#B33F26',fillOpacity:.12})
+   .bindPopup(`<h4>⚠ Вне охвата патруля</h4><div class="pop-addr">${esc(g.addr)}</div><div class="pop-m">${esc(g.note)}</div>`));
+});
+
+function buildRouteLayer(r){
+  const lg=L.layerGroup();
+  L.polyline(r.coords,{color:r.color,weight:r.type==='auto'?5:3,opacity:.88,dashArray:r.type==='foot'?'9 7':null}).bindPopup(`<b>${esc(r.n)}</b><br>${esc(r.time)}<br>Экипаж: ${esc(r.crew)}`).addTo(lg);
+  const step=Math.max(2,r.coords.length>>2);
+  for(let i=step;i<r.coords.length-1;i+=step){const a=r.coords[i],b=r.coords[i+1];const ang=Math.atan2(b[1]-a[1],b[0]-a[0])*180/Math.PI-90;L.marker(a,{interactive:false,icon:L.divIcon({className:'',html:`<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:10px solid ${r.color};transform:rotate(${ang}deg);opacity:.7"></div>`,iconSize:[10,10],iconAnchor:[5,5]})}).addTo(lg);}
+  r.stops.forEach(s=>{const isKey=s.icon==='★',isEnd=s.icon==='E'||s.icon==='S';L.circleMarker(s.ll,{radius:isKey?9:6,color:r.color,weight:2.5,fillColor:isEnd?r.color:(isKey?r.color:'#fff'),fillOpacity:1}).bindPopup(`<h4>Маршрут №${r.id} · ${esc(s.n)}</h4><div class="pop-addr">📍 ${esc(s.addr)}</div><div class="pop-row"><span>Время</span><b style="color:${r.color}">${esc(s.time)}</b></div><div class="pop-m">${esc(s.note)}</div>`).addTo(lg);L.marker(s.ll,{interactive:false,icon:L.divIcon({className:'',html:`<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;background:rgba(255,255,255,.92);border:1.5px solid ${r.color};padding:1px 4px;white-space:nowrap;transform:translate(10px,-5px);box-shadow:0 1px 3px rgba(0,0,0,.2)">${s.time}</div>`,iconSize:[0,0]})}).addTo(lg);});
+  const mid=r.coords[r.coords.length>>1];L.marker(mid,{interactive:false,icon:L.divIcon({className:'',html:`<div class="route-label" style="border-color:${r.color};color:${r.color}">Маршрут №${r.id}</div>`,iconSize:[0,0]})}).addTo(lg);
+  return lg;
+}
+ROUTES.forEach(r=>{routeLayers[r.id]=buildRouteLayer(r);routeLayers[r.id].addTo(map);});
+
+const lgCtrl=L.control({position:'bottomright'});
+lgCtrl.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML=`<b>Преступления</b>${Object.values(CAT).map(c=>`<i style="background:${c.c};border-radius:50%"></i>${c.n}<br>`).join('')}<b>Маршруты</b>${ROUTES.map(r=>`<span class="${r.type==='auto'?'line-solid':'line-dash'}" style="${r.type==='auto'?`background:${r.color}`:`border-color:${r.color}`}"></span>№${r.id} ${r.time}<br>`).join('')}`;return d;};
+lgCtrl.addTo(map);
+
+const rtWrap=document.getElementById('rt-toggles');
+ROUTES.forEach(r=>{
+  const b=document.createElement('div');b.className='rt-btn';
+  b.innerHTML=`${r.type==='auto'?`<div style="width:12px;height:3px;background:${r.color}"></div>`:`<div style="width:10px;height:10px;border-radius:50%;border:2px solid ${r.color}"></div>`}<div><div style="font-weight:600;font-size:12.5px">Маршрут №${r.id}</div><div class="rt-meta">${r.time} · ${r.type==='auto'?'авто':'пеший'}</div></div><span class="rt-badge" style="background:${r.color}">№${r.id}</span>`;
+  b.title=r.n+' (двойной клик — остановки)';
+  b.onclick=()=>{if(!('routeOn'+r.id in window)){window['routeOn'+r.id]=true;}window['routeOn'+r.id]=!window['routeOn'+r.id];if(window['routeOn'+r.id])map.addLayer(routeLayers[r.id]);else map.removeLayer(routeLayers[r.id]);b.classList.toggle('off');};
+  rtWrap.appendChild(b);
+  const stops=document.createElement('div');stops.className='stop-list';stops.style.display='none';
+  const iconMap={'S':'▶','E':'■','★':'★','!':'⚠','i':'i'};const bgMap={'S':'#1b3157','E':'#1b3157','★':r.color,'!':'#B33F26','i':'#1F6B70'};
+  r.stops.forEach(s=>{stops.innerHTML+=`<div class="stop-item"><div class="stop-time">${s.time}</div><div class="stop-icon" style="background:${bgMap[s.icon]||'#666'}">${iconMap[s.icon]||s.icon}</div><div class="stop-info"><div style="font-weight:600">${esc(s.n)}</div><div class="addr">${esc(s.addr)}</div>${s.note?`<div class="note">${esc(s.note)}</div>`:''}</div></div>`;});
+  b.addEventListener('dblclick',()=>{stops.style.display=stops.style.display==='none'?'block':'none';});
+  rtWrap.appendChild(stops);
+});
+
+const fcatWrap=document.getElementById('fcat');
+Object.entries(CAT).forEach(([k,v])=>{
+  const total=CRIMES.filter(c=>c.cat===k).reduce((s,c)=>s+c.cnt,0);if(!total)return;
+  const b=document.createElement('button');b.className='chip';b.dataset.cat=k;
+  b.innerHTML=`<span class="dot" style="background:${v.c}"></span>${v.n} <span class="mono" style="font-size:10px;color:#7E909C">${total}</span>`;
+  b.onclick=()=>{offCrime.has(k)?offCrime.delete(k):offCrime.add(k);b.classList.toggle('off');renderList();};
+  fcatWrap.appendChild(b);
+});
+
+const layersDef=[{k:'zones',n:'Зоны концентрации',g:gZones,c:'#8C5A2B'},{k:'coverage',n:'Вне охвата патруля',g:gCoverage,c:'#B33F26'},{k:'estab',n:'Заведения и объекты',g:gEstab,c:'#C08A1E'},{k:'resources',n:'Населённые пункты',g:gRes,c:'#1F6B70'},{k:'admin',n:'Адм. правонарушения',g:gAdmin,c:'#C08A1E'}];
+const flWrap=document.getElementById('flayers');
+layersDef.forEach(l=>{
+  const on=!offLayers.has(l.k);if(on)map.addLayer(l.g);else map.removeLayer(l.g);
+  const b=document.createElement('button');b.className='chip'+(on?'':' off');b.dataset.layer=l.k;
+  b.innerHTML=`<span class="dot" style="background:${l.c}"></span>${l.n}`;
+  b.onclick=()=>{if(offLayers.has(l.k)){offLayers.delete(l.k);map.addLayer(l.g);}else{offLayers.add(l.k);map.removeLayer(l.g);}b.classList.toggle('off');};
+  flWrap.appendChild(b);
+});
+
+function renderList(){
+  const list=document.getElementById('list');list.innerHTML='';
+  const h1=document.createElement('div');h1.className='blk';h1.style.paddingBottom='4px';h1.innerHTML='<h2>Точки концентрации преступности</h2>';list.appendChild(h1);
+  CRIMES.forEach(cr=>{
+    if(offCrime.has(cr.cat))return;
+    const c=CAT[cr.cat].c;const d=document.createElement('div');d.className='item'+(curId===cr.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:${c}">${cr.rank}</div><div class="nm">${esc(cr.n)}</div></div><div class="addr">${esc(cr.addr)}</div><div class="meta"><span>${esc(CAT[cr.cat].n)}</span><span><b class="mono">${cr.cnt}</b> фактов</span></div><div class="cnt-bar"><i style="background:${c};width:${cr.cnt/88*100}%"></i></div>`;
+    d.onclick=()=>sel(cr.id);list.appendChild(d);
+  });
+  const h2=document.createElement('div');h2.className='blk';h2.style.paddingBottom='4px';h2.innerHTML='<h2>Заведения и объекты</h2>';list.appendChild(h2);
+  ESTAB.forEach(e=>{
+    const c=ESTAB_C[e.t]||'#555';const d=document.createElement('div');d.className='item'+(curId===e.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:${c}">${esc(e.icon)}</div><div class="nm">${esc(e.n)}</div></div><div class="addr">${esc(e.addr)}</div><div class="meta"><span>${esc(e.note.substring(0,60))}…</span></div>`;
+    d.onclick=()=>sel(e.id);list.appendChild(d);
+  });
+  const h3=document.createElement('div');h3.className='blk';h3.style.paddingBottom='4px';h3.innerHTML='<h2>Горячие точки адм. правонарушений</h2>';list.appendChild(h3);
+  ADMIN.forEach(a=>{
+    const d=document.createElement('div');d.className='item'+(curId===a.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:#C08A1E">${fmt(a.cnt)}</div><div class="nm">${esc(a.n)}</div></div><div class="addr">${esc(a.addr)}</div><div class="meta"><span class="mono" style="font-size:10.5px">${esc(a.stat)}</span><span>${esc(a.share)}</span></div>`;
+    d.onclick=()=>selAdmin(a.id);list.appendChild(d);
+  });
+}
+function sel(id){
+  curId=id;const cr=CRIMES.find(c=>c.id===id);const es=ESTAB.find(e=>e.id===id);const detail=document.getElementById('detail');
+  if(cr){detail.classList.add('on');detail.innerHTML=`<h3>${cr.rank}. ${esc(cr.n)}</h3><div class="addr-tag">📍 ${esc(cr.addr)}</div><div class="r"><span>Вид</span><span>${esc(CAT[cr.cat].n)}</span></div><div class="r"><span>Фактов</span><span class="mono">${fmt(cr.cnt)}</span></div><div class="r"><span>Время</span><span>${esc(cr.time)}</span></div><div class="r"><span>Потерпевшие</span><span>${esc(cr.vict)}</span></div><div class="msr"><b>Требуемые меры</b><p>${esc(cr.m)}</p></div><div class="thr">Теория: ${esc(cr.th)}</div>`;if(cr.ll){map.flyTo(cr.ll,15,{duration:.7});crimeMarkers[id]?.openPopup();}}
+  else if(es){detail.classList.add('on');detail.innerHTML=`<h3>${esc(es.n)}</h3><div class="addr-tag">📍 ${esc(es.addr)}</div><div class="msr"><b>Характеристика</b><p>${esc(es.note)}</p></div>`;map.flyTo(es.ll,15,{duration:.7});estabMarkers[id]?.openPopup();}
+  renderList();
+}
+function selAdmin(id){
+  curId=id;const a=ADMIN.find(x=>x.id===id);if(!a)return;
+  const detail=document.getElementById('detail');detail.classList.add('on');
+  detail.innerHTML=`<h3>${esc(a.stat)}</h3><div style="font-weight:600;margin-bottom:6px">${esc(a.n)}</div><div class="addr-tag">📍 ${esc(a.addr)}</div><div class="r"><span>Фактов</span><span class="mono">${fmt(a.cnt)}</span></div><div class="msr"><b>Примечание</b><p>${esc(a.note)}</p></div>`;
+  map.flyTo(a.ll,15,{duration:.7});adminMarkers[id]?.openPopup();renderList();
+}
+renderList();
+const allPts=[];CRIMES.filter(c=>c.ll).forEach(c=>allPts.push(c.ll));ADMIN.forEach(a=>allPts.push(a.ll));ROUTES.forEach(r=>r.coords.forEach(c=>allPts.push(c)));
+if(allPts.length)map.fitBounds(L.latLngBounds(allPts).pad(0.1));
+</script>
+</div>
+<div id="chrome-bottom"></div>
+<script src="assets/js/ui.js?v=20260909a"></script>
+</body>
+</html>

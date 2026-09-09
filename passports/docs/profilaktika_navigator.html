@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прокурору для работы — механизмы профилактики · Закон № 245-VIII</title>
+<meta name="description" content="Навигатор для прокуроров по Закону РК «О профилактике правонарушений» № 245-VIII: обязанности субъектов, предмет проверки, признаки нарушений и формы реагирования.">
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="assets/css/navigator.css?v=20260909a">
+</head>
+<body data-site-page="navigator">
+<div id="chrome-top"></div>
+
+<section class="hero nav-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow">Закон № 245-VIII · профилактика правонарушений</div>
+    <h1>Прокурору для работы — механизмы профилактики</h1>
+    <p>12 субъектов профилактики по главе 2 ЗРК: предмет проверки, признаки нарушений и формы реагирования для каждого ведомства.</p>
+    <div class="nav-kpi" id="nav-kpi"></div>
+  </div>
+</section>
+
+<div class="navigator-page">
+  <div class="wrap nav-layout">
+
+    <aside class="nav-sidebar" id="nav-sidebar" aria-label="Быстрый переход к органам"></aside>
+
+    <main class="nav-main">
+
+      <a class="nav-hub-card" href="prokuror_zakon.html">
+        <span class="nav-hub-card__icon" aria-hidden="true">⚖️</span>
+        <span class="nav-hub-card__body">
+          <strong class="nav-hub-card__title">Работа с законами — библиотека НПА</strong>
+          <span class="nav-hub-card__desc">23 кодекса, закона и приказа: читать TXT на сайте, скачать или открыть на adilet.zan.kz</span>
+        </span>
+        <span class="nav-hub-card__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="nav-hub-card" href="mvk_kvartal.html">
+        <span class="nav-hub-card__icon" aria-hidden="true">📋</span>
+        <span class="nav-hub-card__body">
+          <strong class="nav-hub-card__title">Ежеквартальные акты надзора для МВК</strong>
+          <span class="nav-hub-card__desc">4 блока: СУСН/ТЖС · ОВД · МИО · КДН — чек-листы, приказы, календарь Q1–Q4</span>
+        </span>
+        <span class="nav-hub-card__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <section id="nav-orgs-section" class="nav-orgs-wrap">
+
+      <section class="nav-flow">
+        <h2>Как устроена конструкция</h2>
+        <p class="lead">Одна цепочка повторяется в каждом ведомстве. Разрыв ищется на конкретном звене, а не «в системе профилактики» вообще.</p>
+        <div class="nav-chain">
+          <div class="nav-chain__step"><div class="n">Звено 1</div><div class="t">Норма закона</div><p class="d">Обязанность субъекта, глава 2 ЗРК</p></div>
+          <div class="nav-chain__step"><div class="n">Звено 2</div><div class="t">Головное ведомство</div><p class="d">Комитет или управление</p></div>
+          <div class="nav-chain__step"><div class="n">Звено 3</div><div class="t">Территориальный орган</div><p class="d">Департамент, отдел района</p></div>
+          <div class="nav-chain__step"><div class="n">Звено 4</div><div class="t">Комиссия</div><p class="d">МВК или КДН, ст. 38–39</p></div>
+          <div class="nav-chain__step nav-chain__step--acc"><div class="n">Звено 5</div><div class="t">Прокурор</div><p class="d">Надзор, координация, ст. 12</p></div>
+        </div>
+      </section>
+
+      <h2 class="nav-section-divider">12 субъектов профилактики по главе 2 ЗРК</h2>
+
+      <div class="nav-sticky">
+        <div class="nav-sticky__row" id="nav-filters">
+          <div class="nav-sticky__search">
+            <input type="search" id="nav-q" placeholder="Орган, статья закона, предмет проверки…" aria-label="Поиск">
+          </div>
+          <button class="nav-filter" type="button" data-tag="all" aria-pressed="true">Все</button>
+          <button class="nav-filter" type="button" data-tag="силовой" aria-pressed="false">Правоохранительные</button>
+          <button class="nav-filter" type="button" data-tag="социальный" aria-pressed="false">Социальный блок</button>
+          <button class="nav-filter" type="button" data-tag="местный" aria-pressed="false">Местный уровень</button>
+        </div>
+      </div>
+
+      <div class="nav-status" id="nav-status"></div>
+
+      <div class="nav-grid" id="nav-grid"></div>
+
+      <div class="nav-tools">
+        <button class="nav-btn" type="button" id="nav-open-all">Раскрыть все</button>
+        <button class="nav-btn nav-btn--ghost" type="button" id="nav-close-all">Свернуть все</button>
+        <button class="nav-btn nav-btn--ghost" type="button" id="nav-reset">Сбросить отметки</button>
+        <button class="nav-btn nav-btn--ghost" type="button" id="nav-export">CSV</button>
+        <button class="nav-btn nav-btn--ghost" type="button" id="nav-print">Печать</button>
+      </div>
+
+      <p class="nav-note">
+        Отметки сохраняются локально в браузере. Перед применением сверяйте редакции в ИПС «Әділет»
+        (ст. 7, 8, 9, 14, 38 — с учётом Законов № 311-VIII и № 330-VIII).
+      </p>
+
+      </section><!-- /nav-orgs-section -->
+
+    </main>
+  </div>
+</div>
+
+<div id="chrome-bottom"></div>
+
+<script src="assets/js/navigator_data.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script src="assets/js/navigator.js?v=20260909a"></script>
+</body>
+</html>

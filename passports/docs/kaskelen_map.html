@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карта патрулирования — г. Каскелен · 2026</title>
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C1116;--slate:#18222B;--slate2:#22303B;--paper:#E8EBED;--paper2:#F4F6F7;--line:#33434F;--linelt:#C9D1D6;--muted:#7E909C;--red:#B33F26;--amber:#C08A1E;--teal:#1F6B70;--navy:#1b3157;--purple:#5B4B8A;--brown:#8C5A2B;--pale:#9FB0BB}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13.5px;line-height:1.45}
+body{display:flex;flex-direction:column}
+#chrome-top{flex:0 0 auto}
+.map-page{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+h1,h2,h3,.disp{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif}
+.mono{font-family:'IBM Plex Mono',monospace}
+header{background:var(--slate);color:var(--paper);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:3px solid var(--red);flex:0 0 auto}
+header h1{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+header .sub{color:var(--pale);font-size:11px;margin-top:2px}
+header .back{margin-left:auto;color:var(--pale);text-decoration:none;font-size:12px;border:1px solid var(--line);padding:4px 10px}
+.stamp{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pale);border:1px solid var(--line);padding:3px 8px;letter-spacing:.05em;flex-shrink:0}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));background:var(--slate);border-bottom:1px solid var(--line);flex:0 0 auto}
+.kpi{padding:7px 13px;border-right:1px solid var(--line)}.kpi:last-child{border-right:none}
+.kpi .v{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:600;line-height:1.1}.kpi .l{font-size:10px;color:var(--pale);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.kpi.warn .v{color:#E8785C}.kpi.ok .v{color:#5fc49f}
+main{display:flex;flex:1 1 auto;min-height:0;overflow:hidden}
+#map{flex:1;height:100%;background:var(--paper2)}
+aside{width:320px;flex-shrink:0;background:var(--paper2);border-right:1px solid var(--linelt);display:flex;flex-direction:column;overflow:hidden}
+.panel{flex:1;overflow-y:auto;min-height:0}
+.blk{border-bottom:1px solid var(--linelt);padding:10px 13px}
+.blk h2{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;font-weight:600}
+.rt-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;background:#fff;border:1px solid var(--linelt);cursor:pointer;font:inherit;color:var(--ink);margin-bottom:5px;text-align:left;transition:.12s}
+.rt-btn:hover{border-color:var(--muted)}.rt-btn.off{opacity:.4;text-decoration:line-through}
+.rt-badge{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:1px 5px;color:#fff}
+.rt-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--linelt);background:#fff;cursor:pointer;padding:4px 8px;font-size:11.5px;font-family:inherit;color:var(--ink);display:flex;align-items:center;gap:5px;transition:.12s}
+.chip:hover{border-color:var(--muted)}.chip .dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%}.chip.off{opacity:.35;background:transparent}
+.detail{background:var(--slate);color:var(--paper);padding:12px 14px;border-bottom:1px solid var(--line);display:none}
+.detail.on{display:block}.detail h3{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.detail .r{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}
+.detail .r:last-of-type{border-bottom:none}.detail .r span:first-child{color:var(--pale);flex:0 0 auto;max-width:110px}
+.detail .msr{margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.15)}
+.detail .msr b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--pale);margin-bottom:4px}.detail .msr p{font-size:12px;margin:0}
+.detail .thr{font-size:11px;color:#9FC4C6;margin-top:6px;font-style:italic}.detail .addr-tag{font-size:11px;color:var(--amber);margin-top:4px;font-family:'IBM Plex Mono',monospace}
+.item{border-left:3px solid transparent;padding:8px 12px 8px 10px;cursor:pointer;border-bottom:1px solid var(--linelt);transition:.12s;background:#fff}
+.item:hover,.item.on{border-left-color:var(--red);background:#fff}.item .top{display:flex;align-items:flex-start;gap:7px}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#fff;min-width:22px;height:20px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:2px}
+.item .nm{font-weight:600;font-size:13px;line-height:1.25;flex:1}.item .addr{font-size:11px;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace}
+.item .meta{font-size:11.5px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.cnt-bar{height:3px;background:var(--linelt);margin-top:5px;position:relative}.cnt-bar i{position:absolute;left:0;top:0;bottom:0;display:block}
+.approx-tag{font-size:10px;color:var(--amber);border:1px solid var(--amber);padding:0 4px;flex-shrink:0}
+.stop-list{padding:8px 12px;background:#fff;border-bottom:1px solid var(--linelt)}
+.stop-item{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dotted var(--linelt);font-size:12px}.stop-item:last-child{border-bottom:none}
+.stop-time{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;flex-shrink:0;min-width:44px;color:var(--amber)}
+.stop-icon{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700;margin-top:1px}
+.stop-info .addr{color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace;margin-top:1px}.stop-info .note{color:var(--muted);font-size:11px;margin-top:2px;font-style:italic}
+.mk{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.mk.sm{width:18px;height:18px;font-size:9px;border-width:1.5px;border-radius:50%}.mk.est{border-radius:3px;font-size:10px}
+.mk.adm{transform:rotate(45deg);width:20px;height:20px;font-size:8px;border-radius:3px}.mk.adm span{transform:rotate(-45deg);display:block}
+.route-label{white-space:nowrap;font-size:11px;font-weight:700;background:rgba(255,255,255,.94);padding:2px 7px;border-radius:5px;border:2px solid;transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.2);pointer-events:none}
+.legend{background:rgba(12,17,22,.88);color:var(--paper);padding:9px 11px;font-size:11px;line-height:1.8;max-width:240px}
+.legend b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--pale);margin-bottom:4px;margin-top:5px}.legend b:first-child{margin-top:0}
+.legend i{width:10px;height:10px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.legend .line-dash{width:20px;height:3px;display:inline-block;margin-right:5px;vertical-align:2px;border-top:3px dashed}
+.legend .line-solid{width:20px;height:4px;display:inline-block;margin-right:5px;vertical-align:2px}
+.leaflet-popup-content{font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin:10px 14px;min-width:200px}
+.leaflet-popup-content h4{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;margin-bottom:5px}
+.leaflet-popup-content .pop-addr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555;margin-bottom:6px}
+.leaflet-popup-content .pop-row{padding:3px 0;border-bottom:1px solid #eee;font-size:12px;display:flex;justify-content:space-between;gap:8px}.leaflet-popup-content .pop-row:last-of-type{border:none}
+.leaflet-popup-content .pop-m{margin-top:7px;font-size:11.5px;background:#f7f3e8;padding:7px 9px;border-left:3px solid #C08A1E}
+.leaflet-popup-content .pop-warn{color:#B33F26;font-weight:600;font-size:11px;margin-top:4px}
+.int-panel{background:#fff;border:1px solid var(--linelt);margin:0 10px 8px;padding:10px 11px;font-size:12px}
+.int-panel h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.int-panel p{margin:0 0 8px;line-height:1.45;color:var(--ink)}
+.int-kpis{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:8px 0}
+.int-kpi{background:var(--paper2);padding:5px 7px;border-left:3px solid var(--teal)}
+.int-kpi.warn{border-left-color:var(--red)}.int-kpi .v{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600}.int-kpi .l{font-size:10px;color:var(--muted)}
+.int-problems{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:11.5px}
+.int-problems li{margin:3px 0}
+.int-link{display:inline-block;margin-top:6px;font-size:11px;color:var(--teal);text-decoration:none;border-bottom:1px dotted var(--teal)}
+</style>
+</head>
+<body data-site-page="map" data-site-id="kaskelen">
+<div id="chrome-top"></div>
+<div class="map-page">
+<header>
+  <div><h1>Карта патрулирования и криминогенных объектов</h1>
+  <div class="sub">г. Каскелен · Карасайский район · Алматинская область · 2026</div></div>
+  <div class="stamp">ФОРМА 1-М · 1-АД</div>
+  <a class="back" href="passport.html?id=kaskelen">← Паспорт</a>
+</header>
+<div class="strip">
+  <div class="kpi warn"><div class="v">554</div><div class="l">уголовных правонарушений</div></div>
+  <div class="kpi warn"><div class="v">+27,3%</div><div class="l">рост к АППГ (435)</div></div>
+  <div class="kpi"><div class="v">87 023</div><div class="l">население</div></div>
+  <div class="kpi warn"><div class="v">63,6</div><div class="l">на 10 тыс. населения</div></div>
+  <div class="kpi warn"><div class="v">297</div><div class="l">мошенничеств (+74,7%)</div></div>
+  <div class="kpi warn"><div class="v">11</div><div class="l">против пол. неприк. (+450%)</div></div>
+  <div class="kpi"><div class="v">11574</div><div class="l">адм. правонарушений</div></div>
+  <div class="kpi warn"><div class="v">52,1%</div><div class="l">безработные среди лиц</div></div>
+</div>
+<main>
+<aside>
+  <div class="panel">
+  <div class="blk" id="int-panel-wrap"></div>
+  <div class="blk"><h2>Маршруты патрулирования</h2><div id="rt-toggles"></div></div>
+  <div class="blk"><h2>Вид преступления</h2><div class="chips" id="fcat"></div></div>
+  <div class="blk"><h2>Слои</h2><div class="chips" id="flayers"></div></div>
+  <div class="detail" id="detail"></div>
+  <div class="blk" style="padding-bottom:4px"><h2>Реестр объектов</h2></div>
+  <div id="list"></div>
+  </div>
+</aside>
+<div id="map"></div>
+</main>
+<script src="assets/js/integrated_maps.js?v=20260909a"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const LOC_ID='kaskelen';
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=v=>v==null?'—':new Intl.NumberFormat('ru-RU').format(v);
+function renderIntegratedPanel(){
+  const d=window.INTEGRATED_MAPS&&window.INTEGRATED_MAPS[LOC_ID];
+  const wrap=document.getElementById('int-panel-wrap');
+  if(!d||!wrap)return;
+  const kpis=(d.map_kpis||[]).map(k=>`<div class="int-kpi${k.warn?' warn':''}"><div class="v">${esc(k.value)}</div><div class="l">${esc(k.label)}</div></div>`).join('');
+  const probs=(d.problems||[]).slice(0,3).map(p=>`<li>${esc(p)}</li>`).join('');
+  wrap.innerHTML=`<div class="int-panel"><h3>Сверка профучёта · ${esc(d.generated)}</h3><p>${esc(d.summary)}</p><div class="int-kpis">${kpis}</div><ul class="int-problems">${probs}</ul><a class="int-link" href="spravka_sverka_profueta/Справка_интегрированная_Каскелен_Иргели.html" target="_blank">Полная интегрированная справка →</a></div>`;
+  const strip=document.querySelector('.strip');
+  (d.map_kpis||[]).forEach(k=>{
+    const el=document.createElement('div');el.className='kpi'+(k.warn?' warn':'');
+    el.innerHTML=`<div class="v">${esc(k.value)}</div><div class="l">${esc(k.label)}</div>`;
+    strip.appendChild(el);
+  });
+}
+renderIntegratedPanel();
+
+const CAT={
+  fraud:{n:'Мошенничества',             c:'#5B4B8A'},
+  theft:{n:'Кражи',                      c:'#8C5A2B'},
+  beat :{n:'Побои и вред здоровью',      c:'#C08A1E'},
+  sex  :{n:'Против половой неприкоснов.',c:'#B33F26'},
+  mixed:{n:'Смешанный вид',              c:'#1b3157'}
+};
+
+const CRIMES=[
+ {id:'c1',rank:1,n:'ул. Абылай хана',
+  addr:'ул. Абылай хана (216 объектов, 127 частных домов)',
+  cat:'mixed',cnt:33,ll:[43.2022,76.6512],exact:false,
+  time:'Вечернее и ночное время (74,7% всех правонарушений)',
+  vict:'Граждане, посетители объектов, участники ДТП',
+  m:'Мероприятие №4: установить освещение и видеонаблюдение. Закрепить ответственного за каждым объектом на улице. Маршрут №1 и №3 охватывают эту улицу.',
+  th:'Рутинная деятельность · Криминология места (37 алкообъектов на улице)'},
+ {id:'c2',rank:2,n:'ул. Жангозина',
+  addr:'ул. Жангозина (97 объектов, 43 частных дома)',
+  cat:'beat',cnt:11,ll:[43.2088,76.6340],exact:false,
+  time:'Ночное и вечернее время',
+  vict:'Жители прилегающих домов',
+  m:'Мероприятие №4: выявление и устранение неосвещённых участков. Включить в Маршрут №2 (пеший вечерний). 16 алкообъектов на улице — приоритетный контроль.',
+  th:'Рутинная деятельность · Теория нарушенных витрин'},
+ {id:'c3',rank:3,n:'ЖК «Алтын ауыл»',
+  addr:'ул. Абылай хана (20 домов, 1 детсад, 1 баня)',
+  cat:'theft',cnt:10,ll:[43.2019,76.6606],exact:false,
+  time:'Дневное и вечернее время (жилая среда)',
+  vict:'Жители комплекса, посетители баня/детсада',
+  m:'Мероприятие №4: обеспечить видеонаблюдение в ЖК. Маршрут №1 включает объезд ЖК.',
+  th:'Интенсивная жилищная застройка без должной инфраструктуры безопасности'}
+];
+
+const ESTAB=[
+ {id:'akimat',  n:'Акимат Карасайского района',   t:'akimat',   addr:'ул. Абылай хана, 1',          ll:[43.2022,76.6214],note:'Субъект профилактики. Ответственный за инфраструктурные меры (освещение, видео).', icon:'А'},
+ {id:'rovd',    n:'ОП Карасайского района',         t:'police',   addr:'г. Каскелен',                  ll:[43.2000,76.6280],note:'Управление полицией. Исполнитель всех маршрутов.', icon:'П'},
+ {id:'avt',     n:'Автовокзал Каскелен',            t:'transit',  addr:'пересеч. ул. Абылай хана и Наурызбай батыра',ll:[43.2002,76.6336],note:'Фактов уголовных правонарушений на территории не установлено. Высокий пешеходный трафик.', icon:'В'},
+ {id:'myata',   n:'Мята-бар',                       t:'alcohol',  addr:'ул. Абылай хана (ориентир)',   ll:[43.2038,76.6490],note:'Объект реализации алкоголя. Мероприятие №6: приоритетный профилактический контроль.', icon:'Б'},
+ {id:'alenush', n:'Кафе «Аленушка»',                t:'alcohol',  addr:'ул. Абылай хана (ориентир)',   ll:[43.2046,76.6505],note:'Объект реализации алкоголя. Мероприятие №6.', icon:'К'},
+ {id:'balyk',   n:'Кафе «Балык Куырдак»',           t:'alcohol',  addr:'ул. Абылай хана (ориентир)',   ll:[43.2022,76.6478],note:'Объект реализации алкоголя. Мероприятие №6.', icon:'К'},
+ {id:'madonna', n:'Кафе «Мадонна»',                 t:'alcohol',  addr:'ул. Абылай хана (ориентир)',   ll:[43.2015,76.6455],note:'Объект реализации алкоголя. Мероприятие №6.', icon:'К'},
+ {id:'ford',    n:'Кафе «Форд»',                    t:'alcohol',  addr:'ул. Абылай хана (ориентир)',   ll:[43.2030,76.6510],note:'Объект реализации алкоголя. Мероприятие №6.', icon:'К'},
+ {id:'altyn-a', n:'ЖК «Алтын ауыл»',                t:'complex',  addr:'ул. Абылай хана (конец)',      ll:[43.2019,76.6606],note:'20 домов, 1 детсад, 1 баня. 10 уголовных правонарушений. 37 алкообъектов в районе.', icon:'Ж'},
+ {id:'alc-mass',n:'Объекты реализации алкоголя',    t:'alcohol-m',addr:'г. Каскелен: 420 магаз., 35 кафе, 8 ресторанов, 17 увесел.',ll:[43.2055,76.6440],note:'Всего 480 объектов. На ул. Абылай хана и ЖК — 37, на ул. Жангозина — 16. 5 лицензий приостановлено.', icon:'А'},
+ {id:'zabrosh', n:'Заброшенные объекты (16 ед.)',   t:'abandoned',addr:'г. Каскелен (перечень у ОП)',  ll:[43.2070,76.6380],note:'16 заброшенных объектов. Подлежат обследованию и ликвидации. Криминогенный фактор.', icon:'З'},
+ {id:'jk-build',n:'Строящиеся ЖК (5 комплексов)',  t:'complex',  addr:'г. Каскелен',                  ll:[43.2090,76.6470],note:'Tycoon Aparts, Monolit, Ғұмыр, Kemel Ui, Karasai Plaza. Зоны привлечения мигрантов.', icon:'С'},
+ {id:'cameras', n:'Видеонаблюдение (226 камер)',    t:'cameras',  addr:'124 улицы обеспечены освещ.; 299 — без освещения',ll:[43.2055,76.6400],note:'226 камер на 55 улицах. Требуется ещё 300 камер. Нехватка — причина 44,8% нераскрытых краж.', icon:'В'},
+];
+
+const ADMIN=[
+ {id:'a1',n:'ул. Абылай хана — алкоголь',addr:'ул. Абылай хана (кафе и бары)',stat:'ст.440 КоАП',cnt:825,share:'7,1 %',ll:[43.2030,76.6500],note:'Распитие / появление в пьяном виде. 53% ночью, 44% вечером. 37 алкообъектов на улице.'},
+ {id:'a2',n:'Жилые кварталы — несовершеннолетние',addr:'жилые кварталы г. Каскелен',stat:'ст.442 КоАП',cnt:834,share:'7,2 %',ll:[43.2060,76.6450],note:'Несовершеннолетние ночью вне жилища. Всё ночное время с 22:00 до 06:00.'},
+ {id:'a3',n:'Главные дороги — ДТП и нарушения',addr:'въезды/выезды г. Каскелен',stat:'Дорожные ст.',cnt:923,share:'7,9 %',ll:[43.2055,76.6320],note:'Совокупно дорожные нарушения. Пик — дневное (12-14 ч.) и ночное (23-03 ч.). 3 ДТП — при выезде в Алматы.'},
+ {id:'a4',n:'Жилые кварталы — семейно-бытовые',addr:'жилые кварталы (ул. Жангозина и др.)',stat:'ст.73 КоАП',cnt:215,share:'1,9 %',ll:[43.2090,76.6370],note:'Семейно-бытовая сфера. 81% ночью (23:00-04:00), 17% вечером. Коррелирует с алкоголизацией.'},
+ {id:'a5',n:'Жилые кварталы — ненадлежащее воспитание',addr:'жилые кварталы',stat:'ст.127 КоАП',cnt:179,share:'1,5 %',ll:[43.2070,76.6420],note:'Неисполнение обязанностей по воспитанию. Возбуждается совместно со ст.442 в отношении родителей.'},
+];
+
+const ROUTES=[
+ {id:1,n:'Маршрут №1 — дневной (автопатруль)',time:'08:00–16:00 (2 рейда)',type:'auto',color:'#1F6B70',crew:'1 экипаж, 2 сотрудника',focus:'Кражи, мошенничества, ул. Абылай хана',
+  coords:[[43.2000,76.6280],[43.2002,76.6336],[43.2010,76.6400],[43.2022,76.6450],[43.2022,76.6512],[43.2020,76.6560],[43.2019,76.6606],[43.2025,76.6560],[43.2022,76.6512],[43.2022,76.6214],[43.2000,76.6280]],
+  stops:[
+   {n:'ОП — начало рейда',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'08:00',icon:'S',note:'Инструктаж. Получение задания.'},
+   {n:'Автовокзал',addr:'пересеч. ул. Абылай хана / Наурызбай батыра',ll:[43.2002,76.6336],time:'08:20',icon:'i',note:'Проверка обстановки. Транспортный узел. Отстой 10 мин.'},
+   {n:'Кафе «Аленушка» / «Форд»',addr:'ул. Абылай хана (средняя часть)',ll:[43.2030,76.6500],time:'08:40',icon:'!',note:'Профилактика алкообъектов. Отстой 15 мин.'},
+   {n:'ЖК «Алтын ауыл»',addr:'ул. Абылай хана (конец)',ll:[43.2019,76.6606],time:'09:20',icon:'★',note:'10 уголовных правонарушений. Осмотр детсада и баня. Отстой 20 мин.'},
+   {n:'Акимат',addr:'ул. Абылай хана, 1',ll:[43.2022,76.6214],time:'10:10',icon:'i',note:'Отчёт. Согласование инфраструктурных мер. Повтор рейда в 14:00.'},
+   {n:'ОП — конец рейда',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'10:30',icon:'E',note:'Перерыв. 2-й рейд в 14:00.'},
+  ]},
+ {id:2,n:'Маршрут №2 — вечерний (пеший)',time:'17:00–22:00',type:'foot',color:'#B33F26',crew:'2 участковых инспектора',focus:'Побои, ул. Жангозина, Наурызбай батыра',
+  coords:[[43.2000,76.6280],[43.2022,76.6270],[43.2088,76.6340],[43.2090,76.6380],[43.2109,76.6413],[43.2090,76.6440],[43.2060,76.6430],[43.2022,76.6400],[43.2000,76.6280]],
+  stops:[
+   {n:'ОП — начало обхода',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'17:00',icon:'S',note:'Сверка с профучётом. Список семей риска.'},
+   {n:'ул. Жангозина',addr:'ул. Жангозина (вся улица)',ll:[43.2088,76.6340],time:'17:30',icon:'★',note:'11 фактов побоев. Осмотр, проверка жильцов. 16 алкообъектов — обязательно. Отстой 20 мин.'},
+   {n:'ул. Наурызбай батыра',addr:'ул. Наурызбай батыра (средняя часть)',ll:[43.2109,76.6413],time:'18:30',icon:'!',note:'Проблемная улица. Нет освещения. Проверка дворов, заброшенных объектов. Отстой 15 мин.'},
+   {n:'Жилой квартал (несовершеннолетние)',addr:'кварталы между ул. Жангозина и центром',ll:[43.2060,76.6430],time:'19:30',icon:'!',note:'ст.442 — 834 факта несовершеннолетних ночью. Рейд 22:00 по тем же улицам. Отстой 15 мин.'},
+   {n:'ОП — конец обхода',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'20:30',icon:'E',note:'Отчёт.'},
+  ]},
+ {id:3,n:'Маршрут №3 — ночной алко-рейд (авто)',time:'22:00–03:00',type:'auto',color:'#C08A1E',crew:'Совместно с участковыми и ОБЭП',focus:'Алкоголь, ст.440 (825), ст.200',
+  coords:[[43.2000,76.6280],[43.2015,76.6455],[43.2030,76.6500],[43.2038,76.6490],[43.2046,76.6505],[43.2022,76.6512],[43.2090,76.6370],[43.2000,76.6280]],
+  stops:[
+   {n:'ОП — начало рейда',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'22:00',icon:'S',note:'Совместный рейд с ОБЭП. Проверка лицензий на алкоголь.'},
+   {n:'Кафе «Мадонна» / «Балык Куырдак»',addr:'ул. Абылай хана (нач. часть)',ll:[43.2022,76.6478],time:'22:15',icon:'!',note:'Проверка времени работы, наличия лицензии, продажи несовершеннолетним. Отстой 15 мин.'},
+   {n:'Мята-бар / Кафе «Форд» / «Аленушка»',addr:'ул. Абылай хана (сред. часть)',ll:[43.2038,76.6490],time:'22:45',icon:'★',note:'Три ключевых объекта алкорейда. Проверка лицензий, несовершеннолетних на территории. Отстой 20 мин.'},
+   {n:'ул. Абылай хана (дальний участок)',addr:'ул. Абылай хана (сев. часть)',ll:[43.2022,76.6512],time:'23:30',icon:'!',note:'ст.440 — алкоголь на улице ночью. Пресечение фактов. Отстой 15 мин.'},
+   {n:'ул. Жангозина — семейно-бытовые',addr:'ул. Жангозина',ll:[43.2090,76.6370],time:'00:15',icon:'!',note:'ст.73 — 215 фактов СБК (81% ночью). Проверка конфликтных адресов. Отстой 15 мин.'},
+   {n:'ОП — конец рейда',addr:'г. Каскелен',ll:[43.2000,76.6280],time:'01:00',icon:'E',note:'Рапорт о результатах.'},
+  ]},
+];
+
+// Участки вне охвата маршрутов патрулирования (расхождение патруля и фактов)
+const COVERAGE_GAPS=[
+ {id:'gap1',n:'ул. Наурызбай батыра',addr:'средняя часть — вне маршрутов',ll:[43.2109,76.6413],radius:350,note:'Проблемная улица без освещения. Маршрут №2 проходит частично; вечерний/ночной пик 74,7% не покрыт постоянно.'},
+ {id:'gap2',n:'ул. Райымбек №60–60Б',addr:'участок вне дневного маршрута',ll:[43.2065,76.6550],radius:280,note:'Указана в паспорте как проблемная. Нет закреплённого патруля после 16:00.'},
+ {id:'gap3',n:'Новостройки (5 ЖК)',addr:'Tycoon Aparts, Monolit и др.',ll:[43.2090,76.6470],radius:400,note:'Зоны строительства — привлечение мигрантов. Маршруты не включают все объекты.'},
+];
+
+const CENTER=[43.2055,76.6375];
+const map=L.map('map',{zoomControl:true}).setView(CENTER,13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+
+const gCrimes=L.layerGroup().addTo(map),gEstab=L.layerGroup().addTo(map),gAdmin=L.layerGroup(),gZones=L.layerGroup().addTo(map),gRes=L.layerGroup().addTo(map),gCoverage=L.layerGroup().addTo(map);
+const routeLayers={};
+const offCrime=new Set(),offLayers=new Set(['admin']);
+let curId=null;
+const crimeMarkers={},zoneCircles={},estabMarkers={},adminMarkers={};
+
+const ESTAB_C={police:'#1b3157',akimat:'#1b3157',transit:'#5d6b80',alcohol:'#B33F26','alcohol-m':'#B33F26',complex:'#8C5A2B',abandoned:'#5d6b80',cameras:'#333'};
+
+CRIMES.filter(c=>c.ll).forEach(cr=>{
+  const c=CAT[cr.cat].c,sz=26+Math.sqrt(cr.cnt)*3|0;
+  const m=L.marker(cr.ll,{icon:L.divIcon({className:'',html:`<div class="mk" style="background:${c};width:${sz}px;height:${sz}px">${cr.rank}</div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]}),title:cr.n})
+   .bindPopup(`<h4>${cr.rank}. ${esc(cr.n)}</h4><div class="pop-addr">📍 ${esc(cr.addr)}</div><div class="pop-row"><span>Вид</span><b>${esc(CAT[cr.cat].n)}</b></div><div class="pop-row"><span>Фактов</span><b>${fmt(cr.cnt)}</b></div><div class="pop-row"><span>Время</span><b>${esc(cr.time)}</b></div><div class="pop-m"><b>Меры:</b><br>${esc(cr.m)}</div>`)
+   .on('click',()=>sel(cr.id));
+  gCrimes.addLayer(m); crimeMarkers[cr.id]=m;
+  const z=L.circle(cr.ll,{radius:40+cr.cnt*40,color:c,weight:1,fillColor:c,fillOpacity:.1});
+  gZones.addLayer(z); zoneCircles[cr.id]=z;
+});
+
+ESTAB.forEach(e=>{
+  const c=ESTAB_C[e.t]||'#555';
+  const res=['police','akimat'].includes(e.t);
+  const m=L.marker(e.ll,{icon:L.divIcon({className:'',html:res?`<div class="mk sm res" style="background:${c}">${esc(e.icon)}</div>`:`<div class="mk est" style="background:${c}">${esc(e.icon)}</div>`,iconSize:res?[18,18]:[20,20],iconAnchor:res?[9,9]:[10,10]}),title:e.n})
+   .bindPopup(`<h4>${esc(e.n)}</h4><div class="pop-addr">📍 ${esc(e.addr)}</div><div class="pop-m">${esc(e.note)}</div>`)
+   .on('click',()=>sel(e.id));
+  (res?gRes:gEstab).addLayer(m); estabMarkers[e.id]=m;
+});
+
+ADMIN.forEach(a=>{
+  const m=L.marker(a.ll,{icon:L.divIcon({className:'',html:`<div class="mk adm" style="background:#C08A1E"><span>${esc(a.cnt>999?'▲':a.cnt)}</span></div>`,iconSize:[20,20],iconAnchor:[10,10]}),title:a.stat})
+   .bindPopup(`<h4>${esc(a.stat)} — ${esc(a.n)}</h4><div class="pop-addr">📍 ${esc(a.addr)}</div><div class="pop-row"><span>Фактов</span><b>${fmt(a.cnt)}</b></div><div class="pop-row"><span>Доля</span><b>${esc(a.share)}</b></div><div class="pop-m">${esc(a.note)}</div>`)
+   .on('click',()=>selAdmin(a.id));
+  gAdmin.addLayer(m); adminMarkers[a.id]=m;
+});
+
+COVERAGE_GAPS.forEach(g=>{
+  const c=L.circle(g.ll,{radius:g.radius,color:'#B33F26',weight:2,dashArray:'8 6',fillColor:'#B33F26',fillOpacity:.12})
+   .bindPopup(`<h4>⚠ Вне охвата патруля</h4><div class="pop-addr">${esc(g.addr)}</div><div class="pop-m">${esc(g.note)}</div><div class="pop-warn">Слой «расхождение патруля и фактов»</div>`);
+  gCoverage.addLayer(c);
+  L.marker(g.ll,{icon:L.divIcon({className:'',html:`<div style="font-size:10px;font-weight:700;color:#B33F26;background:rgba(255,255,255,.9);border:2px dashed #B33F26;padding:2px 6px;white-space:nowrap">вне маршрута</div>`,iconSize:[0,0]})}).addTo(gCoverage);
+});
+
+function buildRouteLayer(r){
+  const lg=L.layerGroup();
+  L.polyline(r.coords,{color:r.color,weight:r.type==='auto'?5:3,opacity:.88,dashArray:r.type==='foot'?'9 7':null})
+   .bindPopup(`<b>${esc(r.n)}</b><br>${esc(r.time)}<br>Экипаж: ${esc(r.crew)}`).addTo(lg);
+  const step=Math.max(2,r.coords.length>>2);
+  for(let i=step;i<r.coords.length-1;i+=step){
+    const a=r.coords[i],b=r.coords[i+1];
+    const ang=Math.atan2(b[1]-a[1],b[0]-a[0])*180/Math.PI-90;
+    L.marker(a,{interactive:false,icon:L.divIcon({className:'',html:`<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:10px solid ${r.color};transform:rotate(${ang}deg);opacity:.7"></div>`,iconSize:[10,10],iconAnchor:[5,5]})}).addTo(lg);
+  }
+  r.stops.forEach(s=>{
+    const isKey=s.icon==='★',isEnd=s.icon==='E'||s.icon==='S';
+    L.circleMarker(s.ll,{radius:isKey?9:6,color:r.color,weight:2.5,fillColor:isEnd?r.color:(isKey?r.color:'#fff'),fillOpacity:1})
+     .bindPopup(`<h4>Маршрут №${r.id} · ${esc(s.n)}</h4><div class="pop-addr">📍 ${esc(s.addr)}</div><div class="pop-row"><span>Время</span><b style="color:${r.color}">${esc(s.time)}</b></div><div class="pop-m">${esc(s.note)}</div>`).addTo(lg);
+    L.marker(s.ll,{interactive:false,icon:L.divIcon({className:'',html:`<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;background:rgba(255,255,255,.92);border:1.5px solid ${r.color};padding:1px 4px;white-space:nowrap;transform:translate(10px,-5px);box-shadow:0 1px 3px rgba(0,0,0,.2)">${s.time}</div>`,iconSize:[0,0]})}).addTo(lg);
+  });
+  const mid=r.coords[r.coords.length>>1];
+  L.marker(mid,{interactive:false,icon:L.divIcon({className:'',html:`<div class="route-label" style="border-color:${r.color};color:${r.color}">Маршрут №${r.id}</div>`,iconSize:[0,0]})}).addTo(lg);
+  return lg;
+}
+ROUTES.forEach(r=>{routeLayers[r.id]=buildRouteLayer(r);routeLayers[r.id].addTo(map);});
+
+const lg=L.control({position:'bottomright'});
+lg.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML=`<b>Преступления</b>${Object.values(CAT).map(c=>`<i style="background:${c.c};border-radius:50%"></i>${c.n}<br>`).join('')}<b>Маршруты</b>${ROUTES.map(r=>`<span class="${r.type==='auto'?'line-solid':'line-dash'}" style="${r.type==='auto'?`background:${r.color}`:`border-color:${r.color}`}"></span>№${r.id} ${r.time}<br>`).join('')}<b>Объекты</b><i style="background:#1b3157;border-radius:50%"></i>Ресурс профилактики<br><i style="background:#B33F26;border-radius:3px"></i>Алко-объект<br><i style="background:#C08A1E;transform:rotate(45deg);display:inline-block;vertical-align:-2px"></i> Адм. правонарушения`;return d;};
+lg.addTo(map);
+
+const rtWrap=document.getElementById('rt-toggles');
+ROUTES.forEach(r=>{
+  const b=document.createElement('div');b.className='rt-btn';
+  b.innerHTML=`${r.type==='auto'?`<div style="width:12px;height:3px;background:${r.color}"></div>`:`<div style="width:10px;height:10px;border-radius:50%;border:2px solid ${r.color}"></div>`}<div><div style="font-weight:600;font-size:12.5px">Маршрут №${r.id}</div><div class="rt-meta">${r.time} · ${r.type==='auto'?'авто':'пеший'}</div></div><span class="rt-badge" style="background:${r.color}">№${r.id}</span>`;
+  b.dataset.id=r.id;b.title=r.n+' (двойной клик — остановки)';
+  b.onclick=()=>{if(!('routeOn'+r.id in window)){window['routeOn'+r.id]=true;}window['routeOn'+r.id]=!window['routeOn'+r.id];if(window['routeOn'+r.id])map.addLayer(routeLayers[r.id]);else map.removeLayer(routeLayers[r.id]);b.classList.toggle('off');};
+  rtWrap.appendChild(b);
+  const stops=document.createElement('div');stops.className='stop-list';stops.style.display='none';
+  const iconMap={'S':'▶','E':'■','★':'★','!':'⚠','i':'i'};const bgMap={'S':'#1b3157','E':'#1b3157','★':r.color,'!':'#B33F26','i':'#1F6B70'};
+  r.stops.forEach(s=>{stops.innerHTML+=`<div class="stop-item"><div class="stop-time">${s.time}</div><div class="stop-icon" style="background:${bgMap[s.icon]||'#666'}">${iconMap[s.icon]||s.icon}</div><div class="stop-info"><div style="font-weight:600">${esc(s.n)}</div><div class="addr">${esc(s.addr)}</div>${s.note?`<div class="note">${esc(s.note)}</div>`:''}</div></div>`;});
+  b.addEventListener('dblclick',()=>{stops.style.display=stops.style.display==='none'?'block':'none';});
+  rtWrap.appendChild(stops);
+});
+
+const fcatWrap=document.getElementById('fcat');
+Object.entries(CAT).forEach(([k,v])=>{
+  const total=CRIMES.filter(c=>c.cat===k).reduce((s,c)=>s+c.cnt,0);if(!total)return;
+  const b=document.createElement('button');b.className='chip';b.dataset.cat=k;
+  b.innerHTML=`<span class="dot" style="background:${v.c}"></span>${v.n} <span class="mono" style="font-size:10px;color:#7E909C">${total}</span>`;
+  b.onclick=()=>{offCrime.has(k)?offCrime.delete(k):offCrime.add(k);b.classList.toggle('off');redrawCrimes();renderList();};
+  fcatWrap.appendChild(b);
+});
+
+const layersDef=[{k:'zones',n:'Зоны концентрации',g:gZones,c:'#B33F26'},{k:'coverage',n:'Вне охвата патруля',g:gCoverage,c:'#B33F26'},{k:'estab',n:'Заведения и объекты',g:gEstab,c:'#C08A1E'},{k:'resources',n:'Профилактический ресурс',g:gRes,c:'#1b3157'},{k:'admin',n:'Адм. правонарушения',g:gAdmin,c:'#C08A1E'}];
+const flWrap=document.getElementById('flayers');
+layersDef.forEach(l=>{
+  const on=!offLayers.has(l.k);if(on)map.addLayer(l.g);else map.removeLayer(l.g);
+  const b=document.createElement('button');b.className='chip'+(on?'':' off');b.dataset.layer=l.k;
+  b.innerHTML=`<span class="dot" style="background:${l.c}"></span>${l.n}`;
+  b.onclick=()=>{if(offLayers.has(l.k)){offLayers.delete(l.k);map.addLayer(l.g);}else{offLayers.add(l.k);map.removeLayer(l.g);}b.classList.toggle('off');};
+  flWrap.appendChild(b);
+});
+
+function renderList(){
+  const list=document.getElementById('list');list.innerHTML='';
+  const h1=document.createElement('div');h1.className='blk';h1.style.paddingBottom='4px';h1.innerHTML='<h2>Точки концентрации преступности</h2>';list.appendChild(h1);
+  CRIMES.sort((a,b)=>b.cnt-a.cnt).forEach(cr=>{
+    if(offCrime.has(cr.cat))return;
+    const c=CAT[cr.cat].c;const d=document.createElement('div');d.className='item'+(curId===cr.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:${c}">${cr.rank}</div><div class="nm">${esc(cr.n)}</div></div><div class="addr">${esc(cr.addr)}</div><div class="meta"><span>${esc(CAT[cr.cat].n)}</span><span><b class="mono">${cr.cnt}</b> фактов</span></div><div class="cnt-bar"><i style="background:${c};width:${cr.cnt/33*100}%"></i></div>`;
+    d.onclick=()=>sel(cr.id);list.appendChild(d);
+  });
+  const h2=document.createElement('div');h2.className='blk';h2.style.paddingBottom='4px';h2.innerHTML='<h2>Заведения и объекты</h2>';list.appendChild(h2);
+  ESTAB.forEach(e=>{
+    const c=ESTAB_C[e.t]||'#555';const d=document.createElement('div');d.className='item'+(curId===e.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:${c}">${esc(e.icon)}</div><div class="nm">${esc(e.n)}</div></div><div class="addr">${esc(e.addr)}</div><div class="meta"><span>${esc(e.note.substring(0,55))}…</span></div>`;
+    d.onclick=()=>sel(e.id);list.appendChild(d);
+  });
+  const h3=document.createElement('div');h3.className='blk';h3.style.paddingBottom='4px';h3.innerHTML='<h2>Горячие точки адм. правонарушений</h2>';list.appendChild(h3);
+  ADMIN.forEach(a=>{
+    const d=document.createElement('div');d.className='item'+(curId===a.id?' on':'');
+    d.innerHTML=`<div class="top"><div class="badge" style="background:#C08A1E">${fmt(a.cnt)}</div><div class="nm">${esc(a.n)}</div></div><div class="addr">${esc(a.addr)}</div><div class="meta"><span class="mono" style="font-size:10.5px">${esc(a.stat)}</span><span>${esc(a.share)}</span></div>`;
+    d.onclick=()=>selAdmin(a.id);list.appendChild(d);
+  });
+}
+
+function sel(id){
+  curId=id;const cr=CRIMES.find(c=>c.id===id);const es=ESTAB.find(e=>e.id===id);const detail=document.getElementById('detail');
+  if(cr){detail.classList.add('on');detail.innerHTML=`<h3>${cr.rank}. ${esc(cr.n)}</h3><div class="addr-tag">📍 ${esc(cr.addr)}</div><div class="r"><span>Вид</span><span>${esc(CAT[cr.cat].n)}</span></div><div class="r"><span>Фактов</span><span class="mono">${fmt(cr.cnt)}</span></div><div class="r"><span>Время</span><span>${esc(cr.time)}</span></div><div class="r"><span>Потерпевшие</span><span>${esc(cr.vict)}</span></div><div class="msr"><b>Требуемые меры</b><p>${esc(cr.m)}</p></div><div class="thr">Теория: ${esc(cr.th)}</div>`;if(cr.ll){map.flyTo(cr.ll,16,{duration:.7});crimeMarkers[id]?.openPopup();}}
+  else if(es){detail.classList.add('on');detail.innerHTML=`<h3>${esc(es.n)}</h3><div class="addr-tag">📍 ${esc(es.addr)}</div><div class="msr"><b>Характеристика</b><p>${esc(es.note)}</p></div>`;map.flyTo(es.ll,16,{duration:.7});estabMarkers[id]?.openPopup();}
+  renderList();
+}
+function selAdmin(id){
+  curId=id;const a=ADMIN.find(x=>x.id===id);if(!a)return;
+  const detail=document.getElementById('detail');detail.classList.add('on');
+  detail.innerHTML=`<h3>${esc(a.stat)}</h3><div style="font-weight:600;margin-bottom:6px">${esc(a.n)}</div><div class="addr-tag">📍 ${esc(a.addr)}</div><div class="r"><span>Фактов</span><span class="mono">${fmt(a.cnt)}</span></div><div class="r"><span>Доля</span><span>${esc(a.share)}</span></div><div class="msr"><b>Примечание</b><p>${esc(a.note)}</p></div>`;
+  map.flyTo(a.ll,16,{duration:.7});adminMarkers[id]?.openPopup();renderList();
+}
+function redrawCrimes(){
+  Object.entries(crimeMarkers).forEach(([id,m])=>{const cr=CRIMES.find(c=>c.id===id);const vis=!offCrime.has(cr.cat);if(vis&&!gCrimes.hasLayer(m))gCrimes.addLayer(m);if(!vis&&gCrimes.hasLayer(m))gCrimes.removeLayer(m);if(vis&&!gZones.hasLayer(zoneCircles[id])&&map.hasLayer(gZones))gZones.addLayer(zoneCircles[id]);if(!vis&&gZones.hasLayer(zoneCircles[id]))gZones.removeLayer(zoneCircles[id]);});
+}
+renderList();
+const allPts=[];CRIMES.filter(c=>c.ll).forEach(c=>allPts.push(c.ll));ADMIN.forEach(a=>allPts.push(a.ll));ROUTES.forEach(r=>r.coords.forEach(c=>allPts.push(c)));
+if(allPts.length)map.fitBounds(L.latLngBounds(allPts).pad(0.1));
+</script>
+</div>
+<div id="chrome-bottom"></div>
+<script src="assets/js/ui.js?v=20260909a"></script>
+</body>
+</html>

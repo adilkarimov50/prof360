@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "id": "almaty_city",
+      "title": "г. Алматы",
+      "localities": ["alatau"]
+    },
+    {
+      "id": "almaty_region",
+      "title": "Алматинская область",
+      "localities": ["konaev", "kaskelen", "talgar", "otegen_batyr", "irgeli", "uzynagash", "chundzha", "issyk"]
+    }
+  ],
+  "districts": [
+    { "id": "karasai", "title": "Карасайский район", "localities": ["kaskelen", "otegen_batyr", "irgeli", "uzynagash"] },
+    { "id": "talgar", "title": "Талгарский район", "localities": ["talgar"] },
+    { "id": "uygur", "title": "Уйгурский район", "localities": ["chundzha"] },
+    { "id": "enbekshi", "title": "Енбекшиказахский район", "localities": ["issyk"] },
+    { "id": "kapshagai", "title": "Капшагайский район", "localities": ["konaev"] },
+    { "id": "alatau", "title": "район «Алатау», г. Алматы", "localities": ["alatau"] }
+  ]
+}

@@ -1,0 +1,54 @@
+# Production stack — секреты только из .env, БД не пробрасывается наружу.
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-prof360}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-prof360}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-prof360}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ENVIRONMENT: production
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-prof360}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-prof360}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+      FIELD_ENCRYPTION_KEY: ${FIELD_ENCRYPTION_KEY:?set FIELD_ENCRYPTION_KEY}
+      IIN_HASH_PEPPER: ${IIN_HASH_PEPPER:?set IIN_HASH_PEPPER}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost}
+      DATA_DIR: /data
+      UPLOAD_DIR: /app/uploads
+      AI_PROVIDER: ${AI_PROVIDER:-gemini}
+      AI_ALLOW_EXTERNAL: ${AI_ALLOW_EXTERNAL:-true}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD:?set DEFAULT_ADMIN_PASSWORD}
+    volumes:
+      - ./:/data:ro
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    command: ["./entrypoint.sh"]
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

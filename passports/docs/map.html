@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карта криминогенных объектов · Карасайский район</title>
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+</head>
+<body data-site-page="map">
+<div id="chrome-top"></div>
+
+<section class="hero" style="padding:44px 0 62px">
+  <div class="wrap">
+    <div class="hero__eyebrow">Криминологический паспорт · карта территории</div>
+    <h1 style="font-size:clamp(26px,3.4vw,38px)">Карта ключевых объектов населённого пункта</h1>
+    <p>Точки концентрации преступности, проблемные улицы, криминогенные объекты и населённые
+       пункты округа. Размер метки точек концентрации пропорционален количеству
+       зарегистрированных фактов.</p>
+    <div style="margin-top:22px" id="m-switch"></div>
+  </div>
+</section>
+
+<main class="wrap" style="padding-top:30px">
+  <div class="filters" id="filters"></div>
+  <div id="detail-card"></div>
+  <div class="map-layout">
+    <div class="map-side" id="side"></div>
+    <div id="map"></div>
+  </div>
+
+  <section class="section" id="unlocated-wrap">
+    <div class="section__head">
+      <div class="section__num">!</div>
+      <div class="section__title">
+        <h2>Объекты без координатной привязки</h2>
+        <p>Объекты, указанные в паспорте без адреса. Их привязка подлежит установлению
+           при обследовании территории.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="unlocated"></div>
+  </section>
+</main>
+
+<div id="chrome-bottom"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="assets/js/data.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script src="assets/js/map.js?v=20260909a"></script>
+</body>
+</html>

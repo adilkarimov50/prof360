@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Наука и практика профилактики · криминологический паспорт</title>
+<meta name="description" content="Познавательный сборник: ролики, книги и цитаты по социологии девиантного поведения и профилактике правонарушений — с привязкой к данным Карасайского района.">
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="assets/css/library.css?v=20260909a">
+</head>
+<body data-site-page="library">
+<div id="chrome-top"></div>
+
+<section class="hero lib-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow">Социология · криминология · Закон № 245-VIII</div>
+    <h1>Наука и практика профилактики</h1>
+    <p>Ролики и статьи — с привязкой к паспортам, картам и навигатору. Ниже порядок **локального анализа** на местах и тематические подборки.</p>
+  </div>
+</section>
+
+<div class="lib-page">
+  <div class="wrap">
+
+    <p class="lib-intro" id="lib-intro"></p>
+
+    <h2 class="lib-section-title">Локальный анализ профилактики</h2>
+    <p class="lib-section-lead">Порядок работы прокурора на местах: от конкретного адреса или группы лиц — к проверяемому поручению комиссии. Каждый шаг опирается на паспорт, карту или навигатор.</p>
+    <div class="lib-formula" id="lib-formula"></div>
+
+    <h2 class="lib-section-title">Тематические подборки</h2>
+    <p class="lib-section-lead">Статьи с DOI — открываются через Sci-Hub. Выберите тему или комбинируйте с фильтром «Статьи».</p>
+    <div class="lib-collections" id="lib-collections"></div>
+
+    <div class="lib-sticky">
+      <div class="lib-sticky__row" id="lib-filters">
+        <div class="lib-sticky__search">
+          <input type="search" id="lib-q" placeholder="Теория, автор, тег…" aria-label="Поиск">
+        </div>
+        <button class="lib-filter" type="button" data-type="all" aria-pressed="true">Все</button>
+        <button class="lib-filter" type="button" data-type="video" aria-pressed="false">Ролики</button>
+        <button class="lib-filter" type="button" data-type="book" aria-pressed="false">Книги</button>
+        <button class="lib-filter" type="button" data-type="article" aria-pressed="false">Статьи</button>
+        <button class="lib-filter" type="button" data-type="quote" aria-pressed="false">Цитаты</button>
+      </div>
+    </div>
+
+    <p class="lib-status" id="lib-status"></p>
+    <div class="lib-grid" id="lib-grid"></div>
+
+    <h2 class="lib-section-title">Сигнал из данных → что проверить на месте</h2>
+    <p class="lib-section-lead">Семь связок: показатель из паспорта или карты — что смотреть в органе, на адресе и в протоколе МВК.</p>
+    <div class="lib-apps" id="lib-apps"></div>
+
+  </div>
+</div>
+
+<div id="chrome-bottom"></div>
+
+<script src="assets/js/library_data.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script>
+document.getElementById('lib-intro').textContent = window.LIBRARY_DATA?.intro || '';
+</script>
+<script src="assets/js/library.js?v=20260909a"></script>
+</body>
+</html>

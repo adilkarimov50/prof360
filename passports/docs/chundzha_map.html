@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Детальная карта с. Чунджа (Шонжы) — маршруты патрулирования, 2026</title>
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1116; --slate:#18222B; --slate2:#22303B; --paper:#E8EBED; --paper2:#F4F6F7;
+  --line:#33434F; --linelt:#C9D1D6; --muted:#7E909C;
+  --red:#B33F26; --amber:#C08A1E; --teal:#1F6B70; --navy:#1b3157; --purple:#5B4B8A; --brown:#8C5A2B; --blue:#2F5D8C;
+  --pale:#9FB0BB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13.5px;line-height:1.45}
+body{display:flex;flex-direction:column}
+#chrome-top{flex:0 0 auto}
+.map-page{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+h1,h2,h3,.disp{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;letter-spacing:.01em}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+/* ШАПКА */
+header{background:var(--slate);color:var(--paper);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:3px solid var(--red);flex:0 0 auto}
+header h1{font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1.2}
+header .sub{color:var(--pale);font-size:11px;letter-spacing:.04em;margin-top:2px}
+header .back{margin-left:auto;color:var(--pale);text-decoration:none;font-size:12px;border:1px solid var(--line);padding:4px 10px;white-space:nowrap}
+header .back:hover{color:var(--paper)}
+.stamp{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--pale);border:1px solid var(--line);padding:3px 8px;letter-spacing:.05em;flex-shrink:0}
+
+/* ПОЛОСА KPI */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));background:var(--slate);border-bottom:1px solid var(--line);flex:0 0 auto}
+.kpi{padding:7px 13px;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:none}
+.kpi .v{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:600;line-height:1.1}
+.kpi .l{font-size:10px;color:var(--pale);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.kpi.warn .v{color:#E8785C}
+.kpi.ok .v{color:#5fc49f}
+
+/* ОСНОВА */
+main{display:flex;flex:1 1 auto;min-height:0;overflow:hidden}
+#map{flex:1;height:100%;background:var(--paper2)}
+aside{width:320px;flex-shrink:0;background:var(--paper2);border-right:1px solid var(--linelt);display:flex;flex-direction:column;overflow:hidden}
+.panel{flex:1;overflow-y:auto;min-height:0}
+
+/* БЛОКИ ПАНЕЛИ */
+.blk{border-bottom:1px solid var(--linelt);padding:10px 13px}
+.blk h2{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;font-weight:600}
+
+/* ПЕРЕКЛЮЧАТЕЛИ МАРШРУТОВ */
+.rt-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;background:#fff;border:1px solid var(--linelt);cursor:pointer;font:inherit;color:var(--ink);margin-bottom:5px;text-align:left;transition:.12s}
+.rt-btn:hover{border-color:var(--muted)}
+.rt-btn.off{opacity:.4;text-decoration:line-through}
+.rt-btn .dot{width:12px;height:3px;flex-shrink:0}
+.rt-btn .foot-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:2px solid}
+.rt-badge{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:1px 5px;color:#fff}
+.rt-meta{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ФИЛЬТРЫ */
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--linelt);background:#fff;cursor:pointer;padding:4px 8px;font-size:11.5px;font-family:inherit;color:var(--ink);display:flex;align-items:center;gap:5px;transition:.12s}
+.chip:hover{border-color:var(--muted)}
+.chip .dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%}
+.chip.off{opacity:.35;background:transparent}
+
+/* КАРТОЧКА ОБЪЕКТА */
+.detail{background:var(--slate);color:var(--paper);padding:12px 14px;border-bottom:1px solid var(--line);display:none}
+.detail.on{display:block}
+.detail h3{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.detail .r{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}
+.detail .r:last-of-type{border-bottom:none}
+.detail .r span:first-child{color:var(--pale);flex:0 0 auto;max-width:110px}
+.detail .msr{margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.15)}
+.detail .msr b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--pale);margin-bottom:4px}
+.detail .msr p{font-size:12px;margin:0}
+.detail .thr{font-size:11px;color:#9FC4C6;margin-top:6px;font-style:italic}
+.detail .addr-tag{font-size:11px;color:var(--amber);margin-top:4px;font-family:'IBM Plex Mono',monospace}
+
+/* РЕЕСТР ОБЪЕКТОВ */
+.item{border-left:3px solid transparent;padding:8px 12px 8px 10px;cursor:pointer;border-bottom:1px solid var(--linelt);transition:.12s;background:#fff}
+.item:hover,.item.on{border-left-color:var(--red);background:#fff}
+.item.hide{display:none}
+.item .top{display:flex;align-items:flex-start;gap:7px}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#fff;min-width:22px;height:20px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:2px}
+.item .nm{font-weight:600;font-size:13px;line-height:1.25;flex:1}
+.item .addr{font-size:11px;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace}
+.item .meta{font-size:11.5px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.cnt-bar{height:3px;background:var(--linelt);margin-top:5px;position:relative}
+.cnt-bar i{position:absolute;left:0;top:0;bottom:0;display:block}
+.nogeo{border-color:var(--muted);color:var(--muted);font-size:10px;padding:1px 5px}
+.approx-tag{font-size:10px;color:var(--amber);border:1px solid var(--amber);padding:0 4px;flex-shrink:0}
+
+/* ОСТАНОВКИ В РЕЕСТРЕ */
+.stop-list{padding:8px 12px;background:#fff;border-bottom:1px solid var(--linelt)}
+.stop-item{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dotted var(--linelt);font-size:12px}
+.stop-item:last-child{border-bottom:none}
+.stop-time{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;flex-shrink:0;min-width:44px;color:var(--amber)}
+.stop-icon{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700;margin-top:1px}
+.stop-info .addr{color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace;margin-top:1px}
+.stop-info .note{color:var(--muted);font-size:11px;margin-top:2px;font-style:italic}
+
+/* МАРКЕРЫ */
+.mk{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.mk.sm{width:18px;height:18px;font-size:9px;border-width:1.5px;border-radius:50%}
+.mk.res{border-radius:50%}
+.mk.est{border-radius:3px;font-size:10px}
+.mk.adm{transform:rotate(45deg);width:20px;height:20px;font-size:8px;border-radius:3px}
+.mk.adm span{transform:rotate(-45deg);display:block}
+.mk.stop-mk{width:14px;height:14px;border-radius:50%;border-width:2px;font-size:8px}
+.mk.sel{outline:3px solid var(--ink);outline-offset:2px}
+.route-label{white-space:nowrap;font-size:11px;font-weight:700;background:rgba(255,255,255,.94);padding:2px 7px;border-radius:5px;border:2px solid;transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.2);pointer-events:none}
+
+/* ЛЕГЕНДА */
+.legend{background:rgba(12,17,22,.88);color:var(--paper);padding:9px 11px;font-size:11px;line-height:1.8;max-width:220px}
+.legend b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--pale);margin-bottom:4px;margin-top:5px}
+.legend b:first-child{margin-top:0}
+.legend i{width:10px;height:10px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.legend .line-dash{width:20px;height:3px;display:inline-block;margin-right:5px;vertical-align:2px;border-top:3px dashed}
+.legend .line-solid{width:20px;height:3px;display:inline-block;margin-right:5px;vertical-align:2px;background-color:currentColor}
+
+/* LEAFLET */
+.leaflet-popup-content{font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin:10px 14px;min-width:200px}
+.leaflet-popup-content h4{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;margin-bottom:5px}
+.leaflet-popup-content .pop-addr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555;margin-bottom:6px}
+.leaflet-popup-content .pop-row{padding:3px 0;border-bottom:1px solid #eee;font-size:12px;display:flex;justify-content:space-between;gap:8px}
+.leaflet-popup-content .pop-row:last-of-type{border:none}
+.leaflet-popup-content .pop-row b{color:#333}
+.leaflet-popup-content .pop-m{margin-top:7px;font-size:11.5px;background:#f7f3e8;padding:7px 9px;border-left:3px solid #C08A1E}
+.leaflet-popup-content .pop-warn{color:#B33F26;font-weight:600;font-size:11px;margin-top:4px}
+
+@media(max-width:800px){
+  body{overflow:auto;height:auto}
+  main{flex-direction:column;height:auto}
+  aside{width:100%;height:auto;overflow:visible}
+  #map{height:60vh;flex:none}
+}
+</style>
+</head>
+<body data-site-page="map" data-site-id="chundzha">
+
+<div id="chrome-top"></div>
+<div class="map-page">
+
+<header>
+  <div>
+    <h1>Карта патрулирования и криминогенных объектов</h1>
+    <div class="sub">с. Чунджа (Шонжы) · Уйгурский район · Алматинская область · 2026</div>
+  </div>
+  <div class="stamp">ФОРМА 1-М · 1-АД</div>
+  <a class="back" href="passport.html?id=chundzha">← Паспорт</a>
+</header>
+
+<div class="strip">
+  <div class="kpi"><div class="v">36</div><div class="l">уголовных правонарушений</div></div>
+  <div class="kpi warn"><div class="v">3</div><div class="l">маршрута патрулирования</div></div>
+  <div class="kpi"><div class="v">12</div><div class="l">точек концентрации</div></div>
+  <div class="kpi warn"><div class="v">52 %</div><div class="l">вечер и ночь</div></div>
+  <div class="kpi warn"><div class="v">74 %</div><div class="l">безработные среди лиц</div></div>
+  <div class="kpi"><div class="v">2345</div><div class="l">адм. правонарушений</div></div>
+  <div class="kpi warn"><div class="v">0</div><div class="l">меморандумов по камерам</div></div>
+  <div class="kpi ok"><div class="v">75 %</div><div class="l">раскрываемость</div></div>
+</div>
+
+<main>
+<aside>
+  <div class="panel">
+
+  <!-- МАРШРУТЫ -->
+  <div class="blk">
+    <h2>Маршруты патрулирования</h2>
+    <div id="rt-toggles"></div>
+  </div>
+
+  <!-- ФИЛЬТРЫ ПО ВИДУ ПРЕСТУПЛЕНИЯ -->
+  <div class="blk">
+    <h2>Вид преступления</h2>
+    <div class="chips" id="fcat"></div>
+  </div>
+
+  <!-- СЛОИ -->
+  <div class="blk">
+    <h2>Слои на карте</h2>
+    <div class="chips" id="flayers"></div>
+  </div>
+
+  <!-- КАРТОЧКА ВЫБРАННОГО ОБЪЕКТА -->
+  <div class="detail" id="detail"></div>
+
+  <!-- РЕЕСТР -->
+  <div class="blk" style="padding-bottom:6px"><h2>Реестр точек и объектов</h2></div>
+  <div id="list"></div>
+
+  </div><!-- /panel -->
+</aside>
+
+<div id="map"></div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ================================================================
+   ДАННЫЕ
+   ================================================================ */
+
+/* ---- Категории преступлений ---- */
+const CAT={
+  sex  :{n:'Половые преступления',          c:'#B33F26'},
+  theft:{n:'Кражи',                          c:'#8C5A2B'},
+  beat :{n:'Побои и вред здоровью',          c:'#C08A1E'},
+  fraud:{n:'Мошенничества',                  c:'#5B4B8A'},
+  drug :{n:'Наркопреступления',              c:'#2F5D8C'}
+};
+
+/* ---- Точки концентрации преступности (12 из раздела 8.2) ---- */
+const CRIMES=[
+ {id:'c1',rank:1,n:'Заброшенное здание «Заготзерно» и окраины',
+  addr:'Северная окраина с. Чунджа (пустырь за ул. Онгарова)',
+  cat:'sex',cnt:3,ll:[43.5455,79.4700],exact:false,
+  time:'Вечернее и ночное время (после 21:00)',
+  vict:'Несовершеннолетние 8, 12, 15 лет',
+  m:'Включить в постоянные вечерние и ночные маршруты патрулирования (Маршрут №1). Инициировать перед акиматом снос или консервацию здания. Установить освещение и заграждение.',
+  th:'Рутинная деятельность · Разбитые окна'},
+ {id:'c2',rank:2,n:'Автомобили частного извоза',
+  addr:'Маршруты по с. Чунджа (подвижная зона)',
+  cat:'sex',cnt:3,ll:null,exact:false,
+  time:'Вечернее и ночное время',
+  vict:'Несовершеннолетние и молодые женщины',
+  m:'Адресная отработка водителей: при выявлении в вечернее/ночное время авто в удалённых местах устанавливать личности и обстоятельства. Рейды по сбору данных о нелегальном извозе.',
+  th:'Рутинная деятельность (подвижная зона без опекуна)'},
+ {id:'c3',rank:3,n:'ул. Онгарова — стоянка грузового транспорта',
+  addr:'ул. Онгарова, 12–20 (открытая стоянка)',
+  cat:'theft',cnt:2,ll:[43.5330,79.4595],exact:false,
+  time:'Ночное и раннее утреннее время',
+  vict:'Водители грузового транспорта (кражи из кабин и грузов)',
+  m:'Проверка состояния освещения и наличия видеонаблюдения. Включить в Маршрут №2 (утренний объезд 08:50). Закрепить ответственного сотрудника.',
+  th:'Криминология места · Рутинная деятельность'},
+ {id:'c4',rank:4,n:'ул. Парасат, д. 27',
+  addr:'ул. Парасат, 27 (жилой дом)',
+  cat:'beat',cnt:2,ll:[43.5405,79.4570],exact:false,
+  time:'Ночное время (после 23:00)',
+  vict:'Супруга, тёща (семейно-бытовая сфера)',
+  m:'Закрепить ответственного участкового. Обязательная отработка при каждом повторном семейно-бытовом конфликте. Маршрут №3 проходит через данный адрес.',
+  th:'Общая теория напряжения (Агню)'},
+ {id:'c5',rank:5,n:'Гостиница «Алма Парк»',
+  addr:'ул. Восточная, 8',
+  cat:'beat',cnt:2,ll:[43.5340,79.4680],exact:false,
+  time:'Ночное время (22:00–03:00)',
+  vict:'Лица 29 и 39 лет',
+  m:'Включить в ночной патруль (Маршрут №1, остановка 21:30). Профилактическая отработка: проверка посетителей, сотрудничество с администрацией гостиницы.',
+  th:'Рутинная деятельность'},
+ {id:'c6',rank:6,n:'Гостиница «Уют»',
+  addr:'ул. Центральная, 44',
+  cat:'theft',cnt:1,ll:[43.5395,79.4665],exact:false,
+  time:'Неустановленное время',
+  vict:'Постоялец (кража из номера)',
+  m:'Проверить наличие и работоспособность видеонаблюдения в коридорах. Маршрут №1 (остановка 22:00).',
+  th:'Рутинная деятельность'},
+ {id:'c7',rank:7,n:'Кафе «Таклимакан»',
+  addr:'ул. Центральная, 12',
+  cat:'theft',cnt:1,ll:[43.5380781,79.4647633],exact:true,
+  time:'Неустановленное время',
+  vict:'Посетитель кафе',
+  m:'Профилактическая отработка объекта. Проверить видеонаблюдение. Включён в Маршрут №2 (09:30).',
+  th:'Рутинная деятельность'},
+ {id:'c8',rank:8,n:'Автомойка — платёжный терминал',
+  addr:'ул. Онгарова, 5 (автомойка)',
+  cat:'theft',cnt:1,ll:[43.5350,79.4610],exact:false,
+  time:'Неустановленное время',
+  vict:'Владелец объекта (кража с терминала)',
+  m:'Установить видеонаблюдение непосредственно у платёжного терминала. Маршрут №2 (остановка 08:30).',
+  th:'Рутинная деятельность'},
+ {id:'c9',rank:9,n:'Здание акимата',
+  addr:'ул. Ленина, 5 (аппарат акима с. Чунджа)',
+  cat:'beat',cnt:1,ll:[43.535681,79.464499],exact:true,
+  time:'Дневное время',
+  vict:'Лицо 34 лет',
+  m:'Профилактическая беседа с участниками конфликта. Контроль порядка приёма граждан.',
+  th:'Ситуативный конфликт (Агню)'},
+ {id:'c10',rank:10,n:'Районная больница',
+  addr:'ул. Больничная, 1',
+  cat:'theft',cnt:1,ll:[43.541798,79.4651678],exact:true,
+  time:'Неустановленное время',
+  vict:'Пациент больницы',
+  m:'Проверить режим доступа в отделения и видеонаблюдение. Маршрут №2 (остановка 10:00).',
+  th:'Рутинная деятельность'},
+ {id:'c11',rank:11,n:'Мошенничества — дистанционный способ',
+  addr:'Территория с. Чунджа (телефонный контакт)',
+  cat:'fraud',cnt:5,ll:null,exact:false,
+  time:'Телефонный контакт, любое время',
+  vict:'Лица 22, 36, 45, 49 и 61 года',
+  m:'Информационная кампания: коды из СМС и 1414, звонки от имени банков и полиции, «безопасный счёт». Установить 14 билбордов (уже начато). Взаимодействие с банками.',
+  th:'Рациональный выбор · Социальная дезорганизация'},
+ {id:'c12',rank:12,n:'Наркосбыт — территория села',
+  addr:'Место требует уточнения при обследовании',
+  cat:'drug',cnt:1,ll:null,exact:false,
+  time:'Неустановленное время',
+  vict:'—',
+  m:'Отработка молодёжной среды и мест концентрации молодёжи. Компьютерный клуб — объект мониторинга.',
+  th:'Аномия (инновация) · Дифференциальная возможность'}
+];
+
+/* ---- Заведения и объекты ---- */
+const ESTAB=[
+ {id:'rovd',    n:'РОВД Уйгурского района',               t:'police',   addr:'ул. Ленина, 1',         ll:[43.5368638,79.4648952], note:'Субъект профилактики. Ежедневное дежурство.',                        icon:'П'},
+ {id:'akimat',  n:'Аппарат акима с. Чунджа',              t:'akimat',   addr:'ул. Ленина, 5',         ll:[43.535681,79.464499],   note:'Субъект профилактики. Координирует мероприятия МВК.',               icon:'А'},
+ {id:'culture', n:'Районный дом культуры',                t:'culture',  addr:'ул. Культурная, 3',     ll:[43.5413616,79.4622209], note:'Один из 4 легальных досуговых объектов на 22 000 населения. Охват — 3,8 %.', icon:'Д'},
+ {id:'hospital',n:'Районная больница',                    t:'hospital', addr:'ул. Больничная, 1',     ll:[43.541798,79.4651678],  note:'Медицинское учреждение. 1 кража (из отделения).',                   icon:'Б'},
+ {id:'school',  n:'Школа с. Чунджа (СОПР)',               t:'school',   addr:'ул. Школьная',           ll:[43.5395,79.4600],       note:'Субъект профилактики по Закону № 245-VIII.',                        icon:'Ш'},
+ {id:'tak',     n:'Кафе «Таклимакан»',                    t:'catering', addr:'ул. Центральная, 12',   ll:[43.5380781,79.4647633], note:'1 кража; 1 из 16 объектов общепита без санразрешений (КРАС).',       icon:'К'},
+ {id:'alma',    n:'Гостиница «Алма Парк»',                t:'hotel',    addr:'ул. Восточная, 8',       ll:[43.5340,79.4680],       note:'2 факта побоев. Объект с ночным режимом работы.',                   icon:'Г'},
+ {id:'uyut',    n:'Гостиница «Уют»',                      t:'hotel',    addr:'ул. Центральная, 44',   ll:[43.5395,79.4665],       note:'1 кража из номера. Требуется проверка СКУД и видеонаблюдения.',     icon:'Г'},
+ {id:'wash',    n:'Автомойка (платёжный терминал)',        t:'service',  addr:'ул. Онгарова, 5',        ll:[43.5350,79.4610],       note:'1 кража с терминала. Уязвимая точка без контроля.',                 icon:'М'},
+ {id:'club',    n:'Развлекательный компьютерный клуб',    t:'club',     addr:'ул. Центральная, 7',    ll:[43.5378,79.4635],       note:'Место концентрации молодёжи. Контроль времени пребывания несовершеннолетних.', icon:'К'},
+ {id:'market',  n:'Рыночная зона (торговые объекты)',     t:'market',   addr:'ул. Рыночная / базар',  ll:[43.5382,79.4680],       note:'Зона концентрации ст.442 (иностранцы — 128 фактов). Торговые точки.', icon:'Р'},
+ {id:'parking', n:'Стоянка грузового транспорта',         t:'parking',  addr:'ул. Онгарова, 12–20',   ll:[43.5330,79.4595],       note:'2 кражи. Отсутствие освещения и видеонаблюдения.',                  icon:'С'},
+ {id:'catering',n:'Объекты общепита (16 без санразрешений)',t:'catering-m',addr:'с. Чунджа, рассредоточены',ll:[43.5370,79.4610], note:'По данным КРАС: 16 объектов общепита без санитарных разрешений. Адреса подлежат запросу в КРАС.', icon:'О'},
+ {id:'alcohol', n:'Объекты реализации алкоголя',          t:'alcohol',  addr:'Перечень подлежит запросу в ОВД', ll:[43.5360,79.4628], note:'Выявлено 3 нарушения. Полный адресный перечень — запросить в ОВД.', icon:'А'},
+ {id:'cameras', n:'Частные камеры видеонаблюдения',       t:'cameras',  addr:'20 организаций с. Чунджа (~70 камер)', ll:[43.5380,79.4650], note:'0 меморандумов об интеграции с ОВД. Необходимо срочно заключить соглашения.', icon:'В'},
+];
+
+/* ---- Административные правонарушения (горячие точки) ---- */
+const ADMIN=[
+ {id:'a1',n:'Пешеходный переход — центральный перекрёсток',
+  addr:'пересечение ул. Ленина и ул. Центральной',
+  stat:'ст.602 ч.1',cnt:176,share:'7,5 %',
+  ll:[43.5367,79.4640],
+  note:'Нарушение правил проезда пешеходных переходов. Требуется разметка и знаки.'},
+ {id:'a2',n:'Въезд в с. Чунджа — дорожный контроль',
+  addr:'Автодорога Талды-Булак → Чунджа, km 0',
+  stat:'ст.612 ч.1',cnt:247,share:'10,5 %',
+  ll:[43.5280,79.4545],
+  note:'Управление ТС в состоянии опьянения. Место установки поста ДПС.'},
+ {id:'a3',n:'Парковка у акимата и РОВД',
+  addr:'ул. Ленина, 1–5',
+  stat:'ст.615 ч.1',cnt:136,share:'5,8 %',
+  ll:[43.5362,79.4652],
+  note:'Нарушение правил парковки. Возможна реорганизация парковочного пространства.'},
+ {id:'a4',n:'Рыночная зона — нарушения пребывания',
+  addr:'ул. Рыночная (базар с. Чунджа)',
+  stat:'ст.442 ч.2',cnt:128,share:'5,5 %',
+  ll:[43.5382,79.4685],
+  note:'Нарушение правил пребывания иностранных граждан. Базар — место концентрации торговцев из других стран.'},
+ {id:'a5',n:'Кафе и клубы — курение',
+  addr:'Центральная часть с. Чунджа',
+  stat:'ст.492 ч.2',cnt:174,share:'7,4 %',
+  ll:[43.5374,79.4648],
+  note:'Курение в запрещённых местах. Основные нарушители — объекты общепита без санразрешений.'},
+];
+
+/* ---- Маршруты патрулирования ---- */
+const ROUTES=[
+ {
+  id:1,
+  n:'Маршрут №1 — вечерний/ночной (пеший)',
+  time:'19:00–01:00',
+  type:'foot',
+  color:'#B33F26',
+  crew:'2 сотрудника',
+  focus:'Половые преступления, окраины, гостиницы',
+  coords:[
+   [43.5369,79.4649], // РОВД
+   [43.5378,79.4649], // ул. Ленина на север
+   [43.5390,79.4648], // продолжение
+   [43.5390,79.4625], // поворот на запад
+   [43.5398,79.4608], // к ул. Парасат
+   [43.5405,79.4590], // ул. Парасат, движение
+   [43.5405,79.4570], // ► ул. Парасат, 27
+   [43.5415,79.4575], // на север по ул.
+   [43.5425,79.4600], // поворот восток
+   [43.5432,79.4640], // центральная часть севера
+   [43.5442,79.4665], // к окраине
+   [43.5455,79.4700], // ► Заготзерно — ключевая точка
+   [43.5445,79.4695], // обратный путь
+   [43.5420,79.4690], // на юг по восточной части
+   [43.5395,79.4690], // движение к гостиницам
+   [43.5365,79.4690], // поворот
+   [43.5345,79.4685], // к Алма Парк
+   [43.5340,79.4680], // ► Гостиница «Алма Парк»
+   [43.5360,79.4678], // на север
+   [43.5380,79.4669], // к Уют
+   [43.5395,79.4665], // ► Гостиница «Уют»
+   [43.5385,79.4658], // возврат к РОВД
+   [43.5369,79.4649], // РОВД — конец
+  ],
+  stops:[
+   {n:'РОВД — начало маршрута',        addr:'ул. Ленина, 1',              ll:[43.5369,79.4649], time:'19:00', icon:'S', note:'Инструктаж. Получение оперативного задания.'},
+   {n:'ул. Парасат, д. 27',             addr:'ул. Парасат, 27',            ll:[43.5405,79.4570], time:'19:30', icon:'!', note:'2 факта побоев (СБК). Проверка жильцов, профилактическая беседа. Отстой 15 мин.'},
+   {n:'«Заготзерно» и окраины',         addr:'Северная окраина с. Чунджа', ll:[43.5455,79.4700], time:'20:30', icon:'★', note:'3 половых преступления в отношении несовершеннолетних. Осмотр заброшенных строений. Отстой 30 мин.'},
+   {n:'Гостиница «Алма Парк»',          addr:'ул. Восточная, 8',           ll:[43.5340,79.4680], time:'21:30', icon:'!', note:'2 факта побоев. Осмотр территории, беседа с администрацией. Отстой 15 мин.'},
+   {n:'Гостиница «Уют»',                addr:'ул. Центральная, 44',        ll:[43.5395,79.4665], time:'22:00', icon:'!', note:'1 кража из номера. Проверка СКУД и видеонаблюдения. Отстой 15 мин.'},
+   {n:'РОВД — конец маршрута',          addr:'ул. Ленина, 1',              ll:[43.5369,79.4649], time:'22:30', icon:'E', note:'Сдача дежурства.'},
+  ],
+ },
+ {
+  id:2,
+  n:'Маршрут №2 — дневной (автопатруль)',
+  time:'08:00–10:45 · 14:00–16:30',
+  type:'auto',
+  color:'#1F6B70',
+  crew:'1 экипаж, 2 сотрудника',
+  focus:'Кражи, объекты торговли, общественный порядок',
+  coords:[
+   [43.5369,79.4649], // РОВД
+   [43.5360,79.4648], // по ул. Ленина на юг
+   [43.5357,79.4645], // ► Акимат
+   [43.5357,79.4625], // поворот на запад
+   [43.5352,79.4618], // движение
+   [43.5350,79.4610], // ► Автомойка
+   [43.5340,79.4608], // продолжение
+   [43.5333,79.4598], // ул. Онгарова
+   [43.5330,79.4595], // ► Стоянка
+   [43.5335,79.4610], // разворот
+   [43.5345,79.4635], // возврат через центр
+   [43.5360,79.4645], // центральная часть
+   [43.5370,79.4648], // к Таклимакан
+   [43.5381,79.4648], // ► Таклимакан
+   [43.5395,79.4650], // на север
+   [43.5405,79.4651], // больница
+   [43.5418,79.4652], // ► Больница
+   [43.5416,79.4635], // на запад
+   [43.5414,79.4622], // ► Дом культуры
+   [43.5402,79.4630], // возврат
+   [43.5385,79.4640], // к РОВД
+   [43.5369,79.4649], // РОВД
+  ],
+  stops:[
+   {n:'РОВД — начало рейда',                      addr:'ул. Ленина, 1',          ll:[43.5369,79.4649], time:'08:00', icon:'S', note:'Получение задания. 2 рейда в день.'},
+   {n:'Акимат с. Чунджа',                          addr:'ул. Ленина, 5',          ll:[43.5357,79.4645], time:'08:10', icon:'i', note:'Координация. Отстой 10 мин.'},
+   {n:'Автомойка (платёжный терминал)',             addr:'ул. Онгарова, 5',        ll:[43.5350,79.4610], time:'08:30', icon:'!', note:'1 кража с терминала. Проверка видеонаблюдения. Отстой 10 мин.'},
+   {n:'ул. Онгарова — стоянка грузового транспорта',addr:'ул. Онгарова, 12–20',   ll:[43.5330,79.4595], time:'08:50', icon:'★', note:'2 кражи из кабин и грузов. Осмотр стоянки, проверка документов водителей. Отстой 20 мин.'},
+   {n:'Кафе «Таклимакан»',                         addr:'ул. Центральная, 12',   ll:[43.5381,79.4648], time:'09:30', icon:'!', note:'1 кража. Профилактическая отработка, проверка видеонаблюдения. Отстой 10 мин.'},
+   {n:'Районная больница',                          addr:'ул. Больничная, 1',     ll:[43.5418,79.4652], time:'10:00', icon:'!', note:'1 кража из палаты. Проверка режима доступа в отделения. Отстой 10 мин.'},
+   {n:'Районный дом культуры',                      addr:'ул. Культурная, 3',     ll:[43.5414,79.4622], time:'10:15', icon:'i', note:'Профилактическая беседа с молодёжью. Отстой 15 мин.'},
+   {n:'РОВД — конец 1-го рейда',                   addr:'ул. Ленина, 1',          ll:[43.5369,79.4649], time:'10:45', icon:'E', note:'Перерыв. Повтор в 14:00.'},
+  ],
+ },
+ {
+  id:3,
+  n:'Маршрут №3 — семейно-бытовой (пеший)',
+  time:'17:00–22:00',
+  type:'foot',
+  color:'#C08A1E',
+  crew:'Участковый инспектор',
+  focus:'СБК, несовершеннолетние, молодёжные объекты',
+  coords:[
+   [43.5369,79.4649], // РОВД
+   [43.5378,79.4648], // ул. Ленина
+   [43.5382,79.4638], // поворот к клубу
+   [43.5385,79.4625], // движение на запад
+   [43.5390,79.4615], // поворот
+   [43.5396,79.4605], // к ул. Парасат
+   [43.5403,79.4591], // ул. Парасат
+   [43.5405,79.4570], // ► ул. Парасат, 27
+   [43.5410,79.4582], // на север
+   [43.5412,79.4600], // квартальный обход
+   [43.5413,79.4615], // поворот к ДК
+   [43.5414,79.4622], // ► Дом культуры
+   [43.5402,79.4630], // движение к клубу
+   [43.5388,79.4636], // к клубу
+   [43.5378,79.4635], // ► Компьютерный клуб
+   [43.5374,79.4641], // возврат
+   [43.5369,79.4649], // РОВД
+  ],
+  stops:[
+   {n:'РОВД — начало обхода',          addr:'ул. Ленина, 1',          ll:[43.5369,79.4649], time:'17:00', icon:'S', note:'Сверка списка семей на профучёте.'},
+   {n:'ул. Парасат, д. 27',             addr:'ул. Парасат, 27',        ll:[43.5405,79.4570], time:'17:30', icon:'★', note:'2 факта побоев (СБК). Профилактическая беседа, проверка семьи. Отстой 20 мин.'},
+   {n:'Районный дом культуры',          addr:'ул. Культурная, 3',     ll:[43.5414,79.4622], time:'18:30', icon:'i', note:'Контроль молодёжных мероприятий. Отстой 15 мин.'},
+   {n:'Компьютерный клуб',              addr:'ул. Центральная, 7',    ll:[43.5378,79.4635], time:'19:00', icon:'!', note:'Проверка соблюдения ограничений по времени для несовершеннолетних. Отстой 15 мин.'},
+   {n:'РОВД — конец обхода',            addr:'ул. Ленина, 1',          ll:[43.5369,79.4649], time:'19:30', icon:'E', note:'Отчёт о результатах.'},
+  ],
+ },
+];
+
+/* ================================================================
+   КАРТА
+   ================================================================ */
+
+const CENTER=[43.5385,79.4640];
+const map=L.map('map',{zoomControl:true}).setView(CENTER,15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+ {maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+
+/* Слои */
+const gCrimes   =L.layerGroup().addTo(map);
+const gEstab    =L.layerGroup().addTo(map);
+const gAdmin    =L.layerGroup();           // скрыт по умолчанию
+const gZones    =L.layerGroup().addTo(map);
+const gResources=L.layerGroup().addTo(map);
+
+const routeLayers={}; // id -> layerGroup
+const offCrime=new Set();
+let offLayers=new Set(['admin']); // admin скрыт по умолчанию
+let offRoutes=new Set();
+let curId=null;
+
+/* ---- Вспомогательные ---- */
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=v=>v==null?'—':new Intl.NumberFormat('ru-RU').format(v);
+
+function mkDiv(cls,bg,txt,extra=''){
+  return `<div class="${cls}" style="background:${bg}">${txt}</div>`;
+}
+
+/* ---- Маркеры преступлений ---- */
+const crimeMarkers={};
+const zoneCircles={};
+
+function crimeColor(cat){return CAT[cat]?.c||'#666'}
+
+CRIMES.filter(c=>c.ll).forEach(cr=>{
+  const c=crimeColor(cr.cat);
+  const size=26+Math.sqrt(cr.cnt)*3|0;
+  const icon=L.divIcon({className:'',html:`<div class="mk${curId===cr.id?' sel':''}" style="background:${c};width:${size}px;height:${size}px">${cr.rank}</div>`,iconSize:[size,size],iconAnchor:[size/2,size/2]});
+  const m=L.marker(cr.ll,{icon,title:cr.n})
+   .bindPopup(crimePopup(cr))
+   .on('click',()=>sel(cr.id));
+  gCrimes.addLayer(m);
+  crimeMarkers[cr.id]=m;
+
+  const z=L.circle(cr.ll,{radius:40+cr.cnt*40,color:c,weight:1,fillColor:c,fillOpacity:.1});
+  gZones.addLayer(z);
+  zoneCircles[cr.id]=z;
+});
+
+function crimePopup(cr){
+  return `<h4>${cr.rank}. ${esc(cr.n)}</h4>
+<div class="pop-addr">📍 ${esc(cr.addr)}</div>
+<div class="pop-row"><span>Вид</span><b>${esc(CAT[cr.cat]?.n)}</b></div>
+<div class="pop-row"><span>Фактов</span><b>${fmt(cr.cnt)}</b></div>
+<div class="pop-row"><span>Время</span><b>${esc(cr.time)}</b></div>
+<div class="pop-row"><span>Потерпевшие</span><b>${esc(cr.vict)}</b></div>
+${cr.exact?'':'<div class="pop-warn">⚠ Координата ориентировочная</div>'}
+<div class="pop-m"><b>Требуемые меры:</b><br>${esc(cr.m)}</div>`;
+}
+
+/* ---- Маркеры заведений ---- */
+const ESTAB_COLORS={
+  police:'#1b3157',akimat:'#1b3157',hospital:'#1F6B70',culture:'#1F6B70',school:'#1F6B70',
+  catering:'#C08A1E',hotel:'#B33F26','catering-m':'#C08A1E',
+  service:'#5d6b80',club:'#5B4B8A',market:'#8C5A2B',parking:'#5d6b80',alcohol:'#cf3f3f',cameras:'#333'
+};
+const estabMarkers={};
+ESTAB.forEach(e=>{
+  const c=ESTAB_COLORS[e.t]||'#555';
+  const res=['police','akimat','hospital','culture','school'].includes(e.t);
+  const html=res?`<div class="mk sm res" style="background:${c}">${esc(e.icon)}</div>`
+                 :`<div class="mk est" style="background:${c}">${esc(e.icon)}</div>`;
+  const m=L.marker(e.ll,{icon:L.divIcon({className:'',html,iconSize:res?[18,18]:[20,20],iconAnchor:res?[9,9]:[10,10]}),title:e.n})
+   .bindPopup(estabPopup(e))
+   .on('click',()=>sel(e.id));
+  if(res) gResources.addLayer(m); else gEstab.addLayer(m);
+  estabMarkers[e.id]=m;
+});
+
+function estabPopup(e){
+  return `<h4>${esc(e.n)}</h4>
+<div class="pop-addr">📍 ${esc(e.addr)}</div>
+<div class="pop-row"><span>Примечание</span><b>${esc(e.note)}</b></div>`;
+}
+
+/* ---- Маркеры адм. правонарушений ---- */
+const adminMarkers={};
+ADMIN.forEach(a=>{
+  const m=L.marker(a.ll,{icon:L.divIcon({className:'',
+    html:`<div class="mk adm" style="background:#C08A1E"><span>${esc(a.cnt>99?'▲':a.cnt)}</span></div>`,
+    iconSize:[20,20],iconAnchor:[10,10]}),title:a.stat})
+   .bindPopup(adminPopup(a))
+   .on('click',()=>selAdmin(a.id));
+  gAdmin.addLayer(m);
+  adminMarkers[a.id]=m;
+});
+
+function adminPopup(a){
+  return `<h4>${esc(a.stat)} — ${esc(a.n)}</h4>
+<div class="pop-addr">📍 ${esc(a.addr)}</div>
+<div class="pop-row"><span>Фактов</span><b>${fmt(a.cnt)}</b></div>
+<div class="pop-row"><span>Доля</span><b>${esc(a.share)}</b></div>
+<div class="pop-m">${esc(a.note)}</div>`;
+}
+
+/* ---- Маршруты ---- */
+function buildRouteLayer(r){
+  const lg=L.layerGroup();
+  // Линия маршрута
+  L.polyline(r.coords,{color:r.color,weight:r.type==='auto'?5:3,opacity:.88,dashArray:r.type==='foot'?'9 7':null})
+   .bindPopup(`<b>${esc(r.n)}</b><br>${esc(r.time)}<br><i>${r.type==='auto'?'Автопатруль':'Пеший патруль'}</i><br>Экипаж: ${esc(r.crew)}<br>Фокус: ${esc(r.focus)}`)
+   .addTo(lg);
+  // Стрелки направления (стрелки-декораторы)
+  const step=Math.max(2,r.coords.length>>2);
+  for(let i=step;i<r.coords.length-1;i+=step){
+    const a=r.coords[i], b=r.coords[i+1];
+    const ang=Math.atan2(b[1]-a[1],b[0]-a[0])*180/Math.PI-90;
+    L.marker(a,{interactive:false,icon:L.divIcon({
+      className:'',
+      html:`<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:10px solid ${r.color};transform:rotate(${ang}deg);opacity:.7"></div>`,
+      iconSize:[10,10],iconAnchor:[5,5]
+    })}).addTo(lg);
+  }
+  // Остановки
+  r.stops.forEach((s,i)=>{
+    const isKey=s.icon==='★';
+    const isEnd=s.icon==='E'||s.icon==='S';
+    const rad=isKey?9:isEnd?6:6;
+    const fill=isEnd?r.color:(isKey?r.color:'#fff');
+    const stroke=r.color;
+    L.circleMarker(s.ll,{radius:rad,color:stroke,weight:2.5,fillColor:fill,fillOpacity:1})
+     .bindPopup(stopPopup(s,r))
+     .addTo(lg);
+    L.marker(s.ll,{interactive:false,icon:L.divIcon({
+      className:'',
+      html:`<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;background:rgba(255,255,255,.92);border:1.5px solid ${r.color};padding:1px 4px;white-space:nowrap;transform:translate(10px,-5px);box-shadow:0 1px 3px rgba(0,0,0,.2)">${s.time}</div>`,
+      iconSize:[0,0]
+    })}).addTo(lg);
+  });
+  // Метка маршрута
+  const mid=r.coords[r.coords.length>>1];
+  L.marker(mid,{interactive:false,icon:L.divIcon({
+    className:'',
+    html:`<div class="route-label" style="border-color:${r.color};color:${r.color}">Маршрут №${r.id}</div>`,
+    iconSize:[0,0]
+  })}).addTo(lg);
+  return lg;
+}
+
+function stopPopup(s,r){
+  return `<h4>Маршрут №${r.id} · остановка</h4>
+<div style="font-weight:600;font-size:15px;margin-bottom:4px">${esc(s.n)}</div>
+<div class="pop-addr">📍 ${esc(s.addr)}</div>
+<div class="pop-row"><span>Время</span><b style="color:${r.color}">${esc(s.time)}</b></div>
+<div class="pop-m">${esc(s.note)}</div>`;
+}
+
+ROUTES.forEach(r=>{
+  routeLayers[r.id]=buildRouteLayer(r);
+  routeLayers[r.id].addTo(map);
+});
+
+/* ================================================================
+   ЛЕГЕНДА
+   ================================================================ */
+const lg=L.control({position:'bottomright'});
+lg.onAdd=()=>{
+  const d=L.DomUtil.create('div','legend');
+  d.innerHTML=`
+<b>Преступления</b>
+${Object.values(CAT).map(c=>`<i style="background:${c.c};border-radius:50%"></i>${c.n}<br>`).join('')}
+<b>Маршруты</b>
+${ROUTES.map(r=>`<span class="line-${r.type==='auto'?'solid':'dash'}" style="${r.type==='auto'?`background:${r.color}`:`border-color:${r.color}`}"></span>№${r.id} ${r.n.split('—')[1].trim()}<br>`).join('')}
+<b>Объекты</b>
+<i style="background:#1b3157;border-radius:50%"></i>Профилактический ресурс<br>
+<i style="background:#C08A1E;border-radius:3px"></i>Заведения и сервисы<br>
+<i style="background:#C08A1E;transform:rotate(45deg);display:inline-block;vertical-align:-2px"></i> Адм. правонарушения`;
+  return d;
+};
+lg.addTo(map);
+
+/* ================================================================
+   ИНТЕРФЕЙС — МАРШРУТЫ
+   ================================================================ */
+const rtWrap=document.getElementById('rt-toggles');
+ROUTES.forEach(r=>{
+  const b=document.createElement('div');
+  b.className='rt-btn';
+  b.innerHTML=`
+    ${r.type==='auto'
+      ?`<div class="dot" style="background:${r.color}"></div>`
+      :`<div class="foot-dot" style="border-color:${r.color}"></div>`}
+    <div>
+      <div style="font-weight:600;font-size:12.5px">Маршрут №${r.id}</div>
+      <div class="rt-meta">${r.time} · ${r.type==='auto'?'авто':'пеший'}</div>
+    </div>
+    <span class="rt-badge" style="background:${r.color}">№${r.id}</span>`;
+  b.dataset.id=r.id;
+  b.title=r.n;
+  b.onclick=()=>{
+    if(offRoutes.has(r.id)){offRoutes.delete(r.id);map.addLayer(routeLayers[r.id]);}
+    else{offRoutes.add(r.id);map.removeLayer(routeLayers[r.id]);}
+    b.classList.toggle('off');
+  };
+  rtWrap.appendChild(b);
+  // Развернуть остановки
+  const stops=document.createElement('div');
+  stops.className='stop-list';
+  stops.style.display='none';
+  r.stops.forEach(s=>{
+    const iconMap={'S':'▶','E':'■','★':'★','!':'⚠','i':'i'};
+    const bgMap={'S':'#1b3157','E':'#1b3157','★':r.color,'!':'#B33F26','i':'#1F6B70'};
+    stops.innerHTML+=`<div class="stop-item">
+      <div class="stop-time">${s.time}</div>
+      <div class="stop-icon" style="background:${bgMap[s.icon]||'#666'}">${iconMap[s.icon]||s.icon}</div>
+      <div class="stop-info">
+        <div style="font-weight:600">${esc(s.n)}</div>
+        <div class="addr">${esc(s.addr)}</div>
+        ${s.note?`<div class="note">${esc(s.note)}</div>`:''}
+      </div>
+    </div>`;
+  });
+  b.addEventListener('dblclick',()=>{
+    stops.style.display=stops.style.display==='none'?'block':'none';
+  });
+  b.title+=' (двойной клик — показать остановки)';
+  rtWrap.appendChild(stops);
+});
+// Подсказка
+const hint=document.createElement('div');
+hint.style.cssText='font-size:11px;color:#7E909C;padding:4px 6px';
+hint.textContent='Двойной клик на маршруте — развернуть остановки';
+rtWrap.appendChild(hint);
+
+/* ================================================================
+   ФИЛЬТРЫ ВИД ПРЕСТУПЛЕНИЯ
+   ================================================================ */
+const fcatWrap=document.getElementById('fcat');
+Object.entries(CAT).forEach(([k,v])=>{
+  const total=CRIMES.filter(c=>c.cat===k).reduce((s,c)=>s+c.cnt,0);
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.cat=k;
+  b.innerHTML=`<span class="dot" style="background:${v.c}"></span>${v.n} <span class="mono" style="font-size:10px;color:#7E909C">${total}</span>`;
+  b.onclick=()=>{
+    offCrime.has(k)?offCrime.delete(k):offCrime.add(k);
+    b.classList.toggle('off');
+    redrawCrimes();
+    renderList();
+  };
+  fcatWrap.appendChild(b);
+});
+
+/* ================================================================
+   СЛОИ
+   ================================================================ */
+const layersDef=[
+  {k:'resources',n:'Профилактический ресурс',g:gResources,c:'#1b3157'},
+  {k:'estab',    n:'Заведения и объекты',     g:gEstab,    c:'#C08A1E'},
+  {k:'zones',    n:'Зоны концентрации',        g:gZones,    c:'#B33F26'},
+  {k:'admin',    n:'Адм. правонарушения',      g:gAdmin,    c:'#C08A1E'},
+];
+const flWrap=document.getElementById('flayers');
+layersDef.forEach(l=>{
+  const on=!offLayers.has(l.k);
+  if(on) map.addLayer(l.g); else map.removeLayer(l.g);
+  const b=document.createElement('button');
+  b.className='chip'+(on?'':' off'); b.dataset.layer=l.k;
+  b.innerHTML=`<span class="dot" style="background:${l.c}"></span>${l.n}`;
+  b.onclick=()=>{
+    if(offLayers.has(l.k)){offLayers.delete(l.k);map.addLayer(l.g);}
+    else{offLayers.add(l.k);map.removeLayer(l.g);}
+    b.classList.toggle('off');
+  };
+  flWrap.appendChild(b);
+});
+
+/* ================================================================
+   РЕЕСТР
+   ================================================================ */
+function renderList(){
+  const list=document.getElementById('list');
+  list.innerHTML='';
+
+  // Преступления
+  const hdr=document.createElement('div');
+  hdr.className='blk'; hdr.style.paddingBottom='4px';
+  hdr.innerHTML='<h2>Точки концентрации преступности</h2>';
+  list.appendChild(hdr);
+
+  CRIMES.sort((a,b)=>b.cnt-a.cnt||a.rank-b.rank).forEach(cr=>{
+    if(offCrime.has(cr.cat)){return;}
+    const c=crimeColor(cr.cat);
+    const d=document.createElement('div');
+    d.className='item'+(curId===cr.id?' on':'');
+    d.innerHTML=`<div class="top">
+      <div class="badge" style="background:${c}">${cr.rank}</div>
+      <div class="nm">${esc(cr.n)}</div>
+      ${cr.ll?(!cr.exact?'<span class="approx-tag">ориентир</span>':''):'<span class="approx-tag nogeo" style="border-color:#7E909C;color:#7E909C">без координат</span>'}
+    </div>
+    <div class="addr">${esc(cr.addr)}</div>
+    <div class="meta">
+      <span>${esc(CAT[cr.cat]?.n)}</span>
+      <span><b class="mono">${cr.cnt}</b> факт${cr.cnt===1?'':'ов'}</span>
+    </div>
+    <div class="cnt-bar"><i style="background:${c};width:${cr.cnt/5*100}%"></i></div>`;
+    d.onclick=()=>sel(cr.id);
+    list.appendChild(d);
+  });
+
+  // Заведения
+  const hdr2=document.createElement('div');
+  hdr2.className='blk'; hdr2.style.paddingBottom='4px';
+  hdr2.innerHTML='<h2>Заведения и криминогенные объекты</h2>';
+  list.appendChild(hdr2);
+
+  ESTAB.forEach(e=>{
+    const c=ESTAB_COLORS[e.t]||'#555';
+    const d=document.createElement('div');
+    d.className='item'+(curId===e.id?' on':'');
+    d.innerHTML=`<div class="top">
+      <div class="badge" style="background:${c}">${esc(e.icon)}</div>
+      <div class="nm">${esc(e.n)}</div>
+    </div>
+    <div class="addr">${esc(e.addr)}</div>
+    <div class="meta"><span>${esc(e.note.substring(0,60))}${e.note.length>60?'…':''}</span></div>`;
+    d.onclick=()=>sel(e.id);
+    list.appendChild(d);
+  });
+
+  // Адм. правонарушения
+  const hdr3=document.createElement('div');
+  hdr3.className='blk'; hdr3.style.paddingBottom='4px';
+  hdr3.innerHTML='<h2>Горячие точки адм. правонарушений</h2>';
+  list.appendChild(hdr3);
+
+  ADMIN.forEach(a=>{
+    const d=document.createElement('div');
+    d.className='item'+(curId===a.id?' on':'');
+    d.innerHTML=`<div class="top">
+      <div class="badge" style="background:#C08A1E">${esc(a.cnt)}</div>
+      <div class="nm">${esc(a.n)}</div>
+    </div>
+    <div class="addr">${esc(a.addr)}</div>
+    <div class="meta"><span class="mono" style="font-size:10.5px">${esc(a.stat)}</span><span>${esc(a.share)}</span></div>`;
+    d.onclick=()=>selAdmin(a.id);
+    list.appendChild(d);
+  });
+}
+
+/* ================================================================
+   ВЫБОР ОБЪЕКТА — КАРТОЧКА
+   ================================================================ */
+function sel(id){
+  curId=id;
+  const cr=CRIMES.find(c=>c.id===id);
+  const es=ESTAB.find(e=>e.id===id);
+  const detail=document.getElementById('detail');
+
+  if(cr){
+    detail.classList.add('on');
+    detail.innerHTML=`
+      <h3>${cr.rank}. ${esc(cr.n)}</h3>
+      <div class="addr-tag">📍 ${esc(cr.addr)}</div>
+      <div class="r"><span>Вид</span><span>${esc(CAT[cr.cat]?.n)}</span></div>
+      <div class="r"><span>Преступлений</span><span class="mono">${fmt(cr.cnt)}</span></div>
+      <div class="r"><span>Время</span><span>${esc(cr.time)}</span></div>
+      <div class="r"><span>Потерпевшие</span><span>${esc(cr.vict)}</span></div>
+      <div class="r"><span>Координаты</span><span class="mono">${cr.ll?`${cr.ll[0].toFixed(5)}, ${cr.ll[1].toFixed(5)}`:'не локализовано'}</span></div>
+      <div class="msr"><b>Требуемые меры</b><p>${esc(cr.m)}</p></div>
+      <div class="thr">Теория: ${esc(cr.th)}</div>`;
+    if(cr.ll){map.flyTo(cr.ll,17,{duration:0.7});crimeMarkers[id]?.openPopup();}
+  } else if(es){
+    detail.classList.add('on');
+    detail.innerHTML=`
+      <h3>${esc(es.n)}</h3>
+      <div class="addr-tag">📍 ${esc(es.addr)}</div>
+      <div class="msr"><b>Характеристика</b><p>${esc(es.note)}</p></div>`;
+    map.flyTo(es.ll,17,{duration:0.7});
+    estabMarkers[id]?.openPopup();
+  }
+  renderList();
+}
+
+function selAdmin(id){
+  curId=id;
+  const a=ADMIN.find(x=>x.id===id);
+  if(!a) return;
+  const detail=document.getElementById('detail');
+  detail.classList.add('on');
+  detail.innerHTML=`
+    <h3>${esc(a.stat)}</h3>
+    <div style="font-weight:600;margin-bottom:6px">${esc(a.n)}</div>
+    <div class="addr-tag">📍 ${esc(a.addr)}</div>
+    <div class="r"><span>Фактов</span><span class="mono">${fmt(a.cnt)}</span></div>
+    <div class="r"><span>Доля (всего)</span><span>${esc(a.share)}</span></div>
+    <div class="msr"><b>Примечание</b><p>${esc(a.note)}</p></div>`;
+  map.flyTo(a.ll,17,{duration:0.7});
+  adminMarkers[id]?.openPopup();
+  renderList();
+}
+
+function redrawCrimes(){
+  Object.entries(crimeMarkers).forEach(([id,m])=>{
+    const cr=CRIMES.find(c=>c.id===id);
+    const vis=!offCrime.has(cr.cat);
+    if(vis&&!gCrimes.hasLayer(m))gCrimes.addLayer(m);
+    if(!vis&&gCrimes.hasLayer(m))gCrimes.removeLayer(m);
+    if(vis&&!gZones.hasLayer(zoneCircles[id])&&map.hasLayer(gZones))gZones.addLayer(zoneCircles[id]);
+    if(!vis&&gZones.hasLayer(zoneCircles[id]))gZones.removeLayer(zoneCircles[id]);
+  });
+}
+
+renderList();
+
+/* ================================================================
+   ПОДГОНКА КАРТЫ ПО ВСЕМ ДАННЫМ
+   ================================================================ */
+const allPts=[];
+CRIMES.filter(c=>c.ll).forEach(c=>allPts.push(c.ll));
+ADMIN.forEach(a=>allPts.push(a.ll));
+ROUTES.forEach(r=>r.coords.forEach(c=>allPts.push(c)));
+if(allPts.length) map.fitBounds(L.latLngBounds(allPts).pad(0.12));
+</script>
+</div>
+<div id="chrome-bottom"></div>
+<script src="assets/js/ui.js?v=20260909a"></script>
+</body>
+</html>

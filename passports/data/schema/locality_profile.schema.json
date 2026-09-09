@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "locality_profile",
+  "title": "LocalityProfile",
+  "type": "object",
+  "properties": {
+    "passport_status": { "enum": ["full", "profile_only"] },
+    "locality_profile": {
+      "type": "object",
+      "properties": {
+        "settlement_type": { "enum": ["city", "village"] },
+        "admin_unit": { "type": "string" },
+        "region": { "type": "string" },
+        "population": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "year": { "type": "integer" },
+            "local_permanent": { "type": ["integer", "null"] },
+            "arrivals": { "type": ["integer", "null"] },
+            "departures": { "type": ["integer", "null"] },
+            "internal_migrants_note": { "type": "string" }
+          }
+        },
+        "ethnic_composition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "group": { "type": "string" },
+              "share_pct": { "type": "number" }
+            }
+          }
+        },
+        "economy": {
+          "type": "object",
+          "properties": {
+            "primary_activity": { "type": "array", "items": { "type": "string" } },
+            "sme_registered": { "type": ["integer", "null"] },
+            "agriculture": {
+              "type": "object",
+              "properties": {
+                "livestock": { "type": "boolean" },
+                "crops": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "industry_services_note": { "type": "string" }
+          }
+        },
+        "social_features": { "type": "array", "items": { "type": "string" } },
+        "prevention_factors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "factor": { "type": "string" },
+              "risk": { "enum": ["low", "medium", "high"] },
+              "implication": { "type": "string" }
+            }
+          }
+        },
+        "highlights": { "type": "array", "items": { "type": "string" } },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" },
+              "as_of": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "data_quality": {
+      "type": "object",
+      "properties": {
+        "completeness": { "type": "string" },
+        "as_of": { "type": "string" },
+        "verified_by": { "type": "string" }
+      }
+    }
+  }
+}

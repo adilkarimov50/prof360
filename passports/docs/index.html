@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Криминологический паспорт · 9 населённых пунктов · 2026</title>
+<meta name="description" content="Цифровой криминологический паспорт: Алатау, Конаев, Каскелен, Талгар, Отеген батыр, Иргели, Узынагаш, Чунджа, Иссык — профили и полные паспорта.">
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+</head>
+<body data-site-page="index">
+<div id="chrome-top"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__eyebrow">Алматинская область и г. Алматы · 2026</div>
+    <h1>Криминологический паспорт — 9 населённых пунктов</h1>
+    <p>Цифровое издание: социально-экономические профили по данным БНС и полные криминологические
+       паспорта (Каскелен, Иргели, Чунджа). Структура преступности, точки концентрации,
+       административная практика и мероприятия профилактики.</p>
+    <div class="hero__meta">
+      <span class="chip chip--gold">2026 год</span>
+      <span class="chip" id="hero-count"></span>
+      <span class="chip" id="hero-pop"></span>
+      <span class="chip" id="hero-crimes"></span>
+    </div>
+    <h2 class="hero__picker-title">Выберите населённый пункт</h2>
+    <p class="hero__picker-lead">Выберите населённый пункт: полный криминологический паспорт или обзорный профиль с данными БНС.</p>
+  </div>
+</section>
+
+<div class="wrap picker-section">
+  <div class="picker" id="picker"></div>
+</div>
+
+<main class="wrap">
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">01а</div>
+      <div class="section__title">
+        <h2>Характеристика населённых пунктов</h2>
+        <p>Население, национальный состав, миграция, экономика и факторы профилактики — по официальным источникам (БНС РК).</p>
+      </div>
+    </div>
+    <div class="loc-filter">
+      <button type="button" class="active" data-loc-filter="all">Все</button>
+      <button type="button" data-loc-filter="city">Города</button>
+      <button type="button" data-loc-filter="village">Сёла</button>
+    </div>
+    <div id="locality-profiles"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">01</div>
+      <div class="section__title">
+        <h2>Сводные показатели</h2>
+        <p>Ключевые цифры по каждому населённому пункту: население, преступность, административная практика.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="dash-kpi"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">02</div>
+      <div class="section__title">
+        <h2>Сравнение населённых пунктов</h2>
+        <p>Ключевые показатели паспортов в сопоставимом виде. Рост показателя преступности
+           выделен красным, снижение — зелёным.</p>
+      </div>
+    </div>
+    <div class="card card--flush">
+      <table class="tbl" id="compare"></table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">03</div>
+      <div class="section__title">
+        <h2>Структура преступности</h2>
+        <p>Сопоставление с аналогичным периодом прошлого года по видам уголовных правонарушений.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="dash-crime"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">04</div>
+      <div class="section__title">
+        <h2>Административная практика</h2>
+        <p>Форма 1-АД: основные составы правонарушений, значимые для профилактики.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="dash-admin"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">05</div>
+      <div class="section__title">
+        <h2>Социально-экономические показатели</h2>
+        <p>Занятость, предпринимательство и иные сведения акимата и центра занятости.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="dash-socio"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">06</div>
+      <div class="section__title">
+        <h2>Ключевые выводы паспортов</h2>
+        <p>Криминологическая характеристика и приоритетные наблюдения по каждому населённому пункту.</p>
+      </div>
+    </div>
+    <div class="grid grid--3" id="dash-narrative"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">07</div>
+      <div class="section__title">
+        <h2>Точки концентрации преступности</h2>
+        <p>Объекты и участки, на которых сосредоточено наибольшее количество зарегистрированных
+           уголовных правонарушений. Расположение объектов показано на интерактивной карте.</p>
+      </div>
+    </div>
+    <div class="grid grid--2" id="hotspots"></div>
+    <p style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="tag" href="map.html" style="padding:10px 18px;font-size:14px;text-decoration:none">
+        Общая карта объектов →</a>
+      <a class="tag" href="kaskelen_map.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:var(--up);color:#fff">
+        Каскелен: карта + маршруты патрулирования →</a>
+      <a class="tag" href="irgeli_map.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:var(--navy-700,#1b3157);color:#fff">
+        Иргели: карта + маршруты патрулирования →</a>
+      <a class="tag" href="chundzha_map.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#5B4B8A;color:#fff">
+        Чунджа: карта + маршруты патрулирования →</a>
+      <a class="tag staff-only" href="karasai_analysis.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#0f1f3d;color:#fff">
+        Аналитика Карасайского района: расхождения →</a>
+      <a class="tag" href="profilaktika_navigator.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#1F4B73;color:#fff">
+        Прокурору для работы: механизмы профилактики (Закон № 245) →</a>
+    </p>
+  </section>
+
+  <section class="section staff-only">
+    <div class="section__head">
+      <div class="section__num">02а</div>
+      <div class="section__title">
+        <h2>Аналитика Карасайского района</h2>
+        <p>Сопоставление паспортов Каскелена и Иргели с выгрузками ЕРДР, 1-АД, медучёта и протоколами комиссии.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:20px 24px">
+      <p style="margin:0 0 16px;color:var(--muted)">Выявлены расхождения по численности населения, уголовной статистике, адм. практике, профучёту и KPI комиссии. Поручения комиссии переведены с казахского на русский.</p>
+      <p style="display:flex;gap:10px;flex-wrap:wrap;margin:0">
+        <a class="tag" href="karasai_spravka.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#1b4d8c;color:#fff">Читать справку (рус.) →</a>
+        <a class="tag" href="spravka_sverka_profueta/Справка_сверка_профучета_ОВД.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#b33f26;color:#fff">Справка: сверка профучёта →</a>
+        <a class="tag" href="registry_crossmatch.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#8b2e1a;color:#fff">Дашборд сверки ОВД →</a>
+        <a class="tag" href="karasai_analysis.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#0f1f3d;color:#fff">Дашборд расхождений →</a>
+        <a class="tag" href="profilaktika_navigator.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#1F4B73;color:#fff">Прокурору для работы →</a>
+        <a class="tag" href="nauka_profilaktika.html" style="padding:10px 18px;font-size:14px;text-decoration:none;background:#5B4B8A;color:#fff">Наука и практика →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <div class="section__num">08</div>
+      <div class="section__title">
+        <h2>Как устроено издание</h2>
+        <p>Паспорт остаётся официальным документом; цифровая версия лишь делает его данные
+           пригодными для навигации, сопоставления и контроля исполнения мероприятий.</p>
+      </div>
+    </div>
+    <div class="grid grid--3">
+      <div class="card staff-only">
+        <div class="card__title">Оцифровка из документа</div>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">Скрипт <code>digitize.py</code> разбирает
+           паспорт формата .docx по 18 разделам и 16 таблицам в структурированный JSON. Добавление
+           нового населённого пункта не требует правки кода.</p>
+      </div>
+      <div class="card public-only">
+        <div class="card__title">Структура паспорта</div>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">Каждый паспорт содержит 18 разделов:
+           от общей характеристики и структуры преступности до точек концентрации, профучёта
+           и приоритетных мероприятий с указанием исполнителя и срока.</p>
+      </div>
+      <div class="card">
+        <div class="card__title">Карта объектов</div>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">Точки концентрации, проблемные улицы,
+           криминогенные объекты и населённые пункты округа привязаны к координатам и снабжены
+           фильтрами по категориям.</p>
+      </div>
+      <div class="card">
+        <div class="card__title">Контроль мероприятий</div>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">Каждое приоритетное мероприятие раскрывается
+           карточкой с объектом профилактики, исполнителями, сроком, критерием оценки и обоснованием
+           из данных паспорта.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="chrome-bottom"></div>
+
+<script src="assets/js/data.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script src="assets/js/index.js?v=20260909a"></script>
+</body>
+</html>

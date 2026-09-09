@@ -1,0 +1,98 @@
+{
+  "id": "otegen_batyr",
+  "name": "с. Отеген батыр",
+  "title": "Криминологический профиль — с. Отеген батыр",
+  "district": "Карасайский район",
+  "year": 2026,
+  "passport_status": "profile_only",
+  "summary": {
+    "settlement": "с. Отеген батыр",
+    "district": "Карасайский район",
+    "population": 32000,
+    "description": "Пригородный населённый пункт Карасайского района",
+    "crimes": {
+      "current": null,
+      "previous": null,
+      "delta_pct": null
+    },
+    "rate_per_10k": null
+  },
+  "locality_profile": {
+    "settlement_type": "village",
+    "admin_unit": "Карасайский район",
+    "region": "Алматинская область",
+    "population": {
+      "total": 32000,
+      "year": 2025,
+      "local_permanent": 24960,
+      "arrivals": null,
+      "departures": null,
+      "internal_migrants_note": "Пригород Каскелена — часть жителей работает в Алматы"
+    },
+    "ethnic_composition": [
+      {
+        "group": "казахи",
+        "share_pct": 72.0
+      },
+      {
+        "group": "русские",
+        "share_pct": 15.0
+      },
+      {
+        "group": "другие",
+        "share_pct": 13.0
+      }
+    ],
+    "economy": {
+      "primary_activity": [
+        "сельхоз",
+        "услуги",
+        "торговля"
+      ],
+      "sme_registered": 2800,
+      "agriculture": {
+        "livestock": true,
+        "crops": []
+      },
+      "industry_services_note": "сельхоз; услуги; торговля"
+    },
+    "social_features": [
+      "пригород",
+      "сельхоз",
+      "маятниковая миграция"
+    ],
+    "prevention_factors": [
+      {
+        "factor": "Молодёжь без занятости вне сезона",
+        "risk": "medium",
+        "implication": "Профилактика NEET и ночных нарушений ст.442"
+      }
+    ],
+    "highlights": [
+      "Пригородный населённый пункт Карасайского района",
+      "Сельхоз и услуги для прилегающих сёл"
+    ],
+    "sources": [
+      {
+        "title": "Бюро национальной статистики РК",
+        "url": "https://stat.gov.kz",
+        "as_of": "2025"
+      },
+      {
+        "title": "Перепись населения РК 2021",
+        "url": "https://stat.gov.kz",
+        "as_of": "2021"
+      }
+    ]
+  },
+  "data_quality": {
+    "completeness": "profile",
+    "as_of": "2026-09-09",
+    "verified_by": "manual_stats.csv + БНС"
+  },
+  "crime_structure": [],
+  "admin_practice": [],
+  "registry": [],
+  "measures": [],
+  "expected_results": []
+}

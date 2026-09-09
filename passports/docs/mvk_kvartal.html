@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ежеквартальные акты надзора для МВК · Закон № 245-VIII</title>
+<meta name="description" content="Чек-листы ежеквартальных актов надзора для межведомственной комиссии: СУСН/ТЖС, ОВД, МИО, КДН. Приказы МВД и Минздрава, календарь Q1–Q4.">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909a">
+<link rel="stylesheet" href="assets/css/navigator.css?v=20260909a">
+</head>
+<body data-site-page="navigator">
+<div id="chrome-top"></div>
+
+<section class="hero nav-hero nav-hero--quarterly">
+  <div class="wrap">
+    <div class="hero__eyebrow">Закон № 245-VIII · межведомственная комиссия</div>
+    <h1>Ежеквартальные акты надзора для МВК</h1>
+    <p>4 блока проверок с чек-листами, приказами и формулировками для повестки комиссии. Отметки сохраняются в браузере.</p>
+    <p class="nav-hero__back"><a href="profilaktika_navigator.html">← Назад к 12 субъектам профилактики</a></p>
+    <div class="nav-kpi" id="nav-q-kpi"></div>
+  </div>
+</section>
+
+<div class="navigator-page">
+  <div class="wrap nav-layout">
+
+    <aside class="nav-sidebar" id="nav-q-sidebar" aria-label="Блоки ежеквартального пакета"></aside>
+
+    <main class="nav-main">
+
+      <section class="nav-quarterly nav-quarterly--page" id="nav-quarterly-section" aria-labelledby="nav-quarterly-title">
+        <div class="nav-quarterly__head">
+          <h2 id="nav-quarterly-title">Пакет для комиссии</h2>
+          <p class="nav-quarterly__lead" id="nav-quarterly-lead"></p>
+        </div>
+        <div class="nav-quarterly__orders" id="nav-quarterly-orders"></div>
+        <div class="nav-quarterly__timing" id="nav-quarterly-timing"></div>
+        <div class="nav-quarterly__status" id="nav-quarterly-status"></div>
+        <div class="nav-quarterly__glossary" id="nav-quarterly-glossary"></div>
+        <div class="nav-quarterly__blocks" id="nav-quarterly-blocks"></div>
+        <div class="nav-quarterly__tools">
+          <button class="nav-btn" type="button" id="nav-q-open-all">Раскрыть все блоки</button>
+          <button class="nav-btn nav-btn--ghost" type="button" id="nav-q-close-all">Свернуть</button>
+          <button class="nav-btn nav-btn--ghost" type="button" id="nav-q-reset">Сбросить отметки</button>
+          <button class="nav-btn nav-btn--ghost" type="button" id="nav-q-export">CSV квартал</button>
+          <button class="nav-btn nav-btn--ghost" type="button" id="nav-q-print">Печать</button>
+        </div>
+      </section>
+
+      <p class="nav-note">
+        Отметки общие с разделом «Прокурору для работы» (localStorage). Перед применением сверяйте редакции в ИПС «Әділет».
+      </p>
+
+    </main>
+  </div>
+</div>
+
+<div id="chrome-bottom"></div>
+
+<script src="assets/js/navigator_quarterly_data.js?v=20260909a"></script>
+<script src="assets/js/ui.js?v=20260909a"></script>
+<script src="assets/js/navigator_kvartal.js?v=20260909a"></script>
+</body>
+</html>

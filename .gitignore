@@ -1,0 +1,64 @@
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+backend/.venv/
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Node
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# Docker & data volumes
+pgdata/
+uploads/
+backend/uploads/
+backend/data/legal/documents/*.docx
+backend/data/legal/documents/*.txt
+backend/data/legal/documents/cache_meta.json
+
+# ML caches
+.hf_cache/
+backend/.hf_cache/
+
+# OS & IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+build/
+dist/
+*.log
+
+# Large local Excel (keep passports/data JSON)
+*.xlsx
+*.xls
+!passports/data/**/*.json
+
+# Local working docs (not in repo)
+/*.docx
+/*.pdf
+/*.html
+/Карасайский район/
+/Комиссия*/
+/Уйгур*/
+/.matplotlib/
+
+# Cursor
+.cursor/
+
+# Legacy nested git (removed after monorepo merge)
+passports/.git/

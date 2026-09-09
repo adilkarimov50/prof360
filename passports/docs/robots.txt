@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /karasai_analysis.html
+Disallow: /karasai_spravka.html
+Disallow: /registry_crossmatch.html
+Disallow: /spravka_sverka_profueta/

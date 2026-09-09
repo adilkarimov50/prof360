@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Работа с законами — нормативная библиотека · прокурору</title>
+<meta name="description" content="23 кодекса, закона и приказа РК для прокурорского надзора: полные тексты (TXT), ссылки на adilet.zan.kz, подборки по профилактике, соцзащите и здравоохранению.">
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="assets/css/app.css?v=20260909b">
+<link rel="stylesheet" href="assets/css/legal.css?v=20260909b">
+</head>
+<body data-site-page="navigator">
+<div id="chrome-top"></div>
+
+<section class="hero legal-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow">Прокурору · нормативная база · adilet.zan.kz</div>
+    <h1>Работа с законами — библиотека НПА</h1>
+    <p>Кодексы, законы и подзаконные акты для профилактики, надзора и проверок: читать на сайте, скачать TXT или открыть официальную редакцию в ИПС «Әділет».</p>
+    <div class="legal-kpi" id="legal-kpi"></div>
+  </div>
+</section>
+
+<div class="legal-page">
+  <div class="wrap legal-layout">
+    <aside class="legal-sidebar" id="legal-sidebar" aria-label="Разделы библиотеки"></aside>
+    <main class="legal-main">
+      <div class="legal-sticky">
+        <div class="legal-sticky__row">
+          <div class="legal-sticky__search">
+            <input type="search" id="legal-q" placeholder="Поиск: кодекс, закон, приказ, номер…" aria-label="Поиск по библиотеке">
+          </div>
+          <button class="legal-filter" type="button" data-type="all" aria-pressed="true">Все</button>
+          <button class="legal-filter" type="button" data-type="кодекс" aria-pressed="false">Кодексы</button>
+          <button class="legal-filter" type="button" data-type="закон" aria-pressed="false">Законы</button>
+          <button class="legal-filter" type="button" data-type="приказ" aria-pressed="false">Приказы</button>
+        </div>
+      </div>
+      <p class="legal-status" id="legal-status"></p>
+      <div id="legal-grid"></div>
+      <p class="legal-note">
+        Тексты загружены с <a href="https://adilet.zan.kz" target="_blank" rel="noopener">adilet.zan.kz</a>.
+        Перед процессуальными решениями сверяйте действующую редакцию в ИПС «Әділет».
+        Приказ Минздрава №814 утратил силу — действует ДСМ-203/2020.
+      </p>
+    </main>
+  </div>
+</div>
+
+<div id="chrome-bottom"></div>
+
+<script src="assets/js/legal_data.js?v=20260909b"></script>
+<script src="assets/js/ui.js?v=20260909b"></script>
+<script src="assets/js/legal.js?v=20260909b"></script>
+</body>
+</html>

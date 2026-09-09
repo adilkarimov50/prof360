@@ -1,0 +1,56 @@
+# Реестр 9 населённых пунктов — KATO и метаданные для fetch_locality_stats.py
+localities:
+  - id: alatau
+    name: "г. Алатау"
+    settlement_type: city
+    admin_unit: "г. Алматы, район «Алатау»"
+    region: "г. Алматы"
+    kato: "751410000"
+  - id: konaev
+    name: "г. Конаев"
+    settlement_type: city
+    admin_unit: "Капшагайский район"
+    region: "Алматинская область"
+    kato: "191010000"
+  - id: kaskelen
+    name: "г. Каскелен"
+    settlement_type: city
+    admin_unit: "Карасайский район"
+    region: "Алматинская область"
+    kato: "195220100"
+  - id: talgar
+    name: "г. Талгар"
+    settlement_type: city
+    admin_unit: "Талгарский район"
+    region: "Алматинская область"
+    kato: "196220100"
+  - id: otegen_batyr
+    name: "с. Отеген батыр"
+    settlement_type: village
+    admin_unit: "Карасайский район"
+    region: "Алматинская область"
+    kato: "195230100"
+  - id: irgeli
+    name: "с. Иргели"
+    settlement_type: village
+    admin_unit: "Карасайский район, Иргелинский с.о."
+    region: "Алматинская область"
+    kato: "195247100"
+  - id: uzynagash
+    name: "с. Узынагаш"
+    settlement_type: village
+    admin_unit: "Карасайский район"
+    region: "Алматинская область"
+    kato: "195249100"
+  - id: chundzha
+    name: "с. Чунджа"
+    settlement_type: village
+    admin_unit: "Уйгурский район"
+    region: "Алматинская область"
+    kato: "196630100"
+  - id: issyk
+    name: "г. Иссык"
+    settlement_type: city
+    admin_unit: "Енбекшиказахский район"
+    region: "Алматинская область"
+    kato: "194220100"
