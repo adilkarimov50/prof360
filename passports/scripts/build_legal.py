@@ -31,20 +31,24 @@ def main() -> int:
         doc_id = code["doc_id"]
         src_txt = SRC / f"{doc_id}.txt"
         dst_txt = DST / f"{doc_id}.txt"
+        has_txt = False
         if src_txt.is_file():
             shutil.copy2(src_txt, dst_txt)
             copied += 1
-        elif not dst_txt.is_file():
-            print(f"  [пропуск] нет TXT: {doc_id}")
-            continue
+            has_txt = True
+        elif dst_txt.is_file():
+            has_txt = True
+        else:
+            print(f"  [adilet only] нет TXT: {doc_id}")
         acts_out.append({
             "doc_id": doc_id,
             "title": code["title"],
             "number": code.get("number"),
             "act_type": code.get("act_type"),
             "adilet_url": doc_url(doc_id),
-            "txt_url": f"assets/legal/{doc_id}.txt",
-            "bytes": dst_txt.stat().st_size,
+            "txt_url": f"assets/legal/{doc_id}.txt" if has_txt else None,
+            "has_txt": has_txt,
+            "bytes": dst_txt.stat().st_size if has_txt else 0,
             "superseded_by": code.get("superseded_by"),
         })
 

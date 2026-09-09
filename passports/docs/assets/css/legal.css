@@ -68,26 +68,33 @@
 
 .legal-kpi {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
-  margin-bottom: 20px;
+  margin-top: 22px;
 }
-.legal-kpi__cell {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 12px 14px;
+/* KPI в тёмном hero — явный контраст (цифры не наследуют color:#fff на белом фоне) */
+.legal-hero .legal-kpi__cell {
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
 }
-.legal-kpi__cell b {
+.legal-hero .legal-kpi__cell b {
   display: block;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.02em;
 }
-.legal-kpi__cell span {
-  font-size: 11px;
+.legal-hero .legal-kpi__cell span {
+  display: block;
+  margin-top: 4px;
+  font-size: 10.5px;
   text-transform: uppercase;
-  letter-spacing: .05em;
-  color: var(--muted);
+  letter-spacing: .06em;
+  color: rgba(255, 255, 255, .78);
   font-weight: 600;
 }
 

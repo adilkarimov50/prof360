@@ -95,9 +95,10 @@
         ${note ? `<p class="legal-card__note">${esc(note)}</p>` : ''}
         ${articles}
         <div class="legal-actions">
+          ${act.has_txt !== false ? `
           <a class="legal-btn legal-btn--primary" href="legal_read.html?id=${encodeURIComponent(act.doc_id)}">Читать</a>
-          <a class="legal-btn" href="${prefix}${esc(act.txt_url)}" download="${esc(act.doc_id)}.txt">Скачать TXT</a>
-          <a class="legal-btn legal-btn--ghost" href="${esc(act.adilet_url)}" target="_blank" rel="noopener">Adilet ↗</a>
+          <a class="legal-btn" href="${prefix}${esc(act.txt_url)}" download="${esc(act.doc_id)}.txt">Скачать TXT</a>` : ''}
+          <a class="legal-btn ${act.has_txt === false ? 'legal-btn--primary' : 'legal-btn--ghost'}" href="${esc(act.adilet_url)}" target="_blank" rel="noopener">Adilet ↗</a>
         </div>
       </article>`;
   }

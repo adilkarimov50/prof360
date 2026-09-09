@@ -67,6 +67,23 @@ CODES: list[dict] = [
     {"title": "Приказ Минздрава РК «О медико-социальной помощи в области психического здоровья»",
      "act_type": "приказ", "number": "ҚР ДСМ-203/2020", "doc_id": "V2000021680", "hierarchy_level": 4,
      "parse_mode": "point"},
+    {"title": "Закон РК «О наркотических средствах, психотропных веществах и прекурсорах»",
+     "act_type": "закон", "number": "279", "doc_id": "Z980000279_", "hierarchy_level": 3,
+     "parse_mode": "article"},
+    {"title": "Закон РК «Об образовании»", "act_type": "закон", "number": "319-III",
+     "doc_id": "Z070000319_", "hierarchy_level": 3, "parse_mode": "article"},
+    {"title": "Закон РК «О местном государственном управлении и самоуправлении»",
+     "act_type": "закон", "number": "510-V", "doc_id": "Z1100000510", "hierarchy_level": 3,
+     "parse_mode": "article"},
+    {"title": "Закон РК «О государственной молодежной политике»", "act_type": "закон",
+     "number": "285-V", "doc_id": "Z1500000285", "hierarchy_level": 3, "parse_mode": "article"},
+    {"title": "Закон РК «О противодействии торговле людьми»", "act_type": "закон",
+     "number": "101-V", "doc_id": "Z1300000101", "hierarchy_level": 3, "parse_mode": "article"},
+    {"title": "Закон РК «О противодействии терроризму»", "act_type": "закон",
+     "number": "416-I", "doc_id": "Z990000416_", "hierarchy_level": 3, "parse_mode": "article"},
+    {"title": "Приказ Минздрава РК «Правила медосвидетельствования на опьянение»",
+     "act_type": "приказ", "number": "ҚР ДСМ-151/2017", "doc_id": "V1700015519",
+     "hierarchy_level": 4, "parse_mode": "point"},
 ]
 
 CODES_BY_DOC_ID = {c["doc_id"]: c for c in CODES}
