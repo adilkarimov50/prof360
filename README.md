@@ -14,6 +14,7 @@ passports/        Статический сайт паспортов (GitHub Pag
 .github/          CI и деплой Pages
 ```
 
+**Репозиторий:** https://github.com/adilkarimov50/prof360  
 **Публичный сайт паспортов:** https://adilkarimov50.github.io/krim-passport/  
 **Служебный режим сайта:** добавьте `?staff=1` к URL (сохраняется в браузере).
 
