@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Reques
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
-from app.commission.service import UPLOAD_DIR, run_analysis
+from app.commission.service import UPLOAD_DIR, ensure_upload_dir, run_analysis
 from app.core.audit import log_action
 from app.core.db import get_db
 from app.core.deps import abac_district_filter, client_ip, get_current_user
@@ -21,8 +21,6 @@ from app.models.user import Role, User
 from app.schemas.commission import CommissionDocumentDetail, CommissionDocumentOut, CommissionSummary
 
 router = APIRouter(prefix="/commission", tags=["commission"])
-
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 MAX_FILE_BYTES = 20 * 1024 * 1024  # inline Gemini limit
 
@@ -59,7 +57,7 @@ def _resolve_mime(file: UploadFile) -> str:
 
 def _save_commission_file(file: UploadFile) -> tuple[str, str, str]:
     ext = os.path.splitext(file.filename or "document.pdf")[1] or ".pdf"
-    fd, tmp = tempfile.mkstemp(suffix=ext, dir=UPLOAD_DIR)
+    fd, tmp = tempfile.mkstemp(suffix=ext, dir=ensure_upload_dir())
     os.close(fd)
     size = 0
     with open(tmp, "wb") as out:

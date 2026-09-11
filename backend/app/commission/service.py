@@ -14,6 +14,11 @@ logger = logging.getLogger("prof360.commission")
 UPLOAD_DIR = os.environ.get("UPLOAD_DIR", "/app/uploads")
 
 
+def ensure_upload_dir() -> str:
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+    return UPLOAD_DIR
+
+
 def run_analysis(document_id: int, *, username: str | None = None) -> None:
     """Извлечение текста + двухэтапный анализ (вызывается из фоновой задачи)."""
     db = SessionLocal()

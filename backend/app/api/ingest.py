@@ -24,7 +24,6 @@ router = APIRouter(prefix="/ingest", tags=["ingest"])
 
 # /data смонтирован read-only — пишем во внутренний каталог контейнера
 UPLOAD_DIR = os.environ.get("UPLOAD_DIR", "/app/uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 
 class ConfirmIngest(BaseModel):
@@ -35,6 +34,7 @@ class ConfirmIngest(BaseModel):
 
 def _save_upload(file: UploadFile) -> tuple[str, str]:
     ext = os.path.splitext(file.filename or "data.xlsx")[1] or ".xlsx"
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
     fd, tmp = tempfile.mkstemp(suffix=ext, dir=UPLOAD_DIR)
     os.close(fd)
     with open(tmp, "wb") as out:

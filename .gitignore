@@ -47,6 +47,8 @@ dist/
 *.xlsx
 *.xls
 !passports/data/**/*.json
+# Выгрузки, на которые ссылается опубликованная справка
+!passports/docs/**/*.xlsx
 
 # Local working docs (not in repo)
 /*.docx

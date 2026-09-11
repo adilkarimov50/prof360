@@ -703,9 +703,9 @@ window.LEGAL_CATALOG = {
       "number": "510-V",
       "act_type": "закон",
       "adilet_url": "https://adilet.zan.kz/rus/docs/Z1100000510",
-      "txt_url": null,
-      "has_txt": false,
-      "bytes": 0,
+      "txt_url": "assets/legal/Z1100000510.txt",
+      "has_txt": true,
+      "bytes": 10556,
       "superseded_by": null
     },
     {
