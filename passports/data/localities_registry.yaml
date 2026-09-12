@@ -27,9 +27,9 @@ localities:
   - id: otegen_batyr
     name: "с. Отеген батыр"
     settlement_type: village
-    admin_unit: "Карасайский район"
+    admin_unit: "Илийский район"
     region: "Алматинская область"
-    kato: "195230100"
+    kato: "196830100"
   - id: irgeli
     name: "с. Иргели"
     settlement_type: village

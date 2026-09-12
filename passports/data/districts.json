@@ -12,7 +12,8 @@
     }
   ],
   "districts": [
-    { "id": "karasai", "title": "Карасайский район", "localities": ["kaskelen", "otegen_batyr", "irgeli", "uzynagash"] },
+    { "id": "karasai", "title": "Карасайский район", "localities": ["kaskelen", "irgeli", "uzynagash"] },
+    { "id": "ile", "title": "Илийский район", "localities": ["otegen_batyr"] },
     { "id": "talgar", "title": "Талгарский район", "localities": ["talgar"] },
     { "id": "uygur", "title": "Уйгурский район", "localities": ["chundzha"] },
     { "id": "enbekshi", "title": "Енбекшиказахский район", "localities": ["issyk"] },

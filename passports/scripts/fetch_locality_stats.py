@@ -161,8 +161,8 @@ def merge_into(path: Path, profile: dict, status: str | None = None) -> None:
 def main() -> None:
     registry = load_registry()
     csv_rows = load_csv_rows()
-    profile_only_ids = {"alatau", "konaev", "talgar", "otegen_batyr", "uzynagash", "issyk"}
-    full_ids = {"kaskelen", "irgeli", "chundzha"}
+    profile_only_ids = {"alatau", "konaev", "talgar", "uzynagash", "issyk"}
+    full_ids = {"kaskelen", "irgeli", "chundzha", "otegen_batyr"}
 
     for lid, row in csv_rows.items():
         reg = reg_from_row(row, registry.get(lid, {"id": lid}))

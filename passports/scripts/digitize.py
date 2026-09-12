@@ -77,6 +77,34 @@ def parse_pair(text: str) -> dict:
     return result
 
 
+def reconcile_delta(parsed: dict) -> dict:
+    """Процент динамики считаем из пары «текущий/АППГ», а не берём из текста.
+
+    В паспортах проценты нередко посчитаны неверно (например, 199 против 211
+    подписано как снижение на 30,42% вместо 5,69%). Расхождение не скрываем:
+    заявленное в документе значение сохраняем в delta_pct_stated, чтобы
+    расхождение можно было вернуть составителю паспорта.
+
+    Отмечаем только содержательные ошибки. Расхождения вида «38%» против
+    расчётных 37,93% — это округление в самом документе, и помечать их как
+    ошибку значило бы утопить реальные ошибки в шуме: отсюда двойной порог по
+    абсолютному и относительному отклонению.
+    """
+    current, previous = parsed.get("current"), parsed.get("previous")
+    if current is None or not previous:
+        return parsed
+
+    computed = round((current - previous) / previous * 100, 2)
+    stated = parsed.get("delta_pct")
+    if stated is not None and computed:
+        gap = abs(stated - computed)
+        if gap > 0.5 and gap / abs(computed) > 0.02:
+            parsed["delta_pct_stated"] = stated
+    parsed["delta_pct"] = computed
+    parsed["direction"] = "up" if computed > 0 else "down" if computed < 0 else "flat"
+    return parsed
+
+
 def dynamics_row(row: dict) -> dict:
     """Строка вида «показатель | текущий/АППГ | причины роста»."""
     parsed = parse_pair(row["value"])
@@ -86,7 +114,7 @@ def dynamics_row(row: dict) -> dict:
         for key in ("direction", "delta_pct"):
             if key in from_comment:
                 parsed[key] = from_comment[key]
-    return {"indicator": row["indicator"], **parsed, "comment": row["comment"]}
+    return {"indicator": row["indicator"], **reconcile_delta(parsed), "comment": row["comment"]}
 
 
 def read_blocks(doc: Document) -> list[tuple[str, object]]:

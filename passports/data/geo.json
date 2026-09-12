@@ -355,7 +355,7 @@
   "alatau": {"center": [43.2380, 76.8520], "zoom": 12, "points": []},
   "konaev": {"center": [43.8830, 77.0750], "zoom": 12, "points": []},
   "talgar": {"center": [43.3030, 77.2370], "zoom": 12, "points": []},
-  "otegen_batyr": {"center": [43.4190, 76.6280], "zoom": 13, "points": []},
+  "otegen_batyr": {"center": [43.4201, 77.0224], "zoom": 13, "points": []},
   "uzynagash": {"center": [43.2480, 76.7180], "zoom": 13, "points": []},
   "issyk": {"center": [43.1820, 77.4480], "zoom": 12, "points": []}
 }
