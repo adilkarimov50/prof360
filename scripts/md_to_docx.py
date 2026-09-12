@@ -3,8 +3,9 @@
 
 Поддерживает подмножество Markdown, используемое в справках репозитория:
 заголовки, абзацы, маркированные и нумерованные списки, таблицы, цитаты,
-горизонтальные линии, а из встроенного форматирования — полужирный, курсив,
-моноширинный текст и ссылки (вставляются как кликабельные гиперссылки).
+изображения с подписями, горизонтальные линии, а из встроенного
+форматирования — полужирный, курсив, моноширинный текст и ссылки
+(вставляются как кликабельные гиперссылки).
 
     python md_to_docx.py <файл.md> [<файл.md> ...]
     python md_to_docx.py            # все .md из ИИ_порноконтент_блокировка/
@@ -29,6 +30,7 @@ BASE_SIZE = Pt(12)
 LINK_COLOR = RGBColor(0x1A, 0x4F, 0xA0)
 
 HEADING_RE = re.compile(r"^(#{1,4})\s+(.*)$")
+IMAGE_RE = re.compile(r"^!\[(?P<alt>[^\]]*)\]\((?P<path>[^)]+)\)\s*$")
 BULLET_RE = re.compile(r"^[-*]\s+(.*)$")
 ORDERED_RE = re.compile(r"^(\d+)[.)]\s+(.*)$")
 QUOTE_RE = re.compile(r"^>\s?(.*)$")
@@ -40,6 +42,9 @@ INLINE_RE = re.compile(
     r"|\*\*(?P<bold>[^*]+)\*\*"
     r"|`(?P<code>[^`]+)`"
     r"|\*(?P<italic>[^*]+)\*"
+    # Адреса в перечне источников набраны без разметки, но в документе должны
+    # остаться кликабельными: завершающая пунктуация в адрес не включается.
+    r"|(?P<bare>https?://[^\s]+?)(?=[.,;)]?(?:\s|$))"
 )
 
 
@@ -77,6 +82,8 @@ def write_inline(paragraph, text: str, bold: bool = False) -> None:
             paragraph.add_run(text[position : match.start()]).bold = bold
         if match.group("url"):
             add_hyperlink(paragraph, match.group("text"), match.group("url"))
+        elif match.group("bare"):
+            add_hyperlink(paragraph, match.group("bare"), match.group("bare"))
         elif match.group("bold"):
             paragraph.add_run(match.group("bold")).bold = True
         elif match.group("code"):
@@ -108,6 +115,11 @@ def read_blocks(lines: list[str]) -> list[tuple[str, object]]:
 
         if RULE_RE.match(line):
             blocks.append(("rule", None))
+            index += 1
+            continue
+
+        if match := IMAGE_RE.match(line):
+            blocks.append(("image", (match.group("path"), match.group("alt"))))
             index += 1
             continue
 
@@ -147,7 +159,7 @@ def read_blocks(lines: list[str]) -> list[tuple[str, object]]:
     return blocks
 
 
-def build_document(blocks: list[tuple[str, object]]) -> Document:
+def build_document(blocks: list[tuple[str, object]], base: Path) -> Document:
     document = Document()
 
     normal = document.styles["Normal"]
@@ -166,6 +178,18 @@ def build_document(blocks: list[tuple[str, object]]) -> Document:
     for kind, payload in blocks:
         if kind == "rule":
             document.add_paragraph()
+        elif kind == "image":
+            path, alt = payload  # type: ignore[misc]
+            picture = document.add_paragraph()
+            picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            picture.add_run().add_picture(str(base / path), height=Cm(11))
+            if alt:
+                caption = document.add_paragraph()
+                caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                write_inline(caption, alt)
+                for run in caption.runs:
+                    run.italic = True
+                    run.font.size = Pt(10)
         elif kind == "table":
             rows: list[list[str]] = payload  # type: ignore[assignment]
             width = max(len(row) for row in rows)
@@ -210,7 +234,7 @@ def build_document(blocks: list[tuple[str, object]]) -> Document:
 def convert(source: Path) -> Path:
     blocks = read_blocks(source.read_text(encoding="utf-8").splitlines())
     target = source.with_suffix(".docx")
-    build_document(blocks).save(target)
+    build_document(blocks, source.parent).save(target)
     return target
 
 
