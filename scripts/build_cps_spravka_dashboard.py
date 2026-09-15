@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CPS = ROOT / "ЦПС"
 OUT_DIR = ROOT / "passports" / "docs" / "spravka_cps"
 OUT_HTML = OUT_DIR / "spravka.html"
+OUT_PRIVATE = ROOT / "passports" / "private" / "spravka_cps_operativ.html"
+IIN_RE = re.compile(r"\b\d{12}\b")
 SUICIDE_X = ROOT / "Суицид_F00-99_ЦПС_сверка.xlsx"
 ANALYSIS = CPS / "ЦПС_полный_анализ.xlsx"
 
@@ -232,6 +234,27 @@ def clean_journal() -> pd.DataFrame:
     df = df[pd.to_numeric(df["№ обращения"], errors="coerce").notna()].copy()
     df["№ обращения"] = df["№ обращения"].astype(int)
     return df
+
+
+def _scrub_text(val) -> str:
+    s = str(val) if val is not None else ""
+    return IIN_RE.sub("", s)
+
+
+def redact_person(d: dict) -> dict:
+    """Публичная версия без персональных данных."""
+    out = {}
+    for k, v in d.items():
+        if k in ("fio", "iin", "address"):
+            out[k] = "—"
+        else:
+            out[k] = _scrub_text(v)[:300]
+    return out
+
+
+def assert_no_pii(html: str) -> None:
+    if IIN_RE.search(html):
+        raise SystemExit("PII guard: ИИН в публичной spravka_cps/spravka.html")
 
 
 def row_person(r, extra=None) -> dict:
@@ -576,11 +599,17 @@ renderSummary(); renderViolations(); renderPeople(); renderConclusion(); renderQ
 
 def main() -> Path:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PRIVATE.parent.mkdir(parents=True, exist_ok=True)
     j = clean_journal()
-    people = collect_people(j)
-    html = render_html(kpi(), people, VIOLATIONS, QUESTIONS)
-    OUT_HTML.write_text(html, encoding="utf-8")
+    people_full = collect_people(j)
+    people_public = {k: [redact_person(p) for p in v] for k, v in people_full.items()}
+    html_public = render_html(kpi(), people_public, VIOLATIONS, QUESTIONS)
+    assert_no_pii(html_public)
+    OUT_HTML.write_text(html_public, encoding="utf-8")
+    html_private = render_html(kpi(), people_full, VIOLATIONS, QUESTIONS)
+    OUT_PRIVATE.write_text(html_private, encoding="utf-8")
     print(f"Written: {OUT_HTML}")
+    print(f"Written: {OUT_PRIVATE}")
     return OUT_HTML
 
 

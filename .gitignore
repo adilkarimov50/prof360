@@ -74,3 +74,6 @@ passports/private/
 
 # Legacy nested git (removed after monorepo merge)
 passports/.git/
+
+# Временные файлы Word (создаются при открытом документе)
+~$*

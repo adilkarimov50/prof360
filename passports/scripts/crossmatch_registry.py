@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT.parent / "Карасайский район"
 OUT = ROOT / "data" / "karasai" / "registry_crossmatch.json"
 HTML = ROOT / "docs" / "registry_crossmatch.html"
+HTML_PRIVATE = ROOT / "private" / "registry_crossmatch_operativ.html"
+IIN_RE = re.compile(r"\b\d{12}\b")
 
 POLICE_AUGUST = {
     "ОП (общий)": "ОП август.xlsx",
@@ -710,6 +712,30 @@ def _multi_registry(police: list[dict]) -> list[dict]:
     return sorted(out, key=lambda x: -len(x["types"]))[:40]
 
 
+def redact_crossmatch(data: dict) -> dict:
+    """Копия данных без ФИО и ИИН для публикации."""
+    import copy
+
+    d = copy.deepcopy(data)
+    for r in d.get("table", []):
+        r["fio"] = "—"
+        r["iin"] = ""
+    for r in d.get("suspect_no_police", []):
+        r["fio"] = "—"
+        r["iin"] = ""
+    for r in d.get("addr_links", []):
+        r["matched_fio"] = "—"
+    for r in d.get("multi_registry", []):
+        r["fio"] = "—"
+        r["iin"] = ""
+    return d
+
+
+def assert_no_pii_html(html: str) -> None:
+    if IIN_RE.search(html):
+        raise SystemExit("PII guard: ИИН в публичном registry_crossmatch.html")
+
+
 def write_html(data: dict, path: Path) -> None:
     s = data["summary"]
     esc = lambda t: str(t or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
@@ -827,10 +853,15 @@ def main() -> None:
     data = build_crossmatch()
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_html(data, HTML)
+    public = redact_crossmatch(data)
+    write_html(public, HTML)
+    assert_no_pii_html(HTML.read_text(encoding="utf-8"))
+    HTML_PRIVATE.parent.mkdir(parents=True, exist_ok=True)
+    write_html(data, HTML_PRIVATE)
     s = data["summary"]
     print(f"Written {OUT}")
     print(f"Written {HTML}")
+    print(f"Written {HTML_PRIVATE}")
     print(f"Persons: {s['unique_persons']} | OVD+med: {s['match_ovd_med']} | OVD+med+UD: {s['match_all_three']}")
     print(f"Med gap: {s['gap_med_no_police']} | Crime no police: {s['gap_crime_no_police']} | Addr links: {s['addr_full_linked']}")
 

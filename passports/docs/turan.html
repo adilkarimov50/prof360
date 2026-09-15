@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Туран (скоринг) · Алматинская область</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Literata:opsz,wght@7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0f3f8;--card:#fff;--ink:#1a2332;--muted:#5a6578;--line:#d8dee8;--accent:#1a5c42;--warn:#b83220;--sidebar:260px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:15px}
+.layout{display:flex;min-height:100vh}
+aside{width:var(--sidebar);background:#0d3326;color:#fff;padding:20px 16px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto}
+aside h1{font-family:Literata,Georgia,serif;font-size:1.05rem;line-height:1.35;margin-bottom:16px;font-weight:600}
+aside nav button{display:block;width:100%;text-align:left;background:transparent;border:none;color:rgba(255,255,255,.85);padding:10px 12px;border-radius:6px;cursor:pointer;font-size:14px;margin-bottom:4px}
+aside nav button:hover,aside nav button.active{background:rgba(255,255,255,.12);color:#fff}
+main{flex:1;padding:24px 28px 48px;max-width:1100px}
+.panel{display:none} .panel.active{display:block}
+.hero{background:linear-gradient(135deg,#1a5c42,#2d8a66);color:#fff;border-radius:12px;padding:24px 28px;margin-bottom:24px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:20px 0}
+.kpi .c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.kpi .v{font-size:1.35rem;font-weight:700;color:var(--accent)}
+.kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+h2{font-family:Literata,Georgia,serif;font-size:1.35rem;color:var(--accent);margin:28px 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#eef2f7;font-size:11px;text-transform:uppercase;color:var(--muted)}
+.scroll{max-height:480px;overflow:auto;border:1px solid var(--line);border-radius:8px;margin:12px 0}
+.note{font-size:13px;color:var(--muted);margin:12px 0}
+.warn{background:#fff4f2;border:1px solid #f0c4bc;border-radius:10px;padding:16px 18px;margin:16px 0}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+@media(max-width:900px){.layout{flex-direction:column}aside{width:100%;height:auto;position:relative}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h1>Туран<br><span style="font-weight:400;font-size:13px;opacity:.8">скоринг · профилактика</span></h1>
+<nav id="nav"></nav>
+<p style="font-size:12px;opacity:.7;margin-top:20px">2026-09-11</p>
+</aside>
+<main>
+<section id="panel-summary" class="panel active"></section>
+<section id="panel-districts" class="panel"></section>
+<section id="panel-method" class="panel"></section>
+<section id="panel-portraits" class="panel"></section>
+<section id="panel-crossmatch" class="panel"></section>
+<section id="panel-scales" class="panel"></section>
+
+</main>
+</div>
+<script id="turan-data" type="application/json">{"generated": "2026-09-11", "coverage": {"total": 1844903, "iin": 1844903, "fullName": 1844900, "district": 1604844, "birthDate": 1833600, "gender": 1751285, "scoring": 1844903}, "districts": [{"district": "Карасайский район", "count": 375035}, {"district": "Енбекшиказахский район", "count": 280125}, {"district": "Талгарский район", "count": 268493}, {"district": "Илийский район", "count": 246316}, {"district": "без района", "count": 240059}, {"district": "Жамбылский район", "count": 175242}, {"district": "Конаев Г.А.", "count": 67461}, {"district": "Уйгурский район", "count": 58412}, {"district": "Алатау Г.А.", "count": 56751}, {"district": "Райымбекский район", "count": 26530}, {"district": "Балхашский район", "count": 25910}, {"district": "Кегенский район", "count": 24533}, {"district": "г. Конаев", "count": 29}, {"district": "г.Алатау", "count": 4}, {"district": "г. Алатау", "count": 3}], "portraits": [{"key": "NO_PORTRAIT", "label": "Портрет не определён", "count": 1805452}, {"key": "SYSTEMATIC_TRAFFIC_VIOLATOR", "label": "Системный нарушитель КоАП", "count": 19544}, {"key": "POTENTIAL_DOMESTIC_AGGRESSOR", "label": "Потенциальный семейно-бытовой агрессор", "count": 9152}, {"key": "PRONE_TO_OFFENSES", "label": "Склонен к правонарушениям", "count": 5627}, {"key": "null", "label": "null", "count": 4816}, {"key": "SEXUAL_OFFENSE_RISK", "label": "Риск преступлений против половой неприкосновенности", "count": 312}], "risk_overlap": [{"riskLevel": "GREEN", "count": 1506268, "minScore": -2.3, "maxScore": 44.0, "avgScore": 0.8}, {"riskLevel": "RED", "count": 234096, "minScore": -1.3, "maxScore": 31.5, "avgScore": 1.49}, {"riskLevel": "BURGUNDY", "count": 73703, "minScore": -1.3, "maxScore": 49.8, "avgScore": 3.01}, {"riskLevel": "YELLOW", "count": 26020, "minScore": -1.0, "maxScore": 90.5, "avgScore": 5.37}, {"riskLevel": "null", "count": 4816, "minScore": 1.5, "maxScore": 11.0, "avgScore": 1.8}], "score_buckets": [{"bucket": "< 0", "count": 120152}, {"bucket": "0 – <3 (низкий)", "count": 1575098}, {"bucket": "3 – <5 (средний)", "count": 106408}, {"bucket": "5 – <8 (повышенный)", "count": 32272}, {"bucket": "≥8 (критический)", "count": 10973}], "method_weights": [{"code": "ADM_NADZOR", "name": "Административный надзор", "weight": "+1.5"}, {"code": "UNEMPLOYED", "name": "Безработные", "weight": "+1.5"}, {"code": "NO_INCOME", "name": "Не имеющие дохода", "weight": "+1.5"}, {"code": "PROTECTIVE_ORDER", "name": "Защитное предписание", "weight": "+3"}, {"code": "PROBATION", "name": "Пробация", "weight": "+3"}, {"code": "JDN_ACCOUNTING", "name": "Учёт ИДН", "weight": "+2"}, {"code": "PEDOPHILE_LIST", "name": "Список педофилов", "weight": "+4"}, {"code": "BZ_LIST", "name": "Список БЗ", "weight": "−1"}, {"code": "IPN / ОСМС / пенсия / соцотчисления", "name": "Снижающие факторы", "weight": "−0.2 каждый"}], "risk_note": {"doc_thresholds": "<3 низкий · 3–5 средний · 5–8 повышенный · ≥8 критический (поле scoring)", "enum_thresholds": "0–9 GREEN · 10–15 YELLOW · 16–20 RED · 21+ BURGUNDY (поле riskLevel от портретного анализа)"}, "crossmatch": [{"source": "Диспучёт", "group": "С00-97 — Злокачественные новообразования", "total": 12718, "in_turan": 11075, "coverage_pct": 87.1, "avg_score": 0.74}, {"source": "Диспучёт", "group": "G40 — Эпилепсия", "total": 7035, "in_turan": 6069, "coverage_pct": 86.3, "avg_score": 0.87}, {"source": "Диспучёт", "group": "Орф заб — Орфанные заболевания", "total": 6496, "in_turan": 5639, "coverage_pct": 86.8, "avg_score": 0.85}, {"source": "Диспучёт", "group": "I60-64 — Инсульт", "total": 5007, "in_turan": 4540, "coverage_pct": 90.7, "avg_score": 0.84}, {"source": "Диспучёт", "group": "B18-19 — Вирусные гепатиты", "total": 3625, "in_turan": 3232, "coverage_pct": 89.2, "avg_score": 1.02}, {"source": "Диспучёт", "group": "I21-22 — Инфаркт миокарда", "total": 2500, "in_turan": 2210, "coverage_pct": 88.4, "avg_score": 0.99}, {"source": "Диспучёт", "group": "G30-32 — Болезни нервной системы (Альцгеймер и др.)", "total": 906, "in_turan": 801, "coverage_pct": 88.4, "avg_score": 0.75}, {"source": "ЦПС (ИПР семьи)", "group": "сопровождение ТЖС", "total": 577, "in_turan": 540, "coverage_pct": 93.6, "avg_score": 3.0}, {"source": "Получатели пособий ВИЧ/ТБ", "group": "лист «ТУБ»", "total": 517, "in_turan": 456, "coverage_pct": 88.2, "avg_score": 1.37}, {"source": "Диспучёт", "group": "A15-19 — Туберкулёз органов дыхания", "total": 503, "in_turan": 397, "coverage_pct": 78.9, "avg_score": 1.38}, {"source": "Диспучёт", "group": "K74 — Цирроз печени", "total": 399, "in_turan": 354, "coverage_pct": 88.7, "avg_score": 1.0}, {"source": "Диспучёт", "group": "B20-24 — ВИЧ", "total": 154, "in_turan": 133, "coverage_pct": 86.4, "avg_score": 1.69}, {"source": "Диспучёт", "group": "D37-48 — Новообразования неопределённого характера", "total": 148, "in_turan": 128, "coverage_pct": 86.5, "avg_score": 0.87}, {"source": "Диспучёт", "group": "G35-37 — Рассеянный склероз и демиелинизирующие", "total": 102, "in_turan": 97, "coverage_pct": 95.1, "avg_score": 0.72}, {"source": "Получатели пособий ВИЧ/ТБ", "group": "лист «ВИЧ»", "total": 44, "in_turan": 42, "coverage_pct": 95.5, "avg_score": 1.74}, {"source": "Диспучёт", "group": "D00-09 — Новообразования in situ", "total": 4, "in_turan": 3, "coverage_pct": 75.0, "avg_score": 0.77}]}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('turan-data').textContent);
+const NAV = [
+  {id:'summary', label:'Охват и KPI'},
+  {id:'districts', label:'Районы'},
+  {id:'method', label:'Методика баллов'},
+  {id:'portraits', label:'Портреты'},
+  {id:'crossmatch', label:'Сверка с медучётом'},
+  {id:'scales', label:'Две шкалы риска'},
+  
+];
+const navEl = document.getElementById('nav');
+NAV.forEach((n,i) => {
+  const b = document.createElement('button');
+  b.textContent = n.label;
+  if(i===0) b.classList.add('active');
+  b.onclick = () => {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+n.id).classList.add('active');
+    document.querySelectorAll('aside nav button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+  };
+  navEl.appendChild(b);
+});
+function esc(s) {
+  if (s === null || s === undefined) return '—';
+  const t = String(s).trim();
+  if (!t || t.toLowerCase() === 'nan') return '—';
+  const d=document.createElement('div'); d.textContent=t; return d.innerHTML;
+}
+function fmt(n) { return Number(n).toLocaleString('ru-RU'); }
+function renderSummary() {
+  const c = DATA.coverage;
+  document.getElementById('panel-summary').innerHTML = `
+    <div class="hero"><h2 style="color:#fff;margin:0;font-family:Literata,serif">Система скоринга «Туран»</h2>
+    <p>Алматинская область · агрегированные показатели без персональных данных</p></div>
+    <div class="kpi">
+      <div class="c"><div class="v">${fmt(c.total)}</div><div class="l">Человек в базе</div></div>
+      <div class="c"><div class="v">${fmt(c.district)}</div><div class="l">С районом</div></div>
+      <div class="c"><div class="v">${fmt(c.birthDate)}</div><div class="l">Дата рождения</div></div>
+      <div class="c"><div class="v">${fmt(c.gender)}</div><div class="l">Пол</div></div>
+    </div>
+    <p class="note">Локальный полный интерфейс: <code>http://localhost:4300</code> (после <code>docker compose up</code> в каталоге turan).</p>`;
+}
+function renderDistricts() {
+  const rows = (DATA.districts||[]).map(r => `<tr><td>${esc(r.district)}</td><td>${fmt(r.count)}</td></tr>`).join('');
+  document.getElementById('panel-districts').innerHTML = `<h2>Распределение по районам</h2>
+    <div class="scroll"><table><thead><tr><th>Район</th><th>Число</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderMethod() {
+  const w = (DATA.method_weights||[]).map(r => `<tr><td>${esc(r.code)}</td><td>${esc(r.name)}</td><td>${esc(r.weight)}</td></tr>`).join('');
+  const b = (DATA.score_buckets||[]).map(r => `<tr><td>${esc(r.bucket)}</td><td>${fmt(r.count)}</td></tr>`).join('');
+  document.getElementById('panel-method').innerHTML = `<h2>Методика (поле scoring)</h2>
+    <p class="note">${esc(DATA.risk_note.doc_thresholds)}</p>
+    <h3>Примеры весов категорий</h3>
+    <table><thead><tr><th>Код</th><th>Категория</th><th>Вес</th></tr></thead><tbody>${w}</tbody></table>
+    <h3>Распределение по баллу</h3>
+    <table><thead><tr><th>Диапазон</th><th>Число</th></tr></thead><tbody>${b}</tbody></table>`;
+}
+function renderPortraits() {
+  const rows = (DATA.portraits||[]).filter(p => p.key !== 'NO_PORTRAIT' && p.key !== 'null')
+    .map(r => `<tr><td>${esc(r.label)}</td><td>${fmt(r.count)}</td></tr>`).join('');
+  document.getElementById('panel-portraits').innerHTML = `<h2>Поведенческие портреты</h2>
+    <div class="scroll"><table><thead><tr><th>Портрет</th><th>Число</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderCrossmatch() {
+  const rows = (DATA.crossmatch||[]).map(r => `<tr>
+    <td>${esc(r.source)}</td><td>${esc(r.group)}</td><td>${fmt(r.total)}</td>
+    <td>${fmt(r.in_turan)}</td><td>${esc(r.coverage_pct)}%</td><td>${esc(r.avg_score)}</td></tr>`).join('');
+  document.getElementById('panel-crossmatch').innerHTML = `<h2>Сверка с выгрузками диспучёта, ВИЧ/ТБ и ЦПС</h2>
+    <p class="note">Только агрегаты по группам МКБ и источникам. Детали — в Excel «Туран_сверка_с_выгрузками.xlsx».</p>
+    <div class="scroll"><table><thead><tr><th>Источник</th><th>Группа</th><th>Всего ИИН</th><th>В Туране</th><th>%</th><th>Ср. балл</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderScales() {
+  const rows = (DATA.risk_overlap||[]).map(r => `<tr>
+    <td>${esc(r.riskLevel)}</td><td>${fmt(r.count)}</td>
+    <td>${esc(r.minScore)}</td><td>${esc(r.maxScore)}</td><td>${esc(r.avgScore)}</td></tr>`).join('');
+  document.getElementById('panel-scales').innerHTML = `
+    <h2>Две шкалы риска</h2>
+    <div class="warn"><strong>Важно:</strong> поле <code>riskLevel</code> в БД считается от суммы баллов <em>портретного</em> анализа, а не от <code>scoring</code>.
+    Пороги enum: ${esc(DATA.risk_note.enum_thresholds)}. Для отбора по методике используйте <code>scoring</code>.</div>
+    <table><thead><tr><th>riskLevel</th><th>Число</th><th>min scoring</th><th>max scoring</th><th>avg scoring</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+renderSummary(); renderDistricts(); renderMethod(); renderPortraits(); renderCrossmatch(); renderScales();
+
+</script>
+</body>
+</html>
