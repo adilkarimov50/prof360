@@ -49,6 +49,9 @@ def sync_public_json() -> None:
         )
     if (DATA_CKS / "person_shards_index.json").exists():
         shutil.copy2(DATA_CKS / "person_shards_index.json", DOCS_CKS / "person_shards_index.json")
+    vp = DATA_CKS / "violations_public.json"
+    if vp.exists():
+        shutil.copy2(vp, DOCS_CKS / "violations_public.json")
     for p in DATA_DISTRICTS.glob("*.json"):
         shutil.copy2(p, DOCS_CKS / "districts" / p.name)
 
@@ -322,15 +325,10 @@ def write_cks_data_js(oblast: dict) -> None:
 def main() -> None:
     sync_public_json()
     oblast = load_oblast()
-    pub_oblast = render_oblast_html(oblast)
-    assert_no_pii_in_public(pub_oblast)
-    pub_dist = render_district_html()
-    assert_no_pii_in_public(pub_dist)
-
-    OUT_PUBLIC_OBLAST.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PUBLIC_OBLAST.write_text(pub_oblast, encoding="utf-8")
-    OUT_PUBLIC_DISTRICT.write_text(pub_dist, encoding="utf-8")
     write_cks_data_js(oblast)
+    for path in (OUT_PUBLIC_OBLAST, OUT_PUBLIC_DISTRICT):
+        if path.exists():
+            assert_no_pii_in_public(path.read_text(encoding="utf-8"))
 
     OUT_PRIVATE.parent.mkdir(parents=True, exist_ok=True)
     OUT_PRIVATE.write_text(render_operative_html(oblast), encoding="utf-8")

@@ -3,77 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ЦКС · район</title>
-<link rel="stylesheet" href="assets/css/app.css?v=20260918">
-<style>
-.table-wrap{max-height:420px;overflow:auto}
-.link-np{cursor:pointer;color:var(--accent,#1a5c42);text-decoration:underline}
-</style>
+<title>ЦКС · район · Алматинская область</title>
+<link rel="icon" href="assets/img/prokuratura-emblem.png" type="image/png">
+<link rel="stylesheet" href="assets/css/app.css?v=20260918b">
+<link rel="stylesheet" href="assets/css/cks.css?v=20260918b">
 </head>
-<body data-site-page="cks_district">
+<body data-site-page="cks">
 <div id="chrome-top"></div>
-<main class="wrap" id="main"></main>
+<div id="cks-district-app"><p class="wrap" style="padding:48px 0;color:var(--muted)">Загрузка карточки района…</p></div>
 <div id="chrome-bottom"></div>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/ui.js"></script>
-<script>
-mountSiteChrome('cks');
-const params = new URLSearchParams(location.search);
-const did = params.get('d') || 'karasai';
-const np = params.get('np') || '';
-
-function esc(s) {
-  if (s == null) return '—';
-  const d = document.createElement('div');
-  d.textContent = String(s);
-  return d.innerHTML;
-}
-function fmt(n) { return Number(n).toLocaleString('ru-RU'); }
-
-fetch('assets/data/cks/districts/' + did + '.json')
-  .then(r => r.json())
-  .then(data => {
-    const mp = data.mini_passport || {};
-    const hl = (mp.highlights || []).map(h => '<li>' + esc(h) + '</li>').join('');
-    let rows = (data.settlements || []).map(s => {
-      const link = s.settlement && s.settlement !== '—'
-        ? `<span class="link-np" data-np="${esc(s.settlement)}">${esc(s.settlement)}</span>`
-        : esc(s.settlement);
-      return `<tr><td>${esc(s.okrug)}</td><td>${link}</td><td class="num">${fmt(s.persons)}</td><td class="num">${fmt(s.rows)}</td></tr>`;
-    }).join('');
-    const cats = (data.categories || []).slice(0,15).map(c =>
-      `<tr><td>${esc(c.label)}</td><td class="num">${fmt(c.persons)}</td></tr>`).join('');
-    document.getElementById('main').innerHTML = `
-      <section class="hero" style="margin-top:16px">
-        <div class="hero__eyebrow"><a href="cks.html">← Область</a></div>
-        <h1>${esc(data.title)}</h1>
-        <p>Мини-кримпаспорт социального мониторинга (ЦКС). НП с &lt;50 лиц — только в таблице.</p>
-      </section>
-      <div class="card"><div class="card__title">Ключевые показатели</div><ul class="list-check">${hl}</ul></div>
-      <h2>Населённые пункты и сельские округа</h2>
-      <p class="note">Для файлов «неработающее население» НП в источнике отсутствует — строки учтены на уровне района.</p>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Сельский округ</th><th>Населённый пункт</th><th class="num">Лиц</th><th class="num">Записей</th></tr></thead><tbody>${rows}</tbody></table></div>
-      <h2>Категории</h2>
-      <table class="table"><thead><tr><th>Категория</th><th class="num">Лиц</th></tr></thead><tbody>${cats}</tbody></table>
-      <div id="np-detail"></div>`;
-    document.querySelectorAll('.link-np').forEach(el => {
-      el.addEventListener('click', () => showNp(el.dataset.np, data));
-    });
-    if (np) showNp(np, data);
-  });
-
-function showNp(name, data) {
-  const s = (data.settlements || []).find(x => x.settlement === name);
-  const box = document.getElementById('np-detail');
-  if (!s || !s.mini_passport) {
-    box.innerHTML = '<div class="card"><p>Мини-паспорт НП доступен при ≥50 лиц или выберите другой пункт.</p></div>';
-    return;
-  }
-  const mp = s.mini_passport;
-  box.innerHTML = `<div class="card"><div class="card__title">Мини-паспорт: ${esc(mp.settlement)}</div>
-    <p>Округ: ${esc(mp.okrug)} · Лиц: ${fmt(mp.persons)}</p>
-    <p>Категории: ${(mp.top_categories||[]).map(esc).join(', ')}</p></div>`;
-}
-</script>
+<script src="assets/js/cks.js?v=20260918b"></script>
+<script>mountSiteChrome('cks');</script>
 </body>
 </html>

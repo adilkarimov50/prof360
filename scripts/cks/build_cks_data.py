@@ -36,6 +36,13 @@ def load_crossmatch() -> dict:
     return {"counts": {}, "dead_in_active_lists_sample": [], "multi_category_sample": []}
 
 
+def load_violations_public() -> dict:
+    p = DATA_CKS / "violations_public.json"
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    return {}
+
+
 def category_label(slug: str) -> str:
     return slug.replace("_", " ")[:120]
 
@@ -132,6 +139,7 @@ def aggregate_persons(df: pd.DataFrame) -> tuple[dict, dict[str, dict]]:
         ],
         "registration_scope": dict(oblast_scopes),
         "crossmatch": cross.get("counts", {}),
+        "violations": load_violations_public(),
         "district_ids": [d["id"] for d in DISTRICTS],
     }
     return oblast, district_payloads

@@ -1,0 +1,208 @@
+/* ЦКС — навигация и таблицы */
+
+.cks-hero {
+  margin-top: 12px;
+  padding: 32px 0 40px;
+  background: linear-gradient(160deg, var(--navy-900), var(--navy-700) 70%, #24447a);
+  color: #fff;
+  border-radius: var(--radius);
+}
+
+.cks-hero .wrap-inner { width: min(1240px, 100% - 48px); margin-inline: auto; }
+.cks-hero a { color: var(--gold-soft); }
+.cks-hero p { color: rgba(255,255,255,.85); max-width: 52rem; margin: 12px 0 0; }
+
+.cks-subnav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 800;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(13,27,51,.06);
+  margin: 0 0 24px;
+}
+
+.cks-subnav__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.cks-subnav button,
+.cks-subnav a.cks-tab {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cks-subnav button.active,
+.cks-subnav a.cks-tab.active {
+  background: var(--navy-700);
+  color: #fff;
+  border-color: var(--navy-700);
+}
+
+.cks-district-switch {
+  margin-left: auto;
+  min-width: 200px;
+  max-width: 100%;
+}
+
+.cks-district-switch select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.cks-panel { display: none; }
+.cks-panel.active { display: block; }
+
+.cks-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cks-kpi .card {
+  padding: 16px 18px;
+  text-align: center;
+}
+
+.cks-kpi b {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--navy-700);
+}
+
+.cks-kpi span {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.cks-kpi--alert b { color: var(--up); }
+
+.cks-district-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.cks-district-card {
+  display: block;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform .15s, box-shadow .15s;
+}
+
+.cks-district-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold);
+}
+
+.cks-district-card strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.cks-district-card .meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cks-district-card .badge-row {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cks-callout {
+  background: #fff8f6;
+  border: 1px solid #f0c4bc;
+  border-left: 4px solid var(--up);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.cks-callout h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--up);
+}
+
+.cks-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.cks-toolbar input {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.cks-table-wrap {
+  max-height: 480px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.cks-table-wrap table { margin: 0; }
+
+.cks-table-wrap th {
+  position: sticky;
+  top: 0;
+  background: var(--navy-100);
+  z-index: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cks-table-wrap th:hover { background: #dce4ef; }
+
+.cks-np-link {
+  color: var(--navy-700);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cks-section-title {
+  font-size: 1.25rem;
+  margin: 28px 0 14px;
+  color: var(--navy-700);
+}
+
+@media (max-width: 720px) {
+  .cks-district-switch { margin-left: 0; width: 100%; }
+  .cks-subnav__inner { flex-direction: column; align-items: stretch; }
+}

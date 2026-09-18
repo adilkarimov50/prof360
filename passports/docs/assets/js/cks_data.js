@@ -1,7 +1,7 @@
 /* scripts/build_cks_dashboard.py */
 window.CKS_DATA = {
  "oblast": {
-  "generated_at": "2026-09-18T13:28:51",
+  "generated_at": "2026-09-18T15:11:23",
   "title": "Алматинская область — данные ЦКС",
   "totals": {
    "rows": 949536,
@@ -214,17 +214,333 @@ window.CKS_DATA = {
    "cks_rows": 949536,
    "deceased_index": 1376809,
    "dead_in_cks": 67,
-   "prof_unique": 2174,
+   "dead_in_prof_dela": 0,
+   "dead_in_adm_protocols": 2,
    "prof_in_cks": 1260,
-   "adm_unique": 4222,
    "adm_in_cks": 2368,
-   "prof_and_adm": 533,
+   "prof_and_adm_any": 533,
+   "prof_and_adm_in_cks": 362,
    "persons_3plus_categories": 91277,
    "other_region_persons": 61656,
    "almaty_city_scope": 20108,
    "adm_other_region": 471,
+   "prof_unique": 2174,
+   "adm_unique": 4222,
+   "prof_and_adm": 533,
    "dead_in_prof": 0,
    "dead_in_adm": 2
+  },
+  "violations": {
+   "generated_at": "2026-09-18T15:10:20",
+   "summary": {
+    "dead_in_cks": 67,
+    "dead_in_prof_dela": 0,
+    "dead_in_adm_protocols": 2,
+    "prof_in_cks": 1260,
+    "adm_in_cks": 2368,
+    "prof_and_adm_any": 533,
+    "prof_and_adm_in_cks": 362
+   },
+   "dead_in_active_cks": {
+    "total": 67,
+    "by_district": [
+     {
+      "id": "ile",
+      "title": "Илийский район",
+      "count": 15
+     },
+     {
+      "id": "karasai",
+      "title": "Карасайский район",
+      "count": 11
+     },
+     {
+      "id": "zhambyl",
+      "title": "Жамбылский район",
+      "count": 11
+     },
+     {
+      "id": "enbekshi",
+      "title": "Енбекшиказахский район",
+      "count": 10
+     },
+     {
+      "id": "talgar",
+      "title": "Талгарский район",
+      "count": 7
+     },
+     {
+      "id": "konaev",
+      "title": "г. Конаев",
+      "count": 5
+     },
+     {
+      "id": "alatau_oblast",
+      "title": "г. Алатау",
+      "count": 5
+     },
+     {
+      "id": "balkhash",
+      "title": "Балхашский район",
+      "count": 2
+     },
+     {
+      "id": "uygur",
+      "title": "Уйгурский район",
+      "count": 1
+     }
+    ],
+    "by_category": [
+     {
+      "id": "закредитованные_лица",
+      "label": "закредитованные лица",
+      "count": 26
+     },
+     {
+      "id": "имеющие_кредиты_с_задолженностью_более_90_дней",
+      "label": "имеющие кредиты с задолженностью более 90 дней",
+      "count": 26
+     },
+     {
+      "id": "лица_пенсионного_возраста_не_получающие_выплату_по_пенсии_и_по_инвалидности_граж",
+      "label": "лица пенсионного возраста не получающие выплату по пенсии и по инвалидности граж",
+      "count": 14
+     },
+     {
+      "id": "статистика_неработающего_населения_карасай",
+      "label": "статистика неработающего населения карасай",
+      "count": 9
+     },
+     {
+      "id": "статистика_неработающего_населения_жамбыл",
+      "label": "статистика неработающего населения жамбыл",
+      "count": 7
+     },
+     {
+      "id": "с_хроническими_заболеваниями",
+      "label": "с хроническими заболеваниями",
+      "count": 6
+     },
+     {
+      "id": "статистика_неработающего_населения_енбекшиказах",
+      "label": "статистика неработающего населения енбекшиказах",
+      "count": 6
+     },
+     {
+      "id": "лица_с_инвалибностью",
+      "label": "лица с инвалибностью",
+      "count": 5
+     },
+     {
+      "id": "статистика_неработающего_населения_илийский",
+      "label": "статистика неработающего населения илийский",
+      "count": 4
+     },
+     {
+      "id": "статистика_неработающего_населения_по_конаев",
+      "label": "статистика неработающего населения по конаев",
+      "count": 4
+     },
+     {
+      "id": "статистика_неработающего_населения_по_талгар",
+      "label": "статистика неработающего населения по талгар",
+      "count": 3
+     },
+     {
+      "id": "статистика_неработающего_населения_алатау",
+      "label": "статистика неработающего населения алатау",
+      "count": 3
+     },
+     {
+      "id": "статистика_неработающего_населения_балхаш",
+      "label": "статистика неработающего населения балхаш",
+      "count": 1
+     }
+    ],
+    "by_death_year": [
+     {
+      "year": 2016,
+      "count": 4
+     },
+     {
+      "year": 2017,
+      "count": 6
+     },
+     {
+      "year": 2018,
+      "count": 9
+     },
+     {
+      "year": 2019,
+      "count": 13
+     },
+     {
+      "year": 2020,
+      "count": 9
+     },
+     {
+      "year": 2021,
+      "count": 5
+     },
+     {
+      "year": 2022,
+      "count": 4
+     },
+     {
+      "year": 2023,
+      "count": 3
+     },
+     {
+      "year": 2024,
+      "count": 2
+     },
+     {
+      "year": 2025,
+      "count": 12
+     }
+    ]
+   },
+   "prof_accountability": {
+    "prof_dela_in_cks_total": 1260,
+    "by_district": [
+     {
+      "id": "enbekshi",
+      "title": "Енбекшиказахский район",
+      "count": 302
+     },
+     {
+      "id": "karasai",
+      "title": "Карасайский район",
+      "count": 266
+     },
+     {
+      "id": "talgar",
+      "title": "Талгарский район",
+      "count": 243
+     },
+     {
+      "id": "konaev",
+      "title": "г. Конаев",
+      "count": 178
+     },
+     {
+      "id": "zhambyl",
+      "title": "Жамбылский район",
+      "count": 176
+     },
+     {
+      "id": "ile",
+      "title": "Илийский район",
+      "count": 100
+     },
+     {
+      "id": "raiymbek",
+      "title": "Райымбекский район",
+      "count": 53
+     },
+     {
+      "id": "uygur",
+      "title": "Уйгурский район",
+      "count": 38
+     },
+     {
+      "id": "alatau_oblast",
+      "title": "г. Алатау",
+      "count": 32
+     },
+     {
+      "id": "kegen",
+      "title": "Кегенский район",
+      "count": 20
+     },
+     {
+      "id": "balkhash",
+      "title": "Балхашский район",
+      "count": 17
+     }
+    ],
+    "by_source_file": [
+     {
+      "source": "206_21.05.2026.xls",
+      "count": 998
+     },
+     {
+      "source": "205_21.05.2026.xls",
+      "count": 260
+     },
+     {
+      "source": "301_21.05.2026.xls",
+      "count": 116
+     },
+     {
+      "source": "УДО_21.05.2026.xls",
+      "count": 51
+     }
+    ],
+    "dead_still_in_prof_dela": 0
+   },
+   "admin_accountability": {
+    "adm_protocols_in_cks_total": 2368,
+    "by_district": [
+     {
+      "id": "enbekshi",
+      "title": "Енбекшиказахский район",
+      "count": 531
+     },
+     {
+      "id": "talgar",
+      "title": "Талгарский район",
+      "count": 487
+     },
+     {
+      "id": "karasai",
+      "title": "Карасайский район",
+      "count": 348
+     },
+     {
+      "id": "ile",
+      "title": "Илийский район",
+      "count": 304
+     },
+     {
+      "id": "konaev",
+      "title": "г. Конаев",
+      "count": 286
+     },
+     {
+      "id": "zhambyl",
+      "title": "Жамбылский район",
+      "count": 277
+     },
+     {
+      "id": "uygur",
+      "title": "Уйгурский район",
+      "count": 74
+     },
+     {
+      "id": "alatau_oblast",
+      "title": "г. Алатау",
+      "count": 74
+     },
+     {
+      "id": "raiymbek",
+      "title": "Райымбекский район",
+      "count": 63
+     },
+     {
+      "id": "kegen",
+      "title": "Кегенский район",
+      "count": 53
+     },
+     {
+      "id": "balkhash",
+      "title": "Балхашский район",
+      "count": 40
+     }
+    ],
+    "dead_still_in_adm": 2,
+    "adm_other_region_protocols": 471
+   }
   },
   "district_ids": [
    "karasai",

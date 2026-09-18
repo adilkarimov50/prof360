@@ -2635,7 +2635,7 @@
     "persons": 7533
   },
   "flags": {
-    "dead_in_lists": 0,
-    "multi_category": 32
+    "dead_in_lists_persons": 0,
+    "multi_category_persons": 1546
   }
 }
