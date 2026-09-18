@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-09-18T13:28:30",
+  "counts": {
+    "cks_unique_persons": 562068,
+    "cks_rows": 949536,
+    "deceased_index": 1376809,
+    "dead_in_cks": 67,
+    "prof_unique": 2174,
+    "prof_in_cks": 1260,
+    "adm_unique": 4222,
+    "adm_in_cks": 2368,
+    "prof_and_adm": 533,
+    "persons_3plus_categories": 91277,
+    "other_region_persons": 61656,
+    "almaty_city_scope": 20108,
+    "adm_other_region": 471,
+    "dead_in_prof": 0,
+    "dead_in_adm": 2
+  }
+}

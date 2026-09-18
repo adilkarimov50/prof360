@@ -5274,8 +5274,8 @@ window.KRIM_DATA = {
     ]
    },
    {
-    "id": "kapshagai",
-    "title": "Капшагайский район",
+    "id": "konaev",
+    "title": "г. Конаев",
     "localities": [
      "konaev"
     ]
@@ -5286,6 +5286,63 @@ window.KRIM_DATA = {
     "localities": [
      "alatau"
     ]
+   }
+  ],
+  "cks_units": [
+   {
+    "id": "karasai",
+    "title": "Карасайский район",
+    "dashboard": "cks_district.html?d=karasai"
+   },
+   {
+    "id": "talgar",
+    "title": "Талгарский район",
+    "dashboard": "cks_district.html?d=talgar"
+   },
+   {
+    "id": "enbekshi",
+    "title": "Енбекшиказахский район",
+    "dashboard": "cks_district.html?d=enbekshi"
+   },
+   {
+    "id": "ile",
+    "title": "Илийский район",
+    "dashboard": "cks_district.html?d=ile"
+   },
+   {
+    "id": "zhambyl",
+    "title": "Жамбылский район",
+    "dashboard": "cks_district.html?d=zhambyl"
+   },
+   {
+    "id": "uygur",
+    "title": "Уйгурский район",
+    "dashboard": "cks_district.html?d=uygur"
+   },
+   {
+    "id": "balkhash",
+    "title": "Балхашский район",
+    "dashboard": "cks_district.html?d=balkhash"
+   },
+   {
+    "id": "kegen",
+    "title": "Кегенский район",
+    "dashboard": "cks_district.html?d=kegen"
+   },
+   {
+    "id": "raiymbek",
+    "title": "Райымбекский район",
+    "dashboard": "cks_district.html?d=raiymbek"
+   },
+   {
+    "id": "konaev",
+    "title": "г. Конаев",
+    "dashboard": "cks_district.html?d=konaev"
+   },
+   {
+    "id": "alatau_oblast",
+    "title": "г. Алатау",
+    "dashboard": "cks_district.html?d=alatau_oblast"
    }
   ]
  }

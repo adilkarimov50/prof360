@@ -320,6 +320,7 @@ function renderTopbar(page, activeId) {
   const p = sitePrefix();
   const tabs = [
     ['index.html', 'Обзор', 'Обзор разделов', 'index'],
+    ['cks.html', 'ЦКС', 'Социальный мониторинг ЦКС по области', 'cks'],
     ['passport.html', 'Паспорт', 'Криминологический паспорт', 'passport'],
     ['map.html', 'Карта', 'Карта объектов и правонарушений', 'map'],
     ['profilaktika_navigator.html', 'Прокурору', 'Прокурору для работы · Закон № 245', 'navigator'],
@@ -398,6 +399,8 @@ function resolveSitePage() {
     'index.html': 'index',
     'passport.html': 'passport',
     'map.html': 'map',
+    'cks.html': 'cks',
+    'cks_district.html': 'cks',
     'profilaktika_navigator.html': 'navigator',
     'prokuror_zakon.html': 'navigator',
     'legal_read.html': 'navigator',

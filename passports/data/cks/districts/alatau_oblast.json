@@ -1,0 +1,3659 @@
+{
+  "id": "alatau_oblast",
+  "title": "г. Алатау",
+  "mini_passport": {
+    "title": "г. Алатау",
+    "district_id": "alatau_oblast",
+    "highlights": [
+      "Уникальных лиц в строках района: 18 752",
+      "Записей (с дублями категорий): 32 588",
+      "Топ категорий: статистика неработающего населения алатау, имеющие кредиты с задолженностью более 90 дней, закредитованные лица",
+      "Признак регистрации в другом регионе (строк): 1 630"
+    ]
+  },
+  "settlements": [
+    {
+      "okrug": "Алматинская",
+      "settlement": "Алатау",
+      "persons": 11279,
+      "rows": 11279,
+      "mini_passport": {
+        "settlement": "Алатау",
+        "okrug": "Алматинская",
+        "persons": 11279,
+        "top_categories": [
+          "статистика неработающего населения алатау"
+        ]
+      }
+    },
+    {
+      "okrug": "",
+      "settlement": "—",
+      "persons": 9090,
+      "rows": 17640,
+      "mini_passport": {
+        "settlement": "—",
+        "okrug": "",
+        "persons": 9090,
+        "top_categories": [
+          "имеющие кредиты с задолженностью более 90 дней",
+          "закредитованные лица",
+          "лица не получающие социальную выплату на случай потери работы гфсс"
+        ]
+      }
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Алатауский",
+      "persons": 104,
+      "rows": 104,
+      "mini_passport": {
+        "settlement": "Алатауский",
+        "okrug": "Алматы",
+        "persons": 104,
+        "top_categories": [
+          "статистика неработающего населения алатау"
+        ]
+      }
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Турксибский",
+      "persons": 91,
+      "rows": 91,
+      "mini_passport": {
+        "settlement": "Турксибский",
+        "okrug": "Алматы",
+        "persons": 91,
+        "top_categories": [
+          "статистика неработающего населения алатау"
+        ]
+      }
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Жетысуский",
+      "persons": 83,
+      "rows": 83,
+      "mini_passport": {
+        "settlement": "Жетысуский",
+        "okrug": "Алматы",
+        "persons": 83,
+        "top_categories": [
+          "статистика неработающего населения алатау"
+        ]
+      }
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Ауэзовский",
+      "persons": 43,
+      "rows": 43,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Заречное",
+      "persons": 42,
+      "rows": 84,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Наурызбайский",
+      "persons": 42,
+      "rows": 42,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Бостандыкский",
+      "persons": 41,
+      "rows": 41,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Өтеген Батыр",
+      "settlement": "Отеген Батыр",
+      "persons": 38,
+      "rows": 81,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Панфиловский Район",
+      "persons": 31,
+      "rows": 31,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жетыген",
+      "persons": 30,
+      "rows": 51,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Байсеркенский",
+      "settlement": "Байсерке",
+      "persons": 30,
+      "rows": 63,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Медеуский",
+      "persons": 28,
+      "rows": 28,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алматы",
+      "settlement": "Алмалинский",
+      "persons": 24,
+      "rows": 24,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Нуринский",
+      "settlement": "Нура",
+      "persons": 23,
+      "rows": 44,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Талдыкорган",
+      "persons": 22,
+      "rows": 22,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Каскелен",
+      "persons": 21,
+      "rows": 36,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Алакольский Район",
+      "persons": 19,
+      "rows": 19,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Өтеген Батыр",
+      "settlement": "Ауылы Отеген Батыр",
+      "persons": 17,
+      "rows": 30,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ащибулакский",
+      "settlement": "Мухаметжан Туймебаев",
+      "persons": 16,
+      "rows": 34,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 3",
+      "persons": 15,
+      "rows": 37,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарский",
+      "settlement": "Жаналык",
+      "persons": 15,
+      "rows": 26,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Боралдай",
+      "persons": 14,
+      "rows": 25,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Район Онтустик",
+      "persons": 14,
+      "rows": 30,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 1",
+      "persons": 14,
+      "rows": 31,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Асқар Тоқпанов",
+      "settlement": "Аскар Токпанов",
+      "persons": 13,
+      "rows": 23,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жаркент",
+      "persons": 12,
+      "rows": 24,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 2",
+      "persons": 12,
+      "rows": 32,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Семей",
+      "persons": 12,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Есик",
+      "persons": 11,
+      "rows": 22,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Талгар",
+      "persons": 11,
+      "rows": 19,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Урджарский Район",
+      "persons": 11,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Коксуский Район",
+      "persons": 11,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 12",
+      "persons": 10,
+      "rows": 19,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 4",
+      "persons": 10,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Кербулакский Район",
+      "persons": 10,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 8",
+      "persons": 9,
+      "rows": 23,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Байсеркенский",
+      "settlement": "Ауылы Байсерке",
+      "persons": 9,
+      "rows": 19,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ащибулакский",
+      "settlement": "Жапек Батыр",
+      "persons": 9,
+      "rows": 15,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бесагашский",
+      "settlement": "Бесагаш",
+      "persons": 9,
+      "rows": 16,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Аксуский Район",
+      "persons": 9,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 10",
+      "persons": 8,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Баканаский",
+      "settlement": "Баканас",
+      "persons": 8,
+      "rows": 24,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Сарканский Район",
+      "persons": 8,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Заграница",
+      "settlement": "Заграница",
+      "persons": 8,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Иргелинский",
+      "settlement": "Коксай",
+      "persons": 8,
+      "rows": 14,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Караойский",
+      "settlement": "Караой",
+      "persons": 8,
+      "rows": 16,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Караойский",
+      "settlement": "Косозен",
+      "persons": 8,
+      "rows": 27,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Узынагашский",
+      "settlement": "Узынагаш",
+      "persons": 8,
+      "rows": 14,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шымкент",
+      "settlement": "Туран",
+      "persons": 8,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 13",
+      "persons": 7,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 17",
+      "persons": 7,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 5",
+      "persons": 7,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 6",
+      "persons": 7,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Шу",
+      "persons": 7,
+      "rows": 13,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Аягузский Район",
+      "persons": 7,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Маканшы",
+      "persons": 7,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ащибулакский",
+      "settlement": "Коккайнар",
+      "persons": 7,
+      "rows": 18,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бельбулакский",
+      "settlement": "Талдыбулак",
+      "persons": 7,
+      "rows": 15,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жамбылский",
+      "settlement": "Жамбыл",
+      "persons": 7,
+      "rows": 13,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Каратальский Район",
+      "persons": 7,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Сүмбеский",
+      "settlement": "Сумбе",
+      "persons": 7,
+      "rows": 13,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аулиеата",
+      "persons": 6,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жанакорган",
+      "persons": 6,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 11",
+      "persons": 6,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 23",
+      "persons": 6,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 33",
+      "persons": 6,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 7",
+      "persons": 6,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 90",
+      "persons": 6,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Байкент",
+      "settlement": "Ауылы Байкент",
+      "persons": 6,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Астана",
+      "settlement": "Сарайшык",
+      "persons": 6,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "В-Казахстанская",
+      "settlement": "Усть Каменогорск",
+      "persons": 6,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Текели",
+      "persons": 6,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Нуринский",
+      "settlement": "Туганбай",
+      "persons": 6,
+      "rows": 13,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туздыбастауский",
+      "settlement": "Туздыбастау",
+      "persons": 6,
+      "rows": 14,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шамалганский",
+      "settlement": "Шамалган",
+      "persons": 6,
+      "rows": 13,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шелекский",
+      "settlement": "Шелек",
+      "persons": 6,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Талгар",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жетиген",
+      "persons": 5,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 22",
+      "persons": 5,
+      "rows": 15,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 29",
+      "persons": 5,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 32",
+      "persons": 5,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 35",
+      "persons": 5,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 40",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Уштобе",
+      "persons": 5,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Асқар Тоқпанов",
+      "settlement": "Ауылы Аскар Токпанов",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Нуринский",
+      "settlement": "Ауылы Каратоган",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Байкент",
+      "settlement": "Байкент",
+      "persons": 5,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бельбулакский",
+      "settlement": "Бельбулак",
+      "persons": 5,
+      "rows": 10,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бескайнарский",
+      "settlement": "Бескайнар",
+      "persons": 5,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "В-Казахстанская",
+      "settlement": "Тарбагатайский Р Н",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жансугуровский",
+      "settlement": "Жансугуров",
+      "persons": 5,
+      "rows": 17,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарский",
+      "settlement": "Жалкамыс",
+      "persons": 5,
+      "rows": 16,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарский",
+      "settlement": "Коктал",
+      "persons": 5,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Караойский",
+      "settlement": "Нургиса Тлендиев",
+      "persons": 5,
+      "rows": 14,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Куртинский",
+      "settlement": "Акши",
+      "persons": 5,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Сарыозекский",
+      "settlement": "Сарыозек",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Согетинский",
+      "settlement": "Нура",
+      "persons": 5,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Жетысайский Район",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Махтааральский Р Н",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Ордабасынский Р Н",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Сарыагашский Район",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Толебийский Район",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Тюлькубасский Р Н",
+      "persons": 5,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Айтеке Би",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аягоз",
+      "persons": 4,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Заречное Учр 57",
+      "persons": 4,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 14",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 15",
+      "persons": 4,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 19",
+      "persons": 4,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 21",
+      "persons": 4,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 24",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 26",
+      "persons": 4,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 30",
+      "persons": 4,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 31",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 41",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 43",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 47",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 52",
+      "persons": 4,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 65",
+      "persons": 4,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 69",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 81",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 84",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Актюбинская",
+      "settlement": "Актобе",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Астана",
+      "settlement": "Есильский Район",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Балпыкский",
+      "settlement": "Балпык Би",
+      "persons": 4,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Гульдалинский",
+      "settlement": "Гулдала",
+      "persons": 4,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жанааул",
+      "settlement": "Ынтымак",
+      "persons": 4,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жанашарский",
+      "settlement": "Жанашар",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жібек Жолы",
+      "settlement": "Жибек Жолы",
+      "persons": 4,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Казахстанский",
+      "settlement": "Казакстан",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карагандинская",
+      "settlement": "Караганда",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Каратальский",
+      "settlement": "Каратал",
+      "persons": 4,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Каркаринский",
+      "settlement": "Каркара",
+      "persons": 4,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Куланский",
+      "settlement": "Кулан",
+      "persons": 4,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кызылординская",
+      "settlement": "Шиелийский Район",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Нарынколский",
+      "settlement": "Нарынкол",
+      "persons": 4,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Панфиловский",
+      "settlement": "Панфилов",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Райымбекский",
+      "settlement": "Кыргауылды",
+      "persons": 4,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Туркестан",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шымкент",
+      "settlement": "Абайский",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шымкент",
+      "settlement": "Каратау",
+      "persons": 4,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аральск",
+      "persons": 3,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Карабастау",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Заречное Учр 12",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Жибек Жолы",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Турксибский",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 16",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 27",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 28",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 38",
+      "persons": 3,
+      "rows": 11,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 44",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 48",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 55",
+      "persons": 3,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 61",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 63",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 66",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 68",
+      "persons": 3,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 75",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кентi Боралдай",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ленгер",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Учр 12",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Учр 57",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ушарал",
+      "persons": 3,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Шар",
+      "persons": 3,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Болекский",
+      "settlement": "Ауылы Аймен",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Панфиловский",
+      "settlement": "Ауылы Жибек Жолы",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Шенгельдинский",
+      "settlement": "Ауылы Шенгельды",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Жанасемей",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акдалинский",
+      "settlement": "Акдала",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Целиноградский Район",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Актогайcкий",
+      "settlement": "Актогай",
+      "persons": 3,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Астана",
+      "settlement": "Алматы Район",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Байсеркенский",
+      "settlement": "Али",
+      "persons": 3,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бартогайский",
+      "settlement": "Хусайын Бижанова",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Баскуншынский",
+      "settlement": "Алмалы",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Екпиндинский",
+      "settlement": "Екпенди",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Елтайский",
+      "settlement": "Береке",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жетісу",
+      "settlement": "Ескельдинский Район",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жібек Жолы",
+      "settlement": "Турар",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кабанбайский",
+      "settlement": "Кабанбай",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарский",
+      "settlement": "Еркин",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарский",
+      "settlement": "Кайнар",
+      "persons": 3,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Каргалинский",
+      "settlement": "Каргалы",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Коктобинский",
+      "settlement": "Кызылжар",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Коныршаулинский",
+      "settlement": "Таскескен",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кызылординская",
+      "settlement": "Жанакорганский Р Н",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кызылординская",
+      "settlement": "Кызылорда",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Павлодарская",
+      "settlement": "Павлодар",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Райымбекский",
+      "settlement": "Долан",
+      "persons": 3,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Рахатский",
+      "settlement": "Рахат",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "С-Казахстанская",
+      "settlement": "Петропавловск",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Толебийский",
+      "settlement": "Толе Би",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Казыгуртский Район",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Кентау",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шонжынский",
+      "settlement": "Шонжы",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шымкент",
+      "settlement": "Аль Фарабийский",
+      "persons": 3,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Энергетический",
+      "settlement": "Отеген Батыр",
+      "persons": 3,
+      "rows": 12,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Үштөбе",
+      "settlement": "Достык",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Өтеген Батыр",
+      "settlement": "Кенен Азирбаев",
+      "persons": 3,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Алихан Бокейхан",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Атакент",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Алатауский",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Есиль",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Сарайшык",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Туран",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 113",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 115",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 125",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 20",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 25",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 36",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 37",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 42",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 45",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 46",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 51",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 53",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 54",
+      "persons": 2,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 64",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 73",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 74",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 79",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 86",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 87",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 9",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 95",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Коян Кус",
+      "persons": 2,
+      "rows": 9,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Массив Мурат 1",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Первомайский",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Саксаульск",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Саркан",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Сарыагаш",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Турксибский",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Шиели",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Жібек Жолы",
+      "settlement": "Ауылы Жибек Жолы",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Өтеген Батыр",
+      "settlement": "Ауылы Кенен Азирбаев",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абай",
+      "settlement": "Жарминский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акбулакский",
+      "settlement": "Акбулак",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акжарский",
+      "settlement": "Акжар",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Актерекский",
+      "settlement": "Актерек",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Андас Батырский",
+      "settlement": "Андас Батыр",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Асинский",
+      "settlement": "Аса",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Астана",
+      "settlement": "Район Нура",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Астана",
+      "settlement": "Сарыарка Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Асқар Тоқпанов",
+      "settlement": "Жайнак",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Атырауская",
+      "settlement": "Атырау",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ақсай",
+      "settlement": "Аксай",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ақсай",
+      "settlement": "Жаугашты",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Байтерекский",
+      "settlement": "Байтерек",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бакбактынский",
+      "settlement": "Бакбакты",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бартогайский",
+      "settlement": "Байсейит",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Берекенский",
+      "settlement": "Береке",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Бирликский",
+      "settlement": "Алтыуй",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Болекский",
+      "settlement": "Болек",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Болекский",
+      "settlement": "Карасай",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Гульдалинский",
+      "settlement": "Жана Куат",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Гульдалинский",
+      "settlement": "Киши Байсерке",
+      "persons": 2,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Д.Конаевский",
+      "settlement": "Динмухамед Конаев",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Елтай",
+      "settlement": "Каражиде",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жанажолский",
+      "settlement": "Жанажол",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Жандосовский",
+      "settlement": "Жандосов",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "З-Казахстанская",
+      "settlement": "Зеленовский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "З-Казахстанская",
+      "settlement": "Уральск",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Иргелинский",
+      "settlement": "Кемертоган",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кайнарлинский",
+      "settlement": "Кайнарлы",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карагандинская",
+      "settlement": "Актогайский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карагандинская",
+      "settlement": "Сарань",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карагандинская",
+      "settlement": "Темиртау",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карагандинская",
+      "settlement": "Шахтинск",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Каракемерский",
+      "settlement": "Талдыбулак",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карасазский",
+      "settlement": "Карасаз",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карасуский",
+      "settlement": "Карасу",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Карасуский",
+      "settlement": "Сарыбай Би",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Каратурыкский",
+      "settlement": "Ащысай",
+      "persons": 2,
+      "rows": 8,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кендалинский",
+      "settlement": "Кендала",
+      "persons": 2,
+      "rows": 6,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кокталский",
+      "settlement": "Коктал",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кордайский",
+      "settlement": "Кордай",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кызылжарский",
+      "settlement": "Кызылжар",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кызылординская",
+      "settlement": "Байконыр",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Кырбалтабайский",
+      "settlement": "Акжал",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Луговской",
+      "settlement": "Луговой",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Майлыкент",
+      "settlement": "Турар Рыскулов",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Мангистауская",
+      "settlement": "Мунайлинский",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Меркенский",
+      "settlement": "Мерке",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Мичуринский",
+      "settlement": "Кожамберды",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ортадересинский",
+      "settlement": "Орта Дересин",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Отарский",
+      "settlement": "Отар",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Отенайский",
+      "settlement": "Отенай",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Панфиловский",
+      "settlement": "Карабулак",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Сарыбельский",
+      "settlement": "Сарыбел",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Сарыкемерский",
+      "settlement": "Сарыкемер",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Тасашынский",
+      "settlement": "Жана Тасашы",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Тегистикский",
+      "settlement": "Тегистик",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Теректынский",
+      "settlement": "Теректы",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Тургенский",
+      "settlement": "Турген",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Байдибека Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Келесский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Сайрамский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Туркестанская",
+      "settlement": "Шардаринский Район",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Узак батырский",
+      "settlement": "Сарыбастау",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Узынбулакский",
+      "settlement": "Аксай",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Улкенагашский",
+      "settlement": "Аулиеагаш",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Умтылский",
+      "settlement": "Жалпаксай",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Урджарский",
+      "settlement": "Урджар",
+      "persons": 2,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ушбулакский",
+      "settlement": "Ушбулак",
+      "persons": 2,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Шолаккорганский",
+      "settlement": "Шолаккорган",
+      "persons": 2,
+      "rows": 5,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Ұлытау",
+      "settlement": "Жезказган",
+      "persons": 2,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Абай",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Алтай",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Аягоз",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Есик",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Жаркент",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Каскелен",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Аудандык Манызы Бар Каласы Макинск",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Байсерке",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Байсеркенский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Бесагашский",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Бобровка",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Даулет",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Достык",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ец 166 1",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жалагаш",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жана Арна",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жанадур",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жанаталап",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жанатас",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жангиз Тобе",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жарлыозек",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жармыш",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жетысай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жетысуский",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Ондирис",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Сайрам",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Северо Западный",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Таскен",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Шапрашты",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Юго Восток Правая Сторона",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жилой Массив Юго Восточный",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Жосалы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Зайсан",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ивс Говд",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ивс Руп",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Имени Казыбек Би",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Абайский",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Алмалинский",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Аулиеата",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Енбекшинский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Жетысуский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Каратау",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Медеуский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кала Iшiндегi Ауданы Нура",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Каратау",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 102",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 104",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 106",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 108",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 114",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 116",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 117",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 117Б",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 118",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 126",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 127",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 129",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 130",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 132",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 137",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 139",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 144",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 145",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 149",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 169",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 172",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 18",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 182",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 199",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 224",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 226",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 292",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 315",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 324",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 34",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 39",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 395",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 49",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 50",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 51Г",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 528",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 57",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 58",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 60",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 67",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 70",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 71",
+      "persons": 1,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 724",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 76",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 77",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 78",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 80",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 82",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 85",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 867",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 88",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 89",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 93",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 94",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кв 99",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Квартал 190",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кеген",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кендалинский",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Кентi Бурабай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Куйган",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Мадрид",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Майкаин",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Маканшы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Медеуский",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Наурызбайский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Нура",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Отарский",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Первомай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Половинка",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Разъезд 71",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО Голубой Берег",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО Заря Ветеранов",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО Заря Капшагай простое садоводческое товарищество",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Солнечный",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Степное",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Т Садовод",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Туран",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Узынагаш",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Ушкайын",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "",
+      "settlement": "Шардара",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Hогайбайский",
+      "settlement": "Ногайбай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Акмаянский",
+      "settlement": "Ауылы Акмая",
+      "persons": 1,
+      "rows": 4,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Андас Батырский",
+      "settlement": "Ауылы Андас Батыр",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Атамекен",
+      "settlement": "Ауылы Атамекен",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Атамекен",
+      "settlement": "Ауылы Коргас",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Ащибулакский",
+      "settlement": "Ауылы Коккайнар",
+      "persons": 1,
+      "rows": 14,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Ақсай",
+      "settlement": "Ауылы Аксай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Ақсай",
+      "settlement": "Ауылы Жаугашты",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Байсеркенский",
+      "settlement": "Ауылы Али",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Бактыбайский",
+      "settlement": "Ауылы Ельтай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Бескайнарский",
+      "settlement": "Ауылы Бескайнар",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Екпиндинский",
+      "settlement": "Ауылы Екпенди",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Жамбылский",
+      "settlement": "Ауылы Жемис Жидек",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Жанашарский",
+      "settlement": "Ауылы Космос",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Кабанбайский",
+      "settlement": "Ауылы Кабанбай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Кайнарский",
+      "settlement": "Ауылы Жаналык",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Какпатасский",
+      "settlement": "Ауылы Какпатас",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Калжырский",
+      "settlement": "Ауылы Калжыр",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Каракольский",
+      "settlement": "Ауылы Каракол",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Караспанский",
+      "settlement": "Ауылы Батыр Ата",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Карасуский",
+      "settlement": "Ауылы Енбекшиарал",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Каргалинский",
+      "settlement": "Ауылы Буланбай Бауы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Каркаринский",
+      "settlement": "Ауылы Каркара",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Кокталский",
+      "settlement": "Ауылы Коктал",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Коктальский",
+      "settlement": "Ауылы Коктал",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Кордайский",
+      "settlement": "Ауылы Кордай",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Куртинский",
+      "settlement": "Ауылы Акши",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Маканчинский",
+      "settlement": "Ауылы Маканчи",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Панфиловский",
+      "settlement": "Ауылы Тонкерис",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Рудничный",
+      "settlement": "Ауылы Рудничный",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Сарыозекский",
+      "settlement": "Ауылы Сарыозек",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Суыксайский",
+      "settlement": "Ауылы Актобе",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Туздыбастауский",
+      "settlement": "Ауылы Туздыбастау",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Шелекский",
+      "settlement": "Ауылы Шелек",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Шенгельдинский",
+      "settlement": "Ауылы Кербулак",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Шенгельдинский",
+      "settlement": "Стансасы Коскудук",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Қарашоқы",
+      "settlement": "Ауылы Карашокы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Қоғалы",
+      "settlement": "Ауылы Тастыозек",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Қызылжар",
+      "settlement": "Ауылы Кызылжар",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Қырғызсайский",
+      "settlement": "Ауылы Кыргызсай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Үлкен Ақсуский",
+      "settlement": "Ауылы Улкен Аксу",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "АУЫЛДЫҚ ОКРУГІ Өтеген Батыр",
+      "settlement": "Ауылы Карасу",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Абайский",
+      "settlement": "Теректибулак",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Аватский",
+      "settlement": "Ават",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Айдарлы",
+      "settlement": "Айдарлы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Айнабулакский",
+      "settlement": "Айнабулак",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акаралский",
+      "settlement": "Акарал",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акбакайский",
+      "settlement": "Акбакай",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акжанский",
+      "settlement": "Акжан",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Аккорганский",
+      "settlement": "Тугискен",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Аккольский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Бурабайский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Есильский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Кокшетау",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Степногорск",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акмолинская",
+      "settlement": "Шортандинский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Аксукентский",
+      "settlement": "Аксу",
+      "persons": 1,
+      "rows": 3,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Актюбинская",
+      "settlement": "Мугалжарский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Актюбинская",
+      "settlement": "Хобдинский Район",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акшийский",
+      "settlement": "Акши",
+      "persons": 1,
+      "rows": 1,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акшийский",
+      "settlement": "Казатком",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Акын Сара",
+      "settlement": "Акын Сара",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алатауский",
+      "settlement": "Кызылкайрат",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алатауский",
+      "settlement": "Шымбулак",
+      "persons": 1,
+      "rows": 7,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алдабергеновский",
+      "settlement": "Алдабергенов",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    },
+    {
+      "okrug": "Алмалинский",
+      "settlement": "Алмалы",
+      "persons": 1,
+      "rows": 2,
+      "mini_passport": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "статистика_неработающего_населения_алатау",
+      "label": "статистика неработающего населения алатау",
+      "persons": 12094
+    },
+    {
+      "id": "имеющие_кредиты_с_задолженностью_более_90_дней",
+      "label": "имеющие кредиты с задолженностью более 90 дней",
+      "persons": 6286
+    },
+    {
+      "id": "закредитованные_лица",
+      "label": "закредитованные лица",
+      "persons": 6268
+    },
+    {
+      "id": "лица_не_получающие_социальную_выплату_на_случай_потери_работы_гфсс",
+      "label": "лица не получающие социальную выплату на случай потери работы гфсс",
+      "persons": 608
+    },
+    {
+      "id": "лица_с_инвалибностью",
+      "label": "лица с инвалибностью",
+      "persons": 1439
+    },
+    {
+      "id": "зарегистрированные_безработные",
+      "label": "зарегистрированные безработные",
+      "persons": 1266
+    },
+    {
+      "id": "с_хроническими_заболеваниями",
+      "label": "с хроническими заболеваниями",
+      "persons": 934
+    },
+    {
+      "id": "ниит_молодежь",
+      "label": "ниит молодежь",
+      "persons": 775
+    },
+    {
+      "id": "лица_отбывающие_наказание_осужденные",
+      "label": "лица отбывающие наказание осужденные",
+      "persons": 188
+    },
+    {
+      "id": "лица_пенсионного_возраста_не_получающие_выплату_по_пенсии_и_по_инвалидности_граж",
+      "label": "лица пенсионного возраста не получающие выплату по пенсии и по инвалидности граж",
+      "persons": 78
+    },
+    {
+      "id": "дети_на_которых_не_получают_пособие_по_уходу_за_ребенком_до_1_5_лет",
+      "label": "дети на которых не получают пособие по уходу за ребенком до 1 5 лет",
+      "persons": 12
+    },
+    {
+      "id": "дети_на_которых_не_получают_пособие_по_уходу_за_ребенком_до_1_года_гфсс",
+      "label": "дети на которых не получают пособие по уходу за ребенком до 1 года гфсс",
+      "persons": 5
+    },
+    {
+      "id": "беременные_несовершеннолетних",
+      "label": "беременные несовершеннолетних",
+      "persons": 4
+    },
+    {
+      "id": "лица_с_инвалидностью_не_получающие_пособие_по_инвалидности_и_пенсии",
+      "label": "лица с инвалидностью не получающие пособие по инвалидности и пенсии",
+      "persons": 2
+    },
+    {
+      "id": "дети_с_инвалидностью_на_которых_не_получают_пособие_по_уходу_за_ребенком_с_инвал",
+      "label": "дети с инвалидностью на которых не получают пособие по уходу за ребенком с инвал",
+      "persons": 1
+    },
+    {
+      "id": "дети_на_которых_не_получили_пособие_по_рождению_ребенка",
+      "label": "дети на которых не получили пособие по рождению ребенка",
+      "persons": 1
+    },
+    {
+      "id": "лица_пенсионного_возраста_не_получающие_выплату_по_пенсии_и_по_инвалидности_иное",
+      "label": "лица пенсионного возраста не получающие выплату по пенсии и по инвалидности иное",
+      "persons": 1
+    },
+    {
+      "id": "лица_не_получившие_подвеску_кумiс_алка_или_алтын_алка",
+      "label": "лица не получившие подвеску кумiс алка или алтын алка",
+      "persons": 1
+    }
+  ],
+  "scopes": {
+    "almaty_city": 852,
+    "oblast": 29983,
+    "other_region": 1630,
+    "unresolved": 123
+  },
+  "totals": {
+    "rows": 32588,
+    "persons": 18752
+  },
+  "flags": {
+    "dead_in_lists": 10,
+    "multi_category": 74
+  }
+}
